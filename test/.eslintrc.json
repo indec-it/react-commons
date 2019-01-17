@@ -1,0 +1,8 @@
+{
+  "root": true,
+  "parser": "babel-eslint",
+  "extends": "../.eslintrc.json",
+  "env": {
+    "mocha": true
+  }
+}
