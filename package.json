@@ -34,7 +34,7 @@
     "react-bootstrap": "^0.32.4",
     "react-datepicker": "^2.0.0",
     "react-router-dom": "^4.3.1",
-    "react-select": "^2.2.0",
+    "react-select": "^2.3.0",
     "should": "^13.2.3"
   },
   "peerDependencies": {
@@ -47,7 +47,7 @@
     "react-bootstrap": "^0.32.0",
     "react-datepicker": "^2.0.0",
     "react-router-dom": "^4.0.0",
-    "react-select": "^2.2.0"
+    "react-select": "^2.0.0"
   },
   "engines": {
     "node": ">=10.15"
