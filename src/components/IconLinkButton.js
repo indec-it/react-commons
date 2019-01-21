@@ -9,22 +9,22 @@ import {fontAwesomeIconPropTypes, childrenPropTypes} from '../util/propTypes';
 import Icon from './Icon';
 
 const IconLinkButton = ({
-    faIcon, pullIconRight, onClick, children, ...props
+    icon, pullIconRight, onClick, children, ...props
 }) => (
     <Button componentClass={Link} {...props}>
-        <Icon {...{pullIconRight, faIcon, children}}/>
+        <Icon {...{pullIconRight, icon, children}}/>
     </Button>
 );
 
 IconLinkButton.propTypes = {
-    faIcon: fontAwesomeIconPropTypes,
+    icon: fontAwesomeIconPropTypes,
     pullIconRight: PropTypes.bool,
     onClick: PropTypes.func,
     children: childrenPropTypes
 };
 
 IconLinkButton.defaultProps = {
-    faIcon: undefined,
+    icon: undefined,
     pullIconRight: false,
     onClick: noop,
     children: undefined
