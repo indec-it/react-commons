@@ -1,7 +1,7 @@
 {
   "name": "@indec/react-commons",
   "version": "0.0.1",
-  "description": "Common react components for apps",
+  "description": "Common reactjs components for apps",
   "private": false,
   "main": "src/index.js",
   "scripts": {
@@ -21,7 +21,7 @@
     "babel-plugin-lodash": "^3.3.4",
     "babel-preset-react-app": "^7.0.0",
     "babel-preset-react-native": "^4.0.1",
-    "eslint": "5.12.0",
+    "eslint": "5.12.1",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.2",
