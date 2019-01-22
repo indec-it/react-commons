@@ -2,16 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {ControlLabel, FormGroup} from 'react-bootstrap';
 import Select from 'react-select';
-import {identity} from 'lodash';
+import {
+    identity, find, size, isNil
+} from 'lodash';
 
 const handleInputChange = (term, onLoadOptions) => {
-    if (term.length > 3) {
+    if (size(term) > 3) {
         onLoadOptions(term);
     }
 };
 
 const Typeahead = ({
-    control, onChange, onLoadOptions, disabled, options, label, value, placeholder
+    control, onChange, onLoadOptions, disabled, options, label, value, placeholder, getOptionValue, getOptionLabel
 }) => (
     <FormGroup controlId={control}>
         <ControlLabel>
@@ -20,26 +22,30 @@ const Typeahead = ({
         <Select
             id={control}
             name={control}
-            value={value}
+            value={find(options, option => getOptionValue(option) === value) || null}
             filterOption={identity}
-            placeholder={placeholder}
-            onChange={onChange}
-            disabled={disabled}
+            onChange={
+                option => onChange({target: {id: control, value: isNil(option) ? option : getOptionValue(option)}})
+            }
             onInputChange={term => handleInputChange(term, onLoadOptions)}
-            options={options}
+            {...{
+                options, placeholder, disabled, getOptionValue, getOptionLabel
+            }}
         />
     </FormGroup>
 );
 
 Typeahead.propTypes = {
     control: PropTypes.string.isRequired,
-    label: PropTypes.string,
-    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     onChange: PropTypes.func.isRequired,
     onLoadOptions: PropTypes.func.isRequired,
     options: PropTypes.arrayOf(PropTypes.shape({})),
+    label: PropTypes.string,
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     placeholder: PropTypes.string,
-    disabled: PropTypes.bool
+    disabled: PropTypes.bool,
+    getOptionValue: PropTypes.func,
+    getOptionLabel: PropTypes.func
 };
 
 Typeahead.defaultProps = {
@@ -47,7 +53,9 @@ Typeahead.defaultProps = {
     value: '',
     placeholder: 'Escriba para buscar...',
     disabled: false,
-    options: []
+    options: [],
+    getOptionValue: option => option._id,
+    getOptionLabel: option => option.name
 };
 
 export default Typeahead;
