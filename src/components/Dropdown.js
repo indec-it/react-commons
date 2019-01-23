@@ -8,9 +8,11 @@ const Dropdown = ({
     value, control, label, getOptionValue, getOptionLabel, disabled, placeholder, options, onChange, isClearable
 }) => (
     <FormGroup controlId={control}>
-        <ControlLabel>
-            {label}
-        </ControlLabel>
+        {label && (
+            <ControlLabel>
+                {label}
+            </ControlLabel>
+        )}
         <Select
             value={!isNil(value) ? find(options, option => getOptionValue(option) === value) : null}
             name={control}
@@ -28,10 +30,10 @@ const Dropdown = ({
 Dropdown.propTypes = {
     onChange: PropTypes.func.isRequired,
     control: PropTypes.string.isRequired,
-    label: PropTypes.string.isRequired,
     value: PropTypes.string.isRequired,
     getOptionValue: PropTypes.func,
     getOptionLabel: PropTypes.func,
+    label: PropTypes.string,
     placeholder: PropTypes.string,
     options: PropTypes.arrayOf(PropTypes.shape({})),
     disabled: PropTypes.bool,
@@ -41,6 +43,7 @@ Dropdown.propTypes = {
 Dropdown.defaultProps = {
     getOptionValue: option => option._id,
     getOptionLabel: option => option.name,
+    label: undefined,
     placeholder: '[Seleccione]',
     options: [],
     disabled: false,
