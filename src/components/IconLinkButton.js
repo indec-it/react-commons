@@ -4,7 +4,7 @@ import {Button} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import {noop} from 'lodash';
 
-import {fontAwesomeIconPropTypes, childrenPropTypes} from '../util/propTypes';
+import {fontAwesomeIconPropTypes, childrenPropTypes} from '../util';
 
 import Icon from './Icon';
 

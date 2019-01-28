@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {Button} from 'react-bootstrap';
 import {noop} from 'lodash';
 
-import {childrenPropTypes, fontAwesomeIconPropTypes} from '../util/propTypes';
+import {childrenPropTypes, fontAwesomeIconPropTypes} from '../util';
 
 import Icon from './Icon';
 
