@@ -1,16 +1,31 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
 import {Col, Row} from 'react-bootstrap';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faArrowLeft} from '@fortawesome/free-solid-svg-icons';
 
 import {fontAwesomeIconPropTypes} from '../util';
 
-const PageHeader = ({title, icon}) => (
-    <Row className="title-strong form-group">
-        <Col sm={12}>
+import IconLinkButton from './IconLinkButton';
+
+const PageHeader = ({
+    path, title, icon, backIcon, ...props
+}) => (
+    <Row>
+        {path && (
+            <Col sm={1}>
+                <br/>
+                <IconLinkButton to={path} icon={backIcon} {...props}/>
+            </Col>
+        )}
+        <Col sm={11}>
             <h2>
-                <FontAwesomeIcon icon={icon}/>
-                &nbsp;
+                {icon && (
+                    <Fragment>
+                        <FontAwesomeIcon icon={icon}/>
+                        &nbsp;
+                    </Fragment>
+                )}
                 {title}
             </h2>
         </Col>
@@ -19,11 +34,15 @@ const PageHeader = ({title, icon}) => (
 
 PageHeader.propTypes = {
     title: PropTypes.string.isRequired,
-    icon: fontAwesomeIconPropTypes
+    backIcon: PropTypes.string,
+    icon: fontAwesomeIconPropTypes,
+    path: PropTypes.string
 };
 
 PageHeader.defaultProps = {
-    icon: null
+    backIcon: faArrowLeft,
+    icon: null,
+    path: null
 };
 
 export default PageHeader;
