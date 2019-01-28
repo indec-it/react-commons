@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {isNil} from 'lodash';
 
-import fontAwesomeIconPropTypes from '../util/propTypes/fontAwesomeIconPropTypes';
-import childrenPropTypes from '../util/propTypes/childrenPropTypes';
+import {childrenPropTypes, fontAwesomeIconPropTypes} from '../util';
 
 const Icon = ({
     pullIconRight, icon, children, ...props

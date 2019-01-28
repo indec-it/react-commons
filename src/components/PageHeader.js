@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {Col, Row} from 'react-bootstrap';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
-import {fontAwesomeIconPropTypes} from '../util/propTypes';
+import {fontAwesomeIconPropTypes} from '../util';
 
 const PageHeader = ({title, icon}) => (
     <Row className="title-strong form-group">
