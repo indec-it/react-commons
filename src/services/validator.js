@@ -2,7 +2,7 @@ import document from 'arg.js/src/document';
 import cuit from 'arg.js/src/cuit';
 
 import {
-    size, inRange, parseInt, isDate, isNil, isNumber
+    size, inRange, parseInt, isDate, isNil, isNumber, toString
 } from 'lodash';
 
 // eslint-disable-next-line max-len
@@ -11,7 +11,7 @@ const numberRegex = /^[0-9]+$/;
 
 export default class ValidatorService {
     static validateText(input, max = 50, min = 2) {
-        return inRange(size(input), min, max + 1);
+        return inRange(size(toString(input)), min, max + 1);
     }
 
     static validateNumber(input) {
