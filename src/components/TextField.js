@@ -70,7 +70,7 @@ class TextField extends Component {
             control, label, value, maxLength, minLength, disabled, handleKeyPress, required, placeholder, ...props
         } = this.props;
         return (
-            <FormGroup controlId={control} validationState={this.validateInput()}>
+            <FormGroup controlId={control} validationState={!disabled && this.validateInput()}>
                 {label && (
                     <ControlLabel>
                         {label}
