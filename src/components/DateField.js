@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {ControlLabel, FormControl, FormGroup} from 'react-bootstrap';
+import {Label, Input, FormGroup} from 'reactstrap';
 import DatePicker from 'react-datepicker';
 
 import ValidatorService from '../services/validator';
@@ -46,10 +46,10 @@ class DateField extends Component {
         } = this.props;
         return (
             <FormGroup controlId={control} validationState={this.validateInput()}>
-                <ControlLabel>
+                <Label>
                     {label}
-                </ControlLabel>
-                <FormControl
+                </Label>
+                <Input
                     componentClass={DatePicker}
                     selected={value}
                     onChange={date => this.handleChange(date)}

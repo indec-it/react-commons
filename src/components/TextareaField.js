@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {ControlLabel, FormControl, FormGroup} from 'react-bootstrap';
+import {Label, Input, FormGroup, FormFeedback} from 'reactstrap';
 import {size} from 'lodash';
 
 import ValidatorService from '../services/validator';
@@ -49,13 +49,13 @@ class TextareaField extends Component {
             control, label, value, maxLength, minLength, disabled
         } = this.props;
         return (
-            <FormGroup controlId={control} validationState={this.validateInput()}>
+            <FormGroup>
                 {label && (
-                    <ControlLabel>
+                    <Label>
                         {label}
-                    </ControlLabel>
+                    </Label>
                 )}
-                <FormControl
+                <Input
                     componentClass="textarea"
                     value={value}
                     required
@@ -63,8 +63,10 @@ class TextareaField extends Component {
                     maxLength={maxLength}
                     minLength={minLength}
                     onChange={e => this.handleChange(e)}
+                    valid={this.validateInput()}
+                    name={control}
                 />
-                <FormControl.Feedback/>
+                <FormFeedback/>
                 <small>
                     Quedan&nbsp;
                     {maxLength - size(value)}

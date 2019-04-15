@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Col, Row, Pagination} from 'react-bootstrap';
+import {Col, Row, Pagination} from 'reactstrap';
 import {ceil, min, range} from 'lodash';
 
 const getPages = (pageSize, resultsCount, maxPage) => range(min([ceil(resultsCount / pageSize), maxPage]));
