@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {ControlLabel, FormControl, FormGroup} from 'react-bootstrap';
+import {Label, Input, FormGroup, FormFeedback} from 'reactstrap';
 
 import ValidatorService from '../services/validator';
 
@@ -36,18 +36,20 @@ class EmailField extends Component {
             control, label, value, disabled
         } = this.props;
         return (
-            <FormGroup controlId={control} validationState={this.validateInput()}>
-                <ControlLabel>
+            <FormGroup>
+                <Label>
                     {label}
-                </ControlLabel>
-                <FormControl
+                </Label>
+                <Input
                     type="email"
                     value={value}
                     required
                     disabled={disabled}
                     onChange={e => this.handleChange(e)}
+                    valid={this.validateInput()}
+                    name={control}
                 />
-                <FormControl.Feedback/>
+                <FormFeedback/>
             </FormGroup>
         );
     }

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Button} from 'react-bootstrap';
+import {Button} from 'reactstrap';
 import {Link} from 'react-router-dom';
 import {noop} from 'lodash';
 

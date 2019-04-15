@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {ControlLabel, FormControl, FormGroup} from 'react-bootstrap';
+import {Label, Input, FormGroup, FormFeedback} from 'reactstrap';
 
 import ValidatorService from '../services/validator';
 
@@ -70,23 +70,25 @@ class TextField extends Component {
             control, label, value, maxLength, minLength, disabled, handleKeyPress, required, placeholder, ...props
         } = this.props;
         return (
-            <FormGroup controlId={control} validationState={this.validateInput()}>
+            <FormGroup>
                 {label && (
-                    <ControlLabel>
+                    <Label>
                         {label}
-                    </ControlLabel>
+                    </Label>
                 )}
-                <FormControl
+                <Input
                     type="text"
                     onKeyPress={handleKeyPress}
                     onBlur={e => this.handleBlur(e.target.value)}
                     onChange={e => this.handleChange(e)}
+                    valid={this.validateInput()}
+                    name={control}
                     {...{
                         required, value, maxLength, minLength, disabled, placeholder
                     }}
                     {...props}
                 />
-                <FormControl.Feedback/>
+                <FormFeedback/>
             </FormGroup>
         );
     }
