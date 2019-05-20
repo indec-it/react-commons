@@ -20,6 +20,16 @@ const Dropdown = ({
             onChange={option => onChange({
                 target: {id: control, value: !isNil(option) ? getOptionValue(option) : null}
             })}
+            menuPlacement="auto"
+            theme={theme => ({
+                ...theme,
+                borderRadius: 0,
+                colors: {
+                    ...theme.colors,
+                    primary25: '#eeeeee',
+                    primary: '#a4a4a4'
+                }
+            })}
             {...{
                 options, getOptionValue, getOptionLabel, isClearable, placeholder
             }}
