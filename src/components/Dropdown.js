@@ -20,6 +20,7 @@ const Dropdown = ({
             onChange={option => onChange({
                 target: {id: control, value: !isNil(option) ? getOptionValue(option) : null}
             })}
+            menuPlacement="auto"
             {...{
                 options, getOptionValue, getOptionLabel, isClearable, placeholder
             }}
