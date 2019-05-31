@@ -1,3 +1,4 @@
+/* global document */
 import React from 'react';
 import PropTypes from 'prop-types';
 import {ControlLabel, FormGroup} from 'react-bootstrap';
@@ -21,18 +22,10 @@ const Dropdown = ({
                 target: {id: control, value: !isNil(option) ? getOptionValue(option) : null}
             })}
             menuPlacement="auto"
-            theme={theme => ({
-                ...theme,
-                borderRadius: 0,
-                colors: {
-                    ...theme.colors,
-                    primary25: '#eeeeee',
-                    primary: '#a4a4a4'
-                }
-            })}
             {...{
                 options, getOptionValue, getOptionLabel, isClearable, placeholder
             }}
+            menuPortalTarget={document.querySelector('body')}
         />
     </FormGroup>
 );
