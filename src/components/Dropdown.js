@@ -1,7 +1,7 @@
 /* global document */
 import React from 'react';
 import PropTypes from 'prop-types';
-import {ControlLabel, FormGroup} from 'react-bootstrap';
+import {Label, FormGroup} from 'reactstrap';
 import Select from 'react-select';
 import {find, isNil} from 'lodash';
 
@@ -10,9 +10,9 @@ const Dropdown = ({
 }) => (
     <FormGroup controlId={control}>
         {label && (
-            <ControlLabel>
+            <Label>
                 {label}
-            </ControlLabel>
+            </Label>
         )}
         <Select
             value={!isNil(value) ? find(options, option => getOptionValue(option) === value) : null}

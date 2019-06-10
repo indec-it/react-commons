@@ -1,23 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {ButtonToolbar, ToggleButtonGroup, ToggleButton} from 'react-bootstrap';
+import {
+    ButtonToolbar, FormGroup, Label, Input
+} from 'reactstrap';
 
 const Radio = ({
     value, onChange, name, options, disabled
 }) => (
     <ButtonToolbar>
-        <ToggleButtonGroup
-            type="radio"
-            name={name}
-            value={value}
-            onChange={result => onChange({[name]: result})}
-        >
+        <FormGroup>
             {options && options.map(option => (
-                <ToggleButton value={option._id} disabled={disabled}>
-                    {option.name}
-                </ToggleButton>
+                <Label check>
+                    <Input
+                        type="radio"
+                        name={name}
+                        value={value}
+                        onChange={result => onChange({[name]: result})}
+                        disabled={disabled}
+                    >
+                        {option.name}
+                    </Input>
+                </Label>
             ))}
-        </ToggleButtonGroup>
+        </FormGroup>
     </ButtonToolbar>
 );
 

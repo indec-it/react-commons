@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {ControlLabel, FormGroup} from 'react-bootstrap';
+import {Label, FormGroup} from 'reactstrap';
 import Select from 'react-select';
 import {
     identity, find, size, isNil
@@ -16,9 +16,9 @@ const Typeahead = ({
     control, onChange, onLoadOptions, disabled, options, label, value, placeholder, getOptionValue, getOptionLabel
 }) => (
     <FormGroup controlId={control}>
-        <ControlLabel>
+        <Label>
             {label}
-        </ControlLabel>
+        </Label>
         <Select
             id={control}
             name={control}
