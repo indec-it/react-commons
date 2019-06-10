@@ -1,58 +1,55 @@
-import React, {Component} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import {Label, Input, FormGroup, FormFeedback} from 'reactstrap';
+import {
+    Label, Input, FormGroup, FormFeedback
+} from 'reactstrap';
 
 import ValidatorService from '../services/validator';
 
-class EmailField extends Component {
-    static propTypes = {
-        control: PropTypes.string.isRequired,
-        label: PropTypes.string.isRequired,
-        value: PropTypes.string.isRequired,
-        onChange: PropTypes.func.isRequired,
-        disabled: PropTypes.bool
-    };
-
-    static defaultProps = {
-        disabled: false
-    };
-
-    validateInput() {
-        if (!this.props.value) {
-            return null;
-        }
-        return ValidatorService.validateEmail(this.props.value) ? 'success' : 'error';
+const validateInput = value => {
+    if (!value) {
+        return null;
     }
+    return ValidatorService.validateEmail(value) ? 'success' : 'error';
+};
 
-    handleChange({target}) {
-        if (this.props.value === target.value) {
-            return;
-        }
-        this.props.onChange({target});
+const handleChange = ({target}, value, onChange) => {
+    if (value === target.value) {
+        return;
     }
+    onChange({target});
+};
 
-    render() {
-        const {
-            control, label, value, disabled
-        } = this.props;
-        return (
-            <FormGroup>
-                <Label>
-                    {label}
-                </Label>
-                <Input
-                    type="email"
-                    value={value}
-                    required
-                    disabled={disabled}
-                    onChange={e => this.handleChange(e)}
-                    valid={this.validateInput()}
-                    name={control}
-                />
-                <FormFeedback/>
-            </FormGroup>
-        );
-    }
-}
+const EmailField = ({
+    control, label, value, disabled, onChange
+}) => (
+    <FormGroup>
+        <Label>
+            {label}
+        </Label>
+        <Input
+            type="email"
+            value={value}
+            required
+            disabled={disabled}
+            onChange={e => handleChange(e, value, onChange)}
+            valid={validateInput(value)}
+            name={control}
+        />
+        <FormFeedback/>
+    </FormGroup>
+);
+
+EmailField.propTypes = {
+    control: PropTypes.string.isRequired,
+    label: PropTypes.string.isRequired,
+    value: PropTypes.string.isRequired,
+    onChange: PropTypes.func.isRequired,
+    disabled: PropTypes.bool
+};
+
+EmailField.defaultProps = {
+    disabled: false
+};
 
 export default EmailField;
