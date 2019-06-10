@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 
 import ValidatorService from '../services/validator';
@@ -11,7 +11,7 @@ const handleKeyPress = e => {
     }
 };
 
-class NumberField extends Component {
+class NumberField extends PureComponent {
     static propTypes = {
         control: PropTypes.string.isRequired,
         label: PropTypes.string,
@@ -49,7 +49,7 @@ class NumberField extends Component {
         if (this.props.value === target.value) {
             return;
         }
-        this.setState({dirty: true});
+        this.setState(() => ({dirty: true}));
         this.props.onChange({target});
     }
 

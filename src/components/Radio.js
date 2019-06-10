@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {ButtonToolbar, FormGroup, Label, Input} from 'reactstrap';
+import {
+    ButtonToolbar, FormGroup, Label, Input
+} from 'reactstrap';
 
 const Radio = ({
     value, onChange, name, options, disabled

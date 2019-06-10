@@ -1,10 +1,12 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
-import {Label, Input, FormGroup, FormFeedback} from 'reactstrap';
+import {
+    Label, Input, FormGroup, FormFeedback
+} from 'reactstrap';
 
 import ValidatorService from '../services/validator';
 
-class TextField extends Component {
+class TextField extends PureComponent {
     static propTypes = {
         control: PropTypes.string,
         label: PropTypes.string,
@@ -54,7 +56,7 @@ class TextField extends Component {
         if (this.props.value === target.value) {
             return;
         }
-        this.setState({dirty: true});
+        this.setState(() => ({dirty: true}));
         this.props.onChange({target});
     }
 
