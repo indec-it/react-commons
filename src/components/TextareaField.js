@@ -1,11 +1,13 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
-import {Label, Input, FormGroup, FormFeedback} from 'reactstrap';
+import {
+    Label, Input, FormGroup, FormFeedback
+} from 'reactstrap';
 import {size} from 'lodash';
 
 import ValidatorService from '../services/validator';
 
-class TextareaField extends Component {
+class TextareaField extends PureComponent {
     static propTypes = {
         control: PropTypes.string.isRequired,
         label: PropTypes.string,
@@ -40,7 +42,7 @@ class TextareaField extends Component {
         if (this.props.value === target.value) {
             return;
         }
-        this.setState({dirty: true});
+        this.setState(() => ({dirty: true}));
         this.props.onChange({target});
     }
 
