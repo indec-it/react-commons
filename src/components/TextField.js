@@ -14,7 +14,7 @@ class TextField extends Component {
         minLength: PropTypes.number,
         maxLength: PropTypes.number,
         disabled: PropTypes.bool,
-        validateInput: PropTypes.string,
+        validateInput: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
         handleKeyPress: PropTypes.func,
         placeholder: PropTypes.string,
         required: PropTypes.bool
@@ -27,7 +27,7 @@ class TextField extends Component {
         onBlur: null,
         value: '',
         disabled: false,
-        validateInput: '',
+        validateInput: null,
         handleKeyPress: null,
         placeholder: '',
         control: '',
@@ -41,21 +41,21 @@ class TextField extends Component {
 
     validateInput() {
         if (this.props.validateInput) {
-            return this.props.validateInput;
+            return this.props.validateInput();
         }
-        if (!this.state.dirty) {
+        if (!this.state.dirty || (!this.props.required && this.props.value)) {
             return null;
         }
-        const {value, maxLength, minLength} = this.props;
+        const {maxLength, minLength, value} = this.props;
         return ValidatorService.validateText(value, maxLength, minLength) ? 'success' : 'error';
     }
 
-    handleChange({target}) {
+    handleChange({target}, onChange) {
         if (this.props.value === target.value) {
             return;
         }
         this.setState({dirty: true});
-        this.props.onChange({target});
+        onChange({target});
     }
 
     handleBlur(value) {
@@ -67,7 +67,17 @@ class TextField extends Component {
 
     render() {
         const {
-            control, label, value, maxLength, minLength, disabled, handleKeyPress, required, placeholder, ...props
+            control,
+            label,
+            value,
+            maxLength,
+            minLength,
+            disabled,
+            handleKeyPress,
+            placeholder,
+            required,
+            onChange,
+            ...props
         } = this.props;
         return (
             <FormGroup controlId={control} validationState={this.validateInput()}>
@@ -80,9 +90,9 @@ class TextField extends Component {
                     type="text"
                     onKeyPress={handleKeyPress}
                     onBlur={e => this.handleBlur(e.target.value)}
-                    onChange={e => this.handleChange(e)}
+                    onChange={e => this.handleChange(e, onChange)}
                     {...{
-                        required, value, maxLength, minLength, disabled, placeholder
+                        value, maxLength, minLength, disabled, placeholder, required
                     }}
                     {...props}
                 />

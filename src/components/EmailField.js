@@ -10,15 +10,22 @@ class EmailField extends Component {
         label: PropTypes.string.isRequired,
         value: PropTypes.string.isRequired,
         onChange: PropTypes.func.isRequired,
-        disabled: PropTypes.bool
+        disabled: PropTypes.bool,
+        required: PropTypes.bool
     };
 
     static defaultProps = {
-        disabled: false
+        disabled: false,
+        required: false
     };
 
+    constructor(props) {
+        super(props);
+        this.state = {dirty: false};
+    }
+
     validateInput() {
-        if (!this.props.value) {
+        if (!this.state.dirty || (!this.props.required && this.props.value)) {
             return null;
         }
         return ValidatorService.validateEmail(this.props.value) ? 'success' : 'error';
@@ -28,6 +35,7 @@ class EmailField extends Component {
         if (this.props.value === target.value) {
             return;
         }
+        this.setState({dirty: true});
         this.props.onChange({target});
     }
 

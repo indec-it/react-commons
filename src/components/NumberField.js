@@ -20,7 +20,8 @@ class NumberField extends Component {
         onBlur: PropTypes.func,
         minLength: PropTypes.number,
         maxLength: PropTypes.number,
-        disabled: PropTypes.bool
+        disabled: PropTypes.bool,
+        required: PropTypes.bool
     };
 
     static defaultProps = {
@@ -29,7 +30,8 @@ class NumberField extends Component {
         onBlur: null,
         label: '',
         disabled: false,
-        value: null
+        value: null,
+        required: false
     };
 
     constructor(props) {
@@ -38,7 +40,7 @@ class NumberField extends Component {
     }
 
     validateInput() {
-        if (!this.state.dirty) {
+        if (!this.state.dirty || (!this.props.required && this.props.value)) {
             return null;
         }
         const {value, maxLength, minLength} = this.props;
@@ -55,20 +57,17 @@ class NumberField extends Component {
 
     render() {
         const {
-            control, label, value, maxLength, minLength, disabled, onBlur
+            control, label, value, maxLength, minLength, disabled, onBlur, required, ...props
         } = this.props;
         return (
             <TextField
-                control={control}
-                label={label}
-                value={value}
-                maxLength={maxLength}
-                minLength={minLength}
-                disabled={disabled}
-                onBlur={onBlur}
                 handleKeyPress={handleKeyPress}
                 validateInput={this.validateInput()}
                 onChange={e => this.handleChange(e)}
+                {...{
+                    required, control, label, value, maxLength, minLength, disabled, onBlur
+                }}
+                {...props}
             />
         );
     }
