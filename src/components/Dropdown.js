@@ -1,4 +1,3 @@
-/* global document */
 import React from 'react';
 import PropTypes from 'prop-types';
 import {ControlLabel, FormGroup} from 'react-bootstrap';
@@ -6,7 +5,17 @@ import Select from 'react-select';
 import {find, isNil} from 'lodash';
 
 const Dropdown = ({
-    value, control, label, getOptionValue, getOptionLabel, disabled, placeholder, options, onChange, isClearable
+    value,
+    control,
+    label,
+    getOptionValue,
+    getOptionLabel,
+    disabled,
+    placeholder,
+    options,
+    onChange,
+    isClearable,
+    ...props
 }) => (
     <FormGroup controlId={control}>
         {label && (
@@ -25,7 +34,7 @@ const Dropdown = ({
             {...{
                 options, getOptionValue, getOptionLabel, isClearable, placeholder
             }}
-            menuPortalTarget={document.querySelector('body')}
+            {...props}
         />
     </FormGroup>
 );
