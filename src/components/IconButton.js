@@ -11,7 +11,11 @@ const IconButton = ({
     icon, pullIconRight, onClick, children, ...props
 }) => (
     <Button onClick={onClick} {...props}>
-        <Icon {...{pullIconRight, icon, children}}/>
+        <Icon
+            {...{
+                pullIconRight, icon, children, ...props
+            }}
+        />
     </Button>
 );
 
