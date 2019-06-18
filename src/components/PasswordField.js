@@ -52,7 +52,6 @@ class PasswordField extends PureComponent {
             callback();
             return this.props.validateInput;
         }
-
         const {maxLength, minLength} = this.props;
         const valid = ValidatorService.validatePassword(value, maxLength, minLength);
         return this.setState(() => ({valid}), callback);
@@ -63,7 +62,6 @@ class PasswordField extends PureComponent {
         if (this.props.value === value) {
             return;
         }
-
         this.validateInput(value, this.props.onChange({target: {value, id: this.props.control}}));
     }
 
