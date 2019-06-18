@@ -3,7 +3,7 @@ import {Alert} from 'reactstrap';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faSpinner} from '@fortawesome/free-solid-svg-icons';
 
-const LoadingIndicator = () => (
+const SaveIndicator = () => (
     <Alert
         color="info"
         className="text-center"
@@ -12,8 +12,8 @@ const LoadingIndicator = () => (
             icon={faSpinner}
             pulse
         />
-        &nbsp; Cargando
+        &nbsp; Guardando
     </Alert>
 );
 
-export default LoadingIndicator;
+export default SaveIndicator;

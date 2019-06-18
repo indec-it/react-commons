@@ -9,7 +9,7 @@ const validateInput = value => {
     if (!value) {
         return null;
     }
-    return ValidatorService.validateDocument(value) ? 'success' : 'error';
+    return ValidatorService.validateDocument(value);
 };
 
 const handleChange = ({target}, value, onChange) => {

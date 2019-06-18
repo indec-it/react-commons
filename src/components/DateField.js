@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {Label, Input, FormGroup} from 'reactstrap';
+import {Label, FormGroup} from 'reactstrap';
 import DatePicker from 'react-datepicker';
-
-import ValidatorService from '../services/validator';
 
 class DateField extends Component {
     static propTypes = {
@@ -20,7 +18,7 @@ class DateField extends Component {
     static defaultProps = {
         value: null,
         dateFormat: 'dd/MM/yyyy',
-        maxDate: null,
+        maxDate: new Date(),
         minDate: null,
         disabled: false
     };
@@ -33,34 +31,30 @@ class DateField extends Component {
         this.props.onChange({target: {value, id: this.props.control}});
     }
 
-    validateInput() {
-        if (!this.props.value) {
-            return null;
-        }
-        return ValidatorService.validateDate(this.props.value) ? 'success' : 'error';
-    }
-
     render() {
         const {
             control, label, value, dateFormat, maxDate, minDate, disabled
         } = this.props;
         return (
-            <FormGroup controlId={control} validationState={this.validateInput()}>
+            <FormGroup>
                 <Label>
                     {label}
                 </Label>
-                <Input
-                    componentClass={DatePicker}
-                    selected={value}
-                    onChange={date => this.handleChange(date)}
-                    placeholderText="Haga click para seleccionar"
-                    showMonthDropdown
+                <DatePicker
                     showYearDropdown
-                    dropdownMode="select"
-                    withPortal
+                    showMonthDropdown
+                    isClearable
+                    key="es"
+                    id={control}
+                    locale="es"
                     {...{
-                        dateFormat, maxDate, minDate, disabled
+                        maxDate,
+                        minDate,
+                        dateFormat,
+                        disabled
                     }}
+                    selected={value}
+                    onChange={this.handleChange}
                 />
             </FormGroup>
         );

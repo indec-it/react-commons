@@ -1,55 +1,76 @@
-import React from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {
-    Label, Input, FormGroup, FormFeedback
+    Label,
+    Input,
+    FormGroup,
+    FormFeedback
 } from 'reactstrap';
 
 import ValidatorService from '../services/validator';
 
-const validateInput = value => {
-    if (!value) {
-        return null;
+class EmailField extends PureComponent {
+    static propTypes = {
+        control: PropTypes.string.isRequired,
+        label: PropTypes.string.isRequired,
+        value: PropTypes.string.isRequired,
+        onChange: PropTypes.func.isRequired,
+        disabled: PropTypes.bool
+    };
+
+    static defaultProps = {
+        disabled: false
+    };
+
+    constructor(props) {
+        super(props);
+        this.state = {valid: undefined};
     }
-    return ValidatorService.validateEmail(value) ? 'success' : 'error';
-};
 
-const handleChange = ({target}, value, onChange) => {
-    if (value === target.value) {
-        return;
+    validateInput = (value, callback) => {
+        const valid = ValidatorService.validateEmail(value);
+        this.setState(() => ({valid}), callback());
+    };
+
+    handleChange = ({target}) => {
+        if (this.props.value === target.value) {
+            return;
+        }
+        this.validateInput(target.value,
+            this.props.onChange({target})
+        );
+    };
+
+    render() {
+        const {
+            control,
+            label,
+            value,
+            disabled,
+            onChange
+        } = this.props;
+        const {valid} = this.state;
+        return (
+            <FormGroup>
+                <Label>
+                    {label}
+                </Label>
+                <Input
+                    type="email"
+                    value={value}
+                    required
+                    disabled={disabled}
+                    onChange={e => this.handleChange(e, onChange)}
+                    valid={valid}
+                    invalid={valid === false}
+                    name={control}
+                />
+                <FormFeedback tooltip>
+                    Email invalido
+                </FormFeedback>
+            </FormGroup>
+        );
     }
-    onChange({target});
-};
-
-const EmailField = ({
-    control, label, value, disabled, onChange
-}) => (
-    <FormGroup>
-        <Label>
-            {label}
-        </Label>
-        <Input
-            type="email"
-            value={value}
-            required
-            disabled={disabled}
-            onChange={e => handleChange(e, value, onChange)}
-            valid={validateInput(value)}
-            name={control}
-        />
-        <FormFeedback/>
-    </FormGroup>
-);
-
-EmailField.propTypes = {
-    control: PropTypes.string.isRequired,
-    label: PropTypes.string.isRequired,
-    value: PropTypes.string.isRequired,
-    onChange: PropTypes.func.isRequired,
-    disabled: PropTypes.bool
-};
-
-EmailField.defaultProps = {
-    disabled: false
-};
+}
 
 export default EmailField;

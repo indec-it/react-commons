@@ -1,14 +1,15 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
 import {Button} from 'reactstrap';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faSave} from '@fortawesome/free-solid-svg-icons';
 import {noop} from 'lodash';
 
-import LoadingButton from './LoadingButton';
+import ActionIndicator from './ActionIndicator';
 
 const SaveButton = ({disabled, onClick, saving}) => (
-    saving ? <LoadingButton/> : (
+    <Fragment>
+        <ActionIndicator saving={saving}/>
         <Button
             type="submit"
             bsStyle="primary"
@@ -18,7 +19,7 @@ const SaveButton = ({disabled, onClick, saving}) => (
             <FontAwesomeIcon icon={faSave}/>
             &nbsp;Guardar
         </Button>
-    )
+    </Fragment>
 );
 
 SaveButton.propTypes = {

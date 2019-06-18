@@ -214,4 +214,33 @@ describe('ValidatorService', () => {
             ValidatorService.validateCuit(undefined).should.be.false();
         });
     });
+
+    describe('.validatePassword', () => {
+        it('should be true for a valid password', () => {
+            ValidatorService.validatePassword('Asdf1234').should.be.true();
+        });
+
+        it('should be false for a invalid cuil', () => {
+            ValidatorService.validatePassword('a      password').should.be.false();
+            ValidatorService.validatePassword('12345').should.be.false();
+            ValidatorService.validatePassword('asd1234').should.be.false();
+            ValidatorService.validatePassword('ASD1234').should.be.false();
+        });
+
+        it('should be false for a null password', () => {
+            ValidatorService.validatePassword(null).should.be.false();
+        });
+
+        it('should be false for an empty input', () => {
+            ValidatorService.validatePassword('').should.be.false();
+        });
+
+        it('should be false for a NaN', () => {
+            ValidatorService.validatePassword(NaN).should.be.false();
+        });
+
+        it('should be false for an undefined input', () => {
+            ValidatorService.validatePassword(undefined).should.be.false();
+        });
+    });
 });

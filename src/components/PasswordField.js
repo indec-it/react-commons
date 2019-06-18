@@ -6,7 +6,7 @@ import {
 
 import ValidatorService from '../services/validator';
 
-class TextField extends PureComponent {
+class PasswordField extends PureComponent {
     static propTypes = {
         control: PropTypes.string,
         label: PropTypes.string,
@@ -39,7 +39,7 @@ class TextField extends PureComponent {
         required: false,
         row: false,
         feedBack: false,
-        feedBackLabel: 'Valor invalido'
+        feedBackLabel: 'La contraseña debe ser de al menos 8 caracteres contener 1 mayúscula 3 minúsculas y 2 números'
     };
 
     constructor(props) {
@@ -54,7 +54,7 @@ class TextField extends PureComponent {
         }
 
         const {maxLength, minLength} = this.props;
-        const valid = ValidatorService.validateText(value, maxLength, minLength);
+        const valid = ValidatorService.validatePassword(value, maxLength, minLength);
         return this.setState(() => ({valid}), callback);
     }
 
@@ -99,7 +99,7 @@ class TextField extends PureComponent {
                     </Label>
                 )}
                 <Input
-                    type="text"
+                    type="password"
                     onKeyPress={handleKeyPress}
                     onBlur={e => this.handleBlur(e.target.value)}
                     onChange={e => this.handleChange(e)}
@@ -121,4 +121,4 @@ class TextField extends PureComponent {
     }
 }
 
-export default TextField;
+export default PasswordField;
