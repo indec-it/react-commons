@@ -9,7 +9,7 @@ const Radio = ({
 }) => (
     <ButtonToolbar>
         <FormGroup>
-            {options && options.map(option => (
+            {options.map(option => (
                 <Label check>
                     <Input
                         type="radio"
@@ -30,16 +30,19 @@ Radio.propTypes = {
     onChange: PropTypes.func.isRequired,
     value: PropTypes.number,
     name: PropTypes.string.isRequired,
-    options: PropTypes.arrayOf(PropTypes.shape({
-        id: PropTypes.number,
-        text: PropTypes.string
-    })).isRequired,
+    options: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.number,
+            text: PropTypes.string
+        })
+    ),
     disabled: PropTypes.bool
 };
 
 Radio.defaultProps = {
     disabled: false,
-    value: 0
+    value: 0,
+    options: []
 };
 
 export default Radio;

@@ -4,7 +4,6 @@ import {Link} from 'react-router-dom';
 import {noop} from 'lodash';
 
 import {fontAwesomeIconPropTypes, childrenPropTypes} from '../util';
-
 import Icon from './Icon';
 
 const IconLinkButton = ({

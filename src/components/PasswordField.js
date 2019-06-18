@@ -4,25 +4,25 @@ import {
     Label, Input, FormGroup, FormFeedback
 } from 'reactstrap';
 
-import ValidatorService from '../services/validator';
+import {ValidatorService} from '../services';
 
 class PasswordField extends PureComponent {
     static propTypes = {
+        onBlur: PropTypes.func,
+        handleKeyPress: PropTypes.func,
+        onChange: PropTypes.func.isRequired,
+        minLength: PropTypes.number,
+        maxLength: PropTypes.number,
         control: PropTypes.string,
         label: PropTypes.string,
         value: PropTypes.string,
-        onChange: PropTypes.func.isRequired,
-        onBlur: PropTypes.func,
-        minLength: PropTypes.number,
-        maxLength: PropTypes.number,
-        disabled: PropTypes.bool,
+        feedBackLabel: PropTypes.string,
         validateInput: PropTypes.string,
-        handleKeyPress: PropTypes.func,
         placeholder: PropTypes.string,
         required: PropTypes.bool,
         row: PropTypes.bool,
         feedBack: PropTypes.bool,
-        feedBackLabel: PropTypes.string
+        disabled: PropTypes.bool
     };
 
     static defaultProps = {
@@ -56,7 +56,7 @@ class PasswordField extends PureComponent {
         const {maxLength, minLength} = this.props;
         const valid = ValidatorService.validatePassword(value, maxLength, minLength);
         return this.setState(() => ({valid}), callback);
-    }
+    };
 
     handleChange(date) {
         const value = date.toISOString();
@@ -89,7 +89,6 @@ class PasswordField extends PureComponent {
             feedBackLabel,
             ...props
         } = this.props;
-
         const {valid} = this.state;
         return (
             <FormGroup row={this.props.row}>

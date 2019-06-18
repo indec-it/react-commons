@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
 
 import LoadingIndicator from './LoadingIndicator';
@@ -11,7 +11,7 @@ const ActionIndicator = ({
     loadingLabel
 }) => (
     (saving || loading) && (
-        <div>
+        <Fragment>
             <div
                 className="modal fade show"
                 style={{
@@ -33,18 +33,18 @@ const ActionIndicator = ({
                 </div>
             </div>
             <div className="modal-backdrop fade show"/>
-        </div>
+        </Fragment>
     )
 );
 
 ActionIndicator.propTypes = {
     saving: PropTypes.bool,
     loading: PropTypes.bool,
-    loadingLabel: PropTypes.oneOf([
+    loadingLabel: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.instanceOf(React)
     ]),
-    savingLabel: PropTypes.oneOf([
+    savingLabel: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.instanceOf(React)
     ])
