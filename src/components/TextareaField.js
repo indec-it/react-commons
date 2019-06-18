@@ -38,27 +38,18 @@ class TextareaField extends PureComponent {
         const {maxLength, minLength} = this.props;
         const valid = ValidatorService.validateText(value, maxLength, minLength);
         this.setState(() => ({valid}), callback());
-    }
+    };
 
     handleChange({target}) {
         if (this.props.value === target.value) {
             return;
         }
-        this.validateInput(target.value,
-            this.props.onChange({target})
-        );
+        this.validateInput(target.value, this.props.onChange({target}));
     }
 
     render() {
         const {
-            control,
-            label,
-            value,
-            maxLength,
-            minLength,
-            disabled,
-            feedBack,
-            feedBackLabel
+            control, label, value, maxLength, minLength, disabled, feedBack, feedBackLabel
         } = this.props;
         const {valid} = this.state;
         return (
@@ -70,13 +61,11 @@ class TextareaField extends PureComponent {
                 )}
                 <Input
                     componentClass="textarea"
-                    value={value}
+                    {...{
+                        value, disabled, maxLength, minLength, valid
+                    }}
                     required
-                    disabled={disabled}
-                    maxLength={maxLength}
-                    minLength={minLength}
                     onChange={e => this.handleChange(e)}
-                    valid={valid}
                     invalid={valid === false}
                     name={control}
                 />
@@ -86,9 +75,7 @@ class TextareaField extends PureComponent {
                     </FormFeedback>
                 )}
                 <small>
-                    Quedan&nbsp;
-                    {maxLength - size(value)}
-                    &nbsp;caracter(es) disponibles.
+                    {`Quedan ${maxLength - size(value)} caracter(es) disponibles.`}
                 </small>
             </FormGroup>
 

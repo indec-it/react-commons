@@ -1,11 +1,10 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import {Col, Row} from 'reactstrap';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faArrowLeft} from '@fortawesome/free-solid-svg-icons';
 
 import {fontAwesomeIconPropTypes} from '../util';
-
 import IconLinkButton from './IconLinkButton';
 
 const PageHeader = ({
@@ -20,12 +19,9 @@ const PageHeader = ({
         )}
         <Col sm={11}>
             <h2>
-                {icon && (
-                    <Fragment>
-                        <FontAwesomeIcon icon={icon}/>
-                        &nbsp;
-                    </Fragment>
-                )}
+                {icon && <FontAwesomeIcon icon={icon}/>}
+                &nbsp;
+                {' '}
                 {title}
             </h2>
         </Col>

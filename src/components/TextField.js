@@ -56,7 +56,7 @@ class TextField extends PureComponent {
         const {maxLength, minLength} = this.props;
         const valid = ValidatorService.validateText(value, maxLength, minLength);
         return this.setState(() => ({valid}), callback);
-    }
+    };
 
     handleChange(date) {
         const value = date.toISOString();

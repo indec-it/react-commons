@@ -32,22 +32,16 @@ class EmailField extends PureComponent {
         this.setState(() => ({valid}), callback());
     };
 
-    handleChange = ({target}) => {
+    handleChange = ({target}, onChange) => {
         if (this.props.value === target.value) {
             return;
         }
-        this.validateInput(target.value,
-            this.props.onChange({target})
-        );
+        this.validateInput(target.value, onChange({target}));
     };
 
     render() {
         const {
-            control,
-            label,
-            value,
-            disabled,
-            onChange
+            control, label, value, disabled, onChange
         } = this.props;
         const {valid} = this.state;
         return (
@@ -57,11 +51,9 @@ class EmailField extends PureComponent {
                 </Label>
                 <Input
                     type="email"
-                    value={value}
+                    {...{value, disabled, valid}}
                     required
-                    disabled={disabled}
                     onChange={e => this.handleChange(e, onChange)}
-                    valid={valid}
                     invalid={valid === false}
                     name={control}
                 />
