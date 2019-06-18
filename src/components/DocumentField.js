@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import ValidatorService from '../services/validator';
-
 import TextField from './TextField';
 
 const validateInput = value => {
@@ -23,13 +22,12 @@ const DocumentField = ({
     control, label, value, disabled, onChange
 }) => (
     <TextField
-        control={control}
-        label={label}
-        value={value}
         required
         minLength={7}
         maxLength={8}
-        disabled={disabled}
+        {...{
+            disabled, control, label, value
+        }}
         onChange={e => handleChange(e, value, onChange)}
         validateInput={validateInput(value)}
     />
