@@ -1,4 +1,4 @@
-import React, {PureComponent} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import ValidatorService from '../services/validator';
@@ -11,67 +11,40 @@ const handleKeyPress = e => {
     }
 };
 
-class NumberField extends PureComponent {
-    static propTypes = {
-        control: PropTypes.string.isRequired,
-        label: PropTypes.string,
-        value: PropTypes.string,
-        onChange: PropTypes.func.isRequired,
-        onBlur: PropTypes.func,
-        minLength: PropTypes.number,
-        maxLength: PropTypes.number,
-        disabled: PropTypes.bool
-    };
+const NumberField = ({
+    control, label, value, maxLength, minLength, disabled, onBlur, onChange
+}) => (
+    <TextField
+        control={control}
+        label={label}
+        value={value}
+        maxLength={maxLength}
+        minLength={minLength}
+        disabled={disabled}
+        onBlur={onBlur}
+        handleKeyPress={handleKeyPress}
+        onChange={onChange}
+    />
+);
 
-    static defaultProps = {
-        maxLength: 20,
-        minLength: 2,
-        onBlur: null,
-        label: '',
-        disabled: false,
-        value: null
-    };
+NumberField.propTypes = {
+    control: PropTypes.string.isRequired,
+    label: PropTypes.string,
+    value: PropTypes.string,
+    onChange: PropTypes.func.isRequired,
+    onBlur: PropTypes.func,
+    minLength: PropTypes.number,
+    maxLength: PropTypes.number,
+    disabled: PropTypes.bool
+};
 
-    constructor(props) {
-        super(props);
-        this.state = {dirty: false};
-    }
-
-    validateInput() {
-        if (!this.state.dirty) {
-            return null;
-        }
-        const {value, maxLength, minLength} = this.props;
-        return ValidatorService.validateText(value, maxLength, minLength) ? 'success' : 'error';
-    }
-
-    handleChange({target}) {
-        if (this.props.value === target.value) {
-            return;
-        }
-        this.setState(() => ({dirty: true}));
-        this.props.onChange({target});
-    }
-
-    render() {
-        const {
-            control, label, value, maxLength, minLength, disabled, onBlur
-        } = this.props;
-        return (
-            <TextField
-                control={control}
-                label={label}
-                value={value}
-                maxLength={maxLength}
-                minLength={minLength}
-                disabled={disabled}
-                onBlur={onBlur}
-                handleKeyPress={handleKeyPress}
-                validateInput={this.validateInput()}
-                onChange={e => this.handleChange(e)}
-            />
-        );
-    }
-}
+NumberField.defaultProps = {
+    maxLength: 20,
+    minLength: 2,
+    onBlur: null,
+    label: '',
+    disabled: false,
+    value: null
+};
 
 export default NumberField;

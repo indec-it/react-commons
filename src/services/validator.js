@@ -8,6 +8,7 @@ import {
 // eslint-disable-next-line max-len
 const emailRegex = /^([a-zA-Z0-9_\-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
 const numberRegex = /^[0-9]+$/;
+const passwordRegex = /^(?=.*[A-Z]{1,})(?=.*[0-9]{2,})(?=.*[a-z]{3,}).{8,}$/;
 
 export default class ValidatorService {
     static validateText(input, max = 50, min = 2) {
@@ -35,5 +36,9 @@ export default class ValidatorService {
 
     static validateCuit(input) {
         return !isNil(input) && isNumber(parseInt(input)) && cuit.isValid(input);
+    }
+
+    static validatePassword(input) {
+        return passwordRegex.test(input);
     }
 }

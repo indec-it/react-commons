@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Button} from 'reactstrap';
 import {Link} from 'react-router-dom';
 import {noop} from 'lodash';
 
@@ -11,9 +10,9 @@ import Icon from './Icon';
 const IconLinkButton = ({
     icon, pullIconRight, onClick, children, ...props
 }) => (
-    <Button componentClass={Link} {...props}>
+    <Link className="btn btn-link" {...props}>
         <Icon {...{pullIconRight, icon, children}}/>
-    </Button>
+    </Link>
 );
 
 IconLinkButton.propTypes = {
