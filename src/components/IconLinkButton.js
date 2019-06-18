@@ -15,10 +15,10 @@ const IconLinkButton = ({
 );
 
 IconLinkButton.propTypes = {
-    icon: fontAwesomeIconPropTypes,
-    pullIconRight: PropTypes.bool,
     onClick: PropTypes.func,
-    children: childrenPropTypes
+    icon: fontAwesomeIconPropTypes,
+    children: childrenPropTypes,
+    pullIconRight: PropTypes.bool
 };
 
 IconLinkButton.defaultProps = {
