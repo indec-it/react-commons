@@ -5,10 +5,7 @@ import LoadingIndicator from './LoadingIndicator';
 import SaveIndicator from './SaveIndicator';
 
 const ActionIndicator = ({
-    saving,
-    savingLabel,
-    loading,
-    loadingLabel
+    saving, savingLabel, loading, loadingLabel
 }) => (
     (saving || loading) && (
         <Fragment>
@@ -32,7 +29,7 @@ const ActionIndicator = ({
                     {saving && savingLabel}
                 </div>
             </div>
-            <div className="modal-backdrop fade show"/>
+            <div className="fade show modal-bg"/>
         </Fragment>
     )
 );
@@ -53,8 +50,8 @@ ActionIndicator.propTypes = {
 ActionIndicator.defaultProps = {
     saving: false,
     loading: false,
-    loadingLabel: LoadingIndicator,
-    savingLabel: SaveIndicator
+    loadingLabel: <LoadingIndicator/>,
+    savingLabel: <SaveIndicator/>
 };
 
 export default ActionIndicator;

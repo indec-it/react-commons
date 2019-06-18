@@ -4,7 +4,6 @@ import {Button} from 'reactstrap';
 import {noop} from 'lodash';
 
 import {childrenPropTypes, fontAwesomeIconPropTypes} from '../util';
-
 import Icon from './Icon';
 
 const IconButton = ({
@@ -16,10 +15,10 @@ const IconButton = ({
 );
 
 IconButton.propTypes = {
-    icon: fontAwesomeIconPropTypes,
-    pullIconRight: PropTypes.bool,
     onClick: PropTypes.func,
-    children: childrenPropTypes
+    icon: fontAwesomeIconPropTypes,
+    children: childrenPropTypes,
+    pullIconRight: PropTypes.bool
 };
 
 IconButton.defaultProps = {

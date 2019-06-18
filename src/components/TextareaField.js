@@ -5,19 +5,19 @@ import {
 } from 'reactstrap';
 import {size} from 'lodash';
 
-import ValidatorService from '../services/validator';
+import {ValidatorService} from '../services';
 
 class TextareaField extends PureComponent {
     static propTypes = {
+        onChange: PropTypes.func.isRequired,
         control: PropTypes.string.isRequired,
         label: PropTypes.string,
+        feedBackLabel: PropTypes.string,
         value: PropTypes.string.isRequired,
-        onChange: PropTypes.func.isRequired,
         minLength: PropTypes.number,
         maxLength: PropTypes.number,
         disabled: PropTypes.bool,
-        feedBack: PropTypes.bool,
-        feedBackLabel: PropTypes.string
+        feedBack: PropTypes.bool
     };
 
     static defaultProps = {
