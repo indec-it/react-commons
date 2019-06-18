@@ -15,41 +15,52 @@ class TextareaField extends PureComponent {
         onChange: PropTypes.func.isRequired,
         minLength: PropTypes.number,
         maxLength: PropTypes.number,
-        disabled: PropTypes.bool
+        disabled: PropTypes.bool,
+        feedBack: PropTypes.bool,
+        feedBackLabel: PropTypes.string
     };
 
     static defaultProps = {
         label: null,
         maxLength: 250,
         minLength: 2,
-        disabled: false
+        disabled: false,
+        feedBack: false,
+        feedBackLabel: 'Valor invalido'
     };
 
     constructor(props) {
         super(props);
-        this.state = {dirty: false};
+        this.state = {valid: undefined};
     }
 
-    validateInput() {
-        if (!this.state.dirty) {
-            return null;
-        }
-        const {value, maxLength, minLength} = this.props;
-        return ValidatorService.validateText(value, maxLength, minLength) ? 'success' : 'error';
+    validateInput = (value, callback) => {
+        const {maxLength, minLength} = this.props;
+        const valid = ValidatorService.validateText(value, maxLength, minLength);
+        this.setState(() => ({valid}), callback());
     }
 
     handleChange({target}) {
         if (this.props.value === target.value) {
             return;
         }
-        this.setState(() => ({dirty: true}));
-        this.props.onChange({target});
+        this.validateInput(target.value,
+            this.props.onChange({target})
+        );
     }
 
     render() {
         const {
-            control, label, value, maxLength, minLength, disabled
+            control,
+            label,
+            value,
+            maxLength,
+            minLength,
+            disabled,
+            feedBack,
+            feedBackLabel
         } = this.props;
+        const {valid} = this.state;
         return (
             <FormGroup>
                 {label && (
@@ -65,10 +76,15 @@ class TextareaField extends PureComponent {
                     maxLength={maxLength}
                     minLength={minLength}
                     onChange={e => this.handleChange(e)}
-                    valid={this.validateInput()}
+                    valid={valid}
+                    invalid={valid === false}
                     name={control}
                 />
-                <FormFeedback/>
+                {feedBack && (
+                    <FormFeedback tooltip>
+                        {feedBackLabel}
+                    </FormFeedback>
+                )}
                 <small>
                     Quedan&nbsp;
                     {maxLength - size(value)}
