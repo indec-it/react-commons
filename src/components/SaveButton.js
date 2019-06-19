@@ -12,7 +12,7 @@ const SaveButton = ({disabled, onClick, saving}) => (
         <ActionIndicator saving={saving}/>
         <Button
             type="submit"
-            bsStyle="primary"
+            color="primary"
             className="ta-save"
             {...{disabled, onClick}}
         >
