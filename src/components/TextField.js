@@ -4,7 +4,7 @@ import {
     Label, Input, FormGroup, FormFeedback
 } from 'reactstrap';
 
-import ValidatorService from '../services/validator';
+import {DateUtilsService, ValidatorService} from '../services';
 
 class TextField extends PureComponent {
     static propTypes = {
@@ -47,23 +47,21 @@ class TextField extends PureComponent {
         this.state = {valid: undefined};
     }
 
-    validateInput = (value, callback) => {
+    validateInput(value, callback) {
         if (this.props.validateInput) {
             callback();
             return this.props.validateInput;
         }
-
         const {maxLength, minLength} = this.props;
         const valid = ValidatorService.validateText(value, maxLength, minLength);
         return this.setState(() => ({valid}), callback);
-    };
+    }
 
     handleChange(date) {
-        const value = date.toISOString();
+        const value = DateUtilsService.formatToISOString(date);
         if (this.props.value === value) {
             return;
         }
-
         this.validateInput(value, this.props.onChange({target: {value, id: this.props.control}}));
     }
 
