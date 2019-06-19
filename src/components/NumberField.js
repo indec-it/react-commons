@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import ValidatorService from '../services/validator';
+import {ValidatorService} from '../services';
 import TextField from './TextField';
 
 const handleKeyPress = e => {

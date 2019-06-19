@@ -1,25 +1,24 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {
-    Label,
-    Input,
-    FormGroup,
-    FormFeedback
+    Label, Input, FormGroup, FormFeedback
 } from 'reactstrap';
 
-import ValidatorService from '../services/validator';
+import {ValidatorService} from '../services';
 
 class EmailField extends PureComponent {
     static propTypes = {
+        onChange: PropTypes.func.isRequired,
         control: PropTypes.string.isRequired,
         label: PropTypes.string.isRequired,
         value: PropTypes.string.isRequired,
-        onChange: PropTypes.func.isRequired,
+        feedBackLabel: PropTypes.string,
         disabled: PropTypes.bool
     };
 
     static defaultProps = {
-        disabled: false
+        disabled: false,
+        feedBackLabel: 'Email invalido'
     };
 
     constructor(props) {
@@ -27,21 +26,21 @@ class EmailField extends PureComponent {
         this.state = {valid: undefined};
     }
 
-    validateInput = (value, callback) => {
+    validateInput(value, onChange) {
         const valid = ValidatorService.validateEmail(value);
-        this.setState(() => ({valid}), callback());
-    };
+        this.setState(() => ({valid}), onChange());
+    }
 
-    handleChange = ({target}, onChange) => {
+    handleChange({target}, onChange) {
         if (this.props.value === target.value) {
             return;
         }
         this.validateInput(target.value, onChange({target}));
-    };
+    }
 
     render() {
         const {
-            control, label, value, disabled, onChange
+            control, label, value, disabled, onChange, feedBackLabel
         } = this.props;
         const {valid} = this.state;
         return (
@@ -58,7 +57,7 @@ class EmailField extends PureComponent {
                     name={control}
                 />
                 <FormFeedback tooltip>
-                    Email invalido
+                    {feedBackLabel}
                 </FormFeedback>
             </FormGroup>
         );
