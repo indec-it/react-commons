@@ -14,15 +14,10 @@ const NumberField = ({
     control, label, value, maxLength, minLength, disabled, onBlur, onChange
 }) => (
     <TextField
-        control={control}
-        label={label}
-        value={value}
-        maxLength={maxLength}
-        minLength={minLength}
-        disabled={disabled}
-        onBlur={onBlur}
+        {...{
+            control, label, value, maxLength, minLength, disabled, onBlur, onChange
+        }}
         handleKeyPress={handleKeyPress}
-        onChange={onChange}
     />
 );
 
