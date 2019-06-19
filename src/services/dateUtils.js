@@ -23,4 +23,8 @@ export default class DateUtilsService {
     static formatDateTime(input) {
         return `${DateUtilsService.formatDate(input)} ${DateUtilsService.formatTime(input)}`;
     }
+
+    static formatToISOString(input = new Date()) {
+        return input.toISOString();
+    }
 }
