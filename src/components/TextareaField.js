@@ -34,11 +34,11 @@ class TextareaField extends PureComponent {
         this.state = {valid: undefined};
     }
 
-    validateInput = (value, callback) => {
+    validateInput(value, onChange) {
         const {maxLength, minLength} = this.props;
         const valid = ValidatorService.validateText(value, maxLength, minLength);
-        this.setState(() => ({valid}), callback());
-    };
+        this.setState(() => ({valid}), onChange());
+    }
 
     handleChange({target}) {
         if (this.props.value === target.value) {

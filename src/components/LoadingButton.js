@@ -5,7 +5,7 @@ import {faSpinner} from '@fortawesome/free-solid-svg-icons';
 import IconButton from './IconButton';
 
 const LoadingButton = ({label, bsSize}) => (
-    <IconButton bsStyle="primary" bsSize={bsSize} className="btn-group-justified" disabled icon={faSpinner} pulse>
+    <IconButton color="primary" bsSize={bsSize} className="btn-group-justified" disabled icon={faSpinner} pulse>
         {label}
     </IconButton>
 );
