@@ -4,7 +4,7 @@ import {
     Label, Input, FormGroup, FormFeedback
 } from 'reactstrap';
 
-import {ValidatorService} from '../services';
+import {DateUtilsService, ValidatorService} from '../services';
 
 class PasswordField extends PureComponent {
     static propTypes = {
@@ -47,18 +47,18 @@ class PasswordField extends PureComponent {
         this.state = {valid: undefined};
     }
 
-    validateInput = (value, callback) => {
+    validateInput(value, onChange) {
         if (this.props.validateInput) {
-            callback();
+            onChange();
             return this.props.validateInput;
         }
         const {maxLength, minLength} = this.props;
         const valid = ValidatorService.validatePassword(value, maxLength, minLength);
-        return this.setState(() => ({valid}), callback);
-    };
+        return this.setState(() => ({valid}), onChange());
+    }
 
     handleChange(date) {
-        const value = date.toISOString();
+        const value = DateUtilsService.formatToISOString(date);
         if (this.props.value === value) {
             return;
         }

@@ -3,8 +3,10 @@ import PropTypes from 'prop-types';
 import {Label, FormGroup} from 'reactstrap';
 import DatePicker from 'react-datepicker';
 
+import {DateUtilsService} from '../services';
+
 const handleChange = (date, onChange, currentValue, control) => {
-    const value = date.toISOString();
+    const value = DateUtilsService.formatToISOString(date);
     if (currentValue === value) {
         return;
     }
@@ -38,10 +40,10 @@ const DateField = ({
 );
 
 DateField.propTypes = {
+    onChange: PropTypes.func.isRequired,
     control: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
     value: PropTypes.string,
-    onChange: PropTypes.func.isRequired,
     dateFormat: PropTypes.string,
     maxDate: PropTypes.oneOfType([PropTypes.string, PropTypes.shape({})]),
     minDate: PropTypes.oneOfType([PropTypes.string, PropTypes.shape({})]),
