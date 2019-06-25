@@ -1,10 +1,10 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {ControlLabel, FormControl, FormGroup} from 'react-bootstrap';
 
-import ValidatorService from '../services/validator';
+import {ValidatorService} from '../services';
 
-class TextField extends Component {
+class TextField extends PureComponent {
     static propTypes = {
         control: PropTypes.string,
         label: PropTypes.string,
@@ -40,22 +40,22 @@ class TextField extends Component {
     }
 
     validateInput() {
-        if (this.props.validateInput) {
-            return this.props.validateInput;
-        }
         if (!this.state.dirty) {
             return null;
+        }
+        if (this.props.validateInput) {
+            return this.props.validateInput;
         }
         const {value, maxLength, minLength} = this.props;
         return ValidatorService.validateText(value, maxLength, minLength) ? 'success' : 'error';
     }
 
-    handleChange({target}) {
+    handleChange({target}, onChange) {
         if (this.props.value === target.value) {
             return;
         }
-        this.setState({dirty: true});
-        this.props.onChange({target});
+        this.setState(() => ({dirty: true}));
+        onChange({target});
     }
 
     handleBlur(value) {
@@ -67,7 +67,17 @@ class TextField extends Component {
 
     render() {
         const {
-            control, label, value, maxLength, minLength, disabled, handleKeyPress, required, placeholder, ...props
+            control,
+            label,
+            value,
+            maxLength,
+            minLength,
+            disabled,
+            handleKeyPress,
+            required,
+            placeholder,
+            onChange,
+            ...props
         } = this.props;
         return (
             <FormGroup controlId={control} validationState={this.validateInput()}>
@@ -80,7 +90,7 @@ class TextField extends Component {
                     type="text"
                     onKeyPress={handleKeyPress}
                     onBlur={e => this.handleBlur(e.target.value)}
-                    onChange={e => this.handleChange(e)}
+                    onChange={e => this.handleChange(e, onChange)}
                     {...{
                         required, value, maxLength, minLength, disabled, placeholder
                     }}
