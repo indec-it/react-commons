@@ -5,7 +5,8 @@
   "private": false,
   "main": "src/index.js",
   "scripts": {
-    "test": "mocha",
+    "test": "jest --config=jest.config.js",
+    "test:coverage": "jest --config=jest.config.js --coverage",
     "eslint": "eslint ./"
   },
   "devDependencies": {
@@ -18,9 +19,13 @@
     "@indec/heimdall": "^0.2.8",
     "arg.js": "^1.1.4",
     "babel-eslint": "^10.0.2",
+    "babel-jest": "^24.8.0",
     "babel-plugin-lodash": "^3.3.4",
     "babel-preset-react-app": "^9.0.0",
     "babel-preset-react-native": "^4.0.1",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
+    "enzyme-to-json": "^3.3.5",
     "eslint": "^5.16.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.17.3",
@@ -28,17 +33,17 @@
     "eslint-plugin-react": "^7.13.0",
     "file-saver": "^2.0.2",
     "husky": "^2.4.0",
+    "jest": "^24.8.0",
     "lodash": "^4.17.11",
-    "mocha": "^6.1.4",
     "moment": "^2.24.0",
     "papaparse": "^5.0.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-datepicker": "^2.7.0",
+    "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.1",
     "react-select": "^3.0.4",
-    "reactstrap": "^8.0.0",
-    "should": "^13.2.3"
+    "reactstrap": "^8.0.0"
   },
   "peerDependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.19",

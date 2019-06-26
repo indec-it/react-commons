@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ActionIndicator/> should render LoadingIndicator component if loading flag exists 1`] = `
+<LoadingIndicator
+  iconSize="2x"
+  label="Cargando..."
+/>
+`;
+
+exports[`<ActionIndicator/> should render SaveIndicator component if saving flag exists 1`] = `<SaveIndicator />`;
