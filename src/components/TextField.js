@@ -80,7 +80,7 @@ class TextField extends PureComponent {
             ...props
         } = this.props;
         return (
-            <FormGroup controlId={control} validationState={this.validateInput()}>
+            <FormGroup controlId={control} validationState={!disabled && this.validateInput()}>
                 {label && (
                     <ControlLabel>
                         {label}
