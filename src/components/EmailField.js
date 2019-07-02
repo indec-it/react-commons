@@ -1,39 +1,58 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {ControlLabel, FormControl, FormGroup} from 'react-bootstrap';
 
 import ValidatorService from '../services/validator';
 
-class EmailField extends Component {
+class EmailField extends PureComponent {
     static propTypes = {
         control: PropTypes.string.isRequired,
         label: PropTypes.string.isRequired,
         value: PropTypes.string.isRequired,
         onChange: PropTypes.func.isRequired,
-        disabled: PropTypes.bool
+        disabled: PropTypes.bool,
+        onBlur: PropTypes.func.isRequired,
+        validateInput: PropTypes.string
     };
 
     static defaultProps = {
-        disabled: false
+        disabled: false,
+        validateInput: ''
     };
 
+    constructor(props) {
+        super(props);
+        this.state = {dirty: false};
+    }
+
     validateInput() {
-        if (!this.props.value) {
+        if (!this.state.dirty) {
             return null;
+        }
+        if (this.props.validateInput) {
+            return this.props.validateInput;
         }
         return ValidatorService.validateEmail(this.props.value) ? 'success' : 'error';
     }
 
-    handleChange({target}) {
+    handleChange({target}, onChange) {
         if (this.props.value === target.value) {
             return;
         }
-        this.props.onChange({target});
+        this.setState(() => ({dirty: true}));
+        onChange({target});
+    }
+
+    handleBlur(value) {
+        if (!value || !this.props.onBlur) {
+            return;
+        }
+        this.props.onBlur(value);
     }
 
     render() {
         const {
-            control, label, value, disabled
+            control, label, value, disabled, onBlur, onChange, ...props
         } = this.props;
         return (
             <FormGroup controlId={control} validationState={this.validateInput()}>
@@ -42,10 +61,11 @@ class EmailField extends Component {
                 </ControlLabel>
                 <FormControl
                     type="email"
-                    value={value}
                     required
-                    disabled={disabled}
-                    onChange={e => this.handleChange(e)}
+                    onBlur={e => this.handleBlur(e.target.value)}
+                    onChange={e => this.handleChange(e, onChange)}
+                    {...{value, onBlur, disabled}}
+                    {...props}
                 />
                 <FormControl.Feedback/>
             </FormGroup>
