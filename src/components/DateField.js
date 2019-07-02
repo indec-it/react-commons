@@ -1,19 +1,19 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {ControlLabel, FormControl, FormGroup} from 'react-bootstrap';
 import DatePicker from 'react-datepicker';
 
 import ValidatorService from '../services/validator';
 
-class DateField extends Component {
+class DateField extends PureComponent {
     static propTypes = {
         control: PropTypes.string.isRequired,
         label: PropTypes.string.isRequired,
         value: PropTypes.string,
         onChange: PropTypes.func.isRequired,
         dateFormat: PropTypes.string,
-        maxDate: PropTypes.oneOfType(PropTypes.string, PropTypes.shape({})),
-        minDate: PropTypes.oneOfType(PropTypes.string, PropTypes.shape({})),
+        maxDate: PropTypes.oneOfType([PropTypes.string, PropTypes.shape({})]),
+        minDate: PropTypes.oneOfType([PropTypes.string, PropTypes.shape({})]),
         disabled: PropTypes.bool
     };
 

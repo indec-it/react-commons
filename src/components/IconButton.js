@@ -8,9 +8,9 @@ import {childrenPropTypes, fontAwesomeIconPropTypes} from '../util';
 import Icon from './Icon';
 
 const IconButton = ({
-    icon, pullIconRight, onClick, children, ...props
+    icon, pullIconRight, onClick, children, className, ...props
 }) => (
-    <Button onClick={onClick} {...props}>
+    <Button onClick={onClick} {...props} className>
         <Icon
             {...{
                 pullIconRight, icon, children, ...props
@@ -23,14 +23,16 @@ IconButton.propTypes = {
     icon: fontAwesomeIconPropTypes,
     pullIconRight: PropTypes.bool,
     onClick: PropTypes.func,
-    children: childrenPropTypes
+    children: childrenPropTypes,
+    className: PropTypes.string
 };
 
 IconButton.defaultProps = {
     icon: undefined,
     pullIconRight: false,
     onClick: noop,
-    children: undefined
+    children: undefined,
+    className: ''
 };
 
 export default IconButton;

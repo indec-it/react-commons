@@ -46,7 +46,7 @@ class TextField extends PureComponent {
         if (this.props.validateInput) {
             return this.props.validateInput;
         }
-        const {value, maxLength, minLength} = this.props;
+        const {maxLength, minLength, value} = this.props;
         return ValidatorService.validateText(value, maxLength, minLength) ? 'success' : 'error';
     }
 
@@ -92,7 +92,7 @@ class TextField extends PureComponent {
                     onBlur={e => this.handleBlur(e.target.value)}
                     onChange={e => this.handleChange(e, onChange)}
                     {...{
-                        required, value, maxLength, minLength, disabled, placeholder
+                        value, maxLength, minLength, disabled, placeholder, required
                     }}
                     {...props}
                 />

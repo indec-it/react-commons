@@ -42,7 +42,7 @@ const Dropdown = ({
 Dropdown.propTypes = {
     onChange: PropTypes.func.isRequired,
     control: PropTypes.string.isRequired,
-    value: PropTypes.string.isRequired,
+    value: PropTypes.string,
     getOptionValue: PropTypes.func,
     getOptionLabel: PropTypes.func,
     label: PropTypes.string,
@@ -59,7 +59,8 @@ Dropdown.defaultProps = {
     placeholder: '[Seleccione]',
     options: [],
     disabled: false,
-    isClearable: false
+    isClearable: false,
+    value: ''
 };
 
 export default Dropdown;
