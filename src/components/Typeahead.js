@@ -13,7 +13,17 @@ const handleInputChange = (term, onLoadOptions) => {
 };
 
 const Typeahead = ({
-    control, onChange, onLoadOptions, disabled, options, label, value, placeholder, getOptionValue, getOptionLabel
+    control,
+    onChange,
+    onLoadOptions,
+    disabled,
+    options,
+    label,
+    value,
+    placeholder,
+    getOptionValue,
+    getOptionLabel,
+    ...props
 }) => (
     <FormGroup controlId={control}>
         <ControlLabel>
@@ -31,6 +41,7 @@ const Typeahead = ({
             {...{
                 options, placeholder, disabled, getOptionValue, getOptionLabel
             }}
+            {...props}
         />
     </FormGroup>
 );
