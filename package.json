@@ -6,7 +6,7 @@
   "main": "src/index.js",
   "scripts": {
     "test": "jest --config=jest.config.js",
-    "test:coverage": "jest --config=jest.config.js --coverage",
+    "coveralls": "jest --coverage && cat ./coverage/lcov.info | coveralls",
     "eslint": "eslint ./"
   },
   "devDependencies": {
@@ -23,6 +23,7 @@
     "babel-plugin-lodash": "^3.3.4",
     "babel-preset-react-app": "^9.0.0",
     "babel-preset-react-native": "^4.0.1",
+    "coveralls": "^3.0.4",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
     "enzyme-to-json": "^3.3.5",

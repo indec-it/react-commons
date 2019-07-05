@@ -2,6 +2,7 @@
 node_modules/
 coverage/
 test/
+__tests__/
 .*
 codealike.json
 commitlint.config.js
