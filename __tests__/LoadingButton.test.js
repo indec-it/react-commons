@@ -8,6 +8,7 @@ describe('<LoadingButton/>', () => {
         const wrapper = shallow(<LoadingButton/>);
         expect(wrapper).toMatchSnapshot();
     });
+
     it('should receive label Cargando instead of Loading', () => {
         const wrapper = shallow(<LoadingButton label="Cargando"/>);
         expect(wrapper.children().text()).toBe('Cargando');
