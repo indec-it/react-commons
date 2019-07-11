@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import ValidatorService from '../services/validator';
+import {ValidatorService} from '../services';
 import TextField from './TextField';
 
-const validateInput = value => ValidatorService.validateDocument(value);
+export const validateInput = value => ValidatorService.validateDocument(value);
 
-const handleChange = ({target}, value, onChange) => {
+export const handleChange = ({target}, value, onChange) => {
     if (value === target.value) {
         return;
     }
@@ -29,10 +29,10 @@ const DocumentField = ({
 );
 
 DocumentField.propTypes = {
+    onChange: PropTypes.func.isRequired,
     control: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
     value: PropTypes.string.isRequired,
-    onChange: PropTypes.func.isRequired,
     disabled: PropTypes.bool
 };
 
