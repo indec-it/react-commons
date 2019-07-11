@@ -6,7 +6,7 @@ import TextField from '../src/components/TextField';
 const onChange = jest.fn();
 
 const renderComponent = (props = {}) => {
-    const wrapper = shallow(<TextField onChange={onChange} value="text" {...props}/>);
+    const wrapper = shallow(<TextField onChange={onChange} control="inputField" value="text" {...props}/>);
     wrapper.input = () => wrapper.children();
     wrapper.label = () => wrapper.find('FormGroup Label');
     wrapper.feedBackLabel = () => wrapper.find('FormGroup FormFeedback');

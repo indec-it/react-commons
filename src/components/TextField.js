@@ -11,7 +11,7 @@ class TextField extends PureComponent {
         onChange: PropTypes.func.isRequired,
         onBlur: PropTypes.func,
         handleKeyPress: PropTypes.func,
-        control: PropTypes.string,
+        control: PropTypes.string.isRequired,
         label: PropTypes.string,
         value: PropTypes.string,
         validateInput: PropTypes.string,
@@ -34,7 +34,6 @@ class TextField extends PureComponent {
         validateInput: '',
         handleKeyPress: null,
         placeholder: '',
-        control: '',
         required: false,
         row: false,
         feedBackLabel: null
