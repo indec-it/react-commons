@@ -32,7 +32,7 @@ class EmailField extends PureComponent {
 
     render() {
         const {
-            control, label, value, disabled, feedBackLabel, onChange, ...props
+            control, label, value, disabled, feedBackLabel, ...props
         } = this.props;
         const {valid} = this.state;
         return (
