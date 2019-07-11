@@ -13,10 +13,8 @@ const Radio = ({
                 <Label check>
                     <Input
                         type="radio"
-                        name={name}
-                        value={value}
                         onChange={result => onChange({[name]: result})}
-                        disabled={disabled}
+                        {...{disabled, name, value}}
                     >
                         {option.name}
                     </Input>
