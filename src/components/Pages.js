@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Col, Row, Pagination} from 'reactstrap';
+import {
+    Col, Row, Pagination, PaginationItem
+} from 'reactstrap';
 import {ceil, min, range} from 'lodash';
 
 const getPages = (pageSize, resultsCount, maxPage) => range(min([ceil(resultsCount / pageSize), maxPage]));
@@ -12,9 +14,9 @@ const Pages = ({
         <Col sm={12} className="text-center">
             <Pagination bsSize="medium">
                 {getPages(pageSize, resultsCount, maxPage).map(page => (
-                    <Pagination.Item key={page} active={page === selectedPage} onClick={() => onChange(page)}>
+                    <PaginationItem key={page} active={page === selectedPage} onClick={() => onChange(page)}>
                         {page + 1}
-                    </Pagination.Item>
+                    </PaginationItem>
                 ))}
             </Pagination>
         </Col>
