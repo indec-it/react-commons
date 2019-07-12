@@ -10,21 +10,16 @@ const renderComponent = (props = {}) => shallow(
 );
 
 describe('<EmailField/>', () => {
-    describe('handleChange', () => {
-        it('should return undefined if props value is equal to new value', () => {
-            const wrapper = renderComponent();
-            const handleChange = wrapper.instance().handleChange({target: {value: wrapper.props().value}});
-            expect(handleChange).toBeUndefined();
-        });
+    describe('validateInput', () => {
         it('should return true if email is valid', () => {
             const wrapper = renderComponent();
-            wrapper.instance().handleChange({target: {value: 'test@test.com.ar'}});
+            wrapper.instance().validateInput('test@test.com.ar');
             const isValid = wrapper.state().valid;
             expect(isValid).toBe(true);
         });
         it('should return false if email is invalid', () => {
             const wrapper = renderComponent();
-            wrapper.instance().handleChange({target: {value: 'test'}});
+            wrapper.instance().validateInput('test');
             const isValid = wrapper.state().valid;
             expect(isValid).toBe(false);
         });
