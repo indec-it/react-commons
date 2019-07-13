@@ -14,14 +14,15 @@ class TextField extends PureComponent {
         control: PropTypes.string.isRequired,
         label: PropTypes.string,
         value: PropTypes.string,
-        validateInput: PropTypes.string,
+        validateInput: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
         placeholder: PropTypes.string,
         feedBackLabel: PropTypes.string,
         minLength: PropTypes.number,
         maxLength: PropTypes.number,
         disabled: PropTypes.bool,
         required: PropTypes.bool,
-        row: PropTypes.bool
+        row: PropTypes.bool,
+        invalid: PropTypes.bool
     };
 
     static defaultProps = {
@@ -36,7 +37,8 @@ class TextField extends PureComponent {
         placeholder: '',
         required: false,
         row: false,
-        feedBackLabel: null
+        feedBackLabel: null,
+        invalid: undefined
     };
 
     constructor(props) {
@@ -44,21 +46,21 @@ class TextField extends PureComponent {
         this.state = {valid: undefined};
     }
 
-    validateInput(value, callback) {
+    validateInput(value) {
         if (this.props.validateInput) {
-            callback();
             return this.props.validateInput;
         }
         const {maxLength, minLength} = this.props;
         const valid = ValidatorService.validateText(value, maxLength, minLength);
-        return this.setState(() => ({valid}), callback);
+        return this.setState(() => ({valid}));
     }
 
-    handleChange(value) {
+    handleChange({target: {value}}) {
         if (this.props.value === value) {
             return;
         }
-        this.validateInput(value, this.props.onChange({target: {value, id: this.props.control}}));
+        this.validateInput(value);
+        this.props.onChange({target: {value, id: this.props.control}});
     }
 
     handleBlur(value) {
@@ -80,6 +82,7 @@ class TextField extends PureComponent {
             required,
             placeholder,
             feedBackLabel,
+            invalid,
             ...props
         } = this.props;
         const {valid} = this.state;
@@ -94,12 +97,13 @@ class TextField extends PureComponent {
                     type="text"
                     onKeyPress={handleKeyPress}
                     onBlur={e => this.handleBlur(e.target.value)}
-                    onChange={e => this.handleChange(e)}
-                    invalid={valid === false}
+                    invalid={value && (valid === false || invalid)}
                     name={control}
                     {...{
-                        required, value, maxLength, minLength, disabled, placeholder, valid, ...props
+                        required, value, maxLength, minLength, disabled, placeholder, valid
                     }}
+                    {...props}
+                    onChange={e => this.handleChange(e)}
                 />
                 {feedBackLabel && (
                     <FormFeedback tooltip>
