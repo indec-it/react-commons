@@ -25,18 +25,21 @@ describe('<TextField/>', () => {
     describe('handleChange', () => {
         it('should doesnt validate input if props value is equal to new value', () => {
             const wrapper = renderComponent();
-            const handleChange = wrapper.instance().handleChange('text');
+            const event = {target: {value: 'text'}};
+            const handleChange = wrapper.instance().handleChange(event);
             expect(handleChange).toBeUndefined();
         });
         it('should return true if props value is different to new value and input is valid', () => {
             const wrapper = renderComponent();
-            wrapper.instance().handleChange('new text');
+            const event = {target: {value: 'new text'}};
+            wrapper.instance().handleChange(event);
             const isValid = wrapper.state().valid;
             expect(isValid).toBe(true);
         });
         it('should return false if props value is different to new value and input is invalid', () => {
             const wrapper = renderComponent();
-            wrapper.instance().handleChange('a');
+            const event = {target: {value: 'a'}};
+            wrapper.instance().handleChange(event);
             const isValid = wrapper.state().valid;
             expect(isValid).toBe(false);
         });

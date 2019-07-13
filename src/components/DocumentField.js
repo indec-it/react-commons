@@ -4,12 +4,7 @@ import PropTypes from 'prop-types';
 import ValidatorService from '../services/validator';
 import TextField from './TextField';
 
-const validateInput = value => {
-    if (!value) {
-        return null;
-    }
-    return ValidatorService.validateDocument(value);
-};
+const validateInput = value => ValidatorService.validateDocument(value);
 
 const handleChange = ({target}, value, onChange) => {
     if (value === target.value) {
