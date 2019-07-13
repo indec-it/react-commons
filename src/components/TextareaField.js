@@ -23,8 +23,7 @@ TextareaField.propTypes = {
     value: PropTypes.string.isRequired,
     minLength: PropTypes.number,
     maxLength: PropTypes.number,
-    disabled: PropTypes.bool,
-    feedBack: PropTypes.bool
+    disabled: PropTypes.bool
 };
 
 TextareaField.defaultProps = {
@@ -32,7 +31,6 @@ TextareaField.defaultProps = {
     maxLength: 250,
     minLength: 2,
     disabled: false,
-    feedBack: false,
     feedBackLabel: 'Valor invalido'
 };
 
