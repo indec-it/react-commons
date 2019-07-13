@@ -1,16 +1,14 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
-import {
-    Label, Input, FormGroup, FormFeedback
-} from 'reactstrap';
 
 import {ValidatorService} from '../services';
+import TextField from './TextField';
 
 class EmailField extends PureComponent {
     static propTypes = {
         onChange: PropTypes.func.isRequired,
         control: PropTypes.string.isRequired,
-        label: PropTypes.string.isRequired,
+        label: PropTypes.string,
         value: PropTypes.string.isRequired,
         feedBackLabel: PropTypes.string,
         disabled: PropTypes.bool
@@ -18,6 +16,7 @@ class EmailField extends PureComponent {
 
     static defaultProps = {
         disabled: false,
+        label: null,
         feedBackLabel: 'Email invalido'
     };
 
@@ -26,40 +25,27 @@ class EmailField extends PureComponent {
         this.state = {valid: undefined};
     }
 
-    validateInput(value, onChange) {
+    validateInput(value) {
         const valid = ValidatorService.validateEmail(value);
-        this.setState(() => ({valid}), onChange());
-    }
-
-    handleChange({target}, onChange) {
-        if (this.props.value === target.value) {
-            return;
-        }
-        this.validateInput(target.value, onChange({target}));
+        this.setState(() => ({valid}));
     }
 
     render() {
         const {
-            control, label, value, disabled, onChange, feedBackLabel
+            control, label, value, disabled, feedBackLabel, onChange, ...props
         } = this.props;
         const {valid} = this.state;
         return (
-            <FormGroup>
-                <Label>
-                    {label}
-                </Label>
-                <Input
-                    type="email"
-                    {...{value, disabled, valid}}
-                    required
-                    onChange={e => this.handleChange(e, onChange)}
-                    invalid={valid === false}
-                    name={control}
-                />
-                <FormFeedback tooltip>
-                    {feedBackLabel}
-                </FormFeedback>
-            </FormGroup>
+            <TextField
+                type="email"
+                {...{
+                    control, label, value, disabled, feedBackLabel
+                }}
+                invalid={valid === false}
+                validateInput={this.validateInput(value)}
+                onChange={onChange}
+                {...props}
+            />
         );
     }
 }
