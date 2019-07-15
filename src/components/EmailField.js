@@ -11,13 +11,14 @@ class EmailField extends PureComponent {
         value: PropTypes.string.isRequired,
         onChange: PropTypes.func.isRequired,
         disabled: PropTypes.bool,
-        onBlur: PropTypes.func.isRequired,
+        onBlur: PropTypes.func,
         validateInput: PropTypes.string
     };
 
     static defaultProps = {
         disabled: false,
-        validateInput: ''
+        validateInput: null,
+        onBlur: null
     };
 
     constructor(props) {
@@ -25,22 +26,22 @@ class EmailField extends PureComponent {
         this.state = {dirty: false};
     }
 
-    validateInput() {
+    validateInput(validateInput) {
         if (!this.state.dirty) {
             return null;
         }
-        if (this.props.validateInput) {
-            return this.props.validateInput;
+        if (validateInput) {
+            return validateInput;
         }
         return ValidatorService.validateEmail(this.props.value) ? 'success' : 'error';
     }
 
-    handleChange({target}, onChange) {
+    handleChange({target}) {
         if (this.props.value === target.value) {
             return;
         }
         this.setState(() => ({dirty: true}));
-        onChange({target});
+        this.props.onChange({target});
     }
 
     handleBlur(value) {
@@ -52,10 +53,10 @@ class EmailField extends PureComponent {
 
     render() {
         const {
-            control, label, value, disabled, onBlur, onChange, ...props
+            control, label, value, disabled, onBlur, validateInput, ...props
         } = this.props;
         return (
-            <FormGroup controlId={control} validationState={this.validateInput()}>
+            <FormGroup controlId={control} validationState={this.validateInput(validateInput)}>
                 <ControlLabel>
                     {label}
                 </ControlLabel>
@@ -63,9 +64,9 @@ class EmailField extends PureComponent {
                     type="email"
                     required
                     onBlur={e => this.handleBlur(e.target.value)}
-                    onChange={e => this.handleChange(e, onChange)}
                     {...{value, onBlur, disabled}}
                     {...props}
+                    onChange={e => this.handleChange(e)}
                 />
                 <FormControl.Feedback/>
             </FormGroup>

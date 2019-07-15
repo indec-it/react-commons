@@ -27,7 +27,7 @@ class TextField extends PureComponent {
         onBlur: null,
         value: '',
         disabled: false,
-        validateInput: '',
+        validateInput: null,
         handleKeyPress: null,
         placeholder: '',
         control: '',
@@ -39,23 +39,23 @@ class TextField extends PureComponent {
         this.state = {dirty: false};
     }
 
-    validateInput() {
+    validateInput(validateInput) {
         if (!this.state.dirty) {
             return null;
         }
-        if (this.props.validateInput) {
-            return this.props.validateInput;
+        if (validateInput) {
+            return validateInput;
         }
         const {maxLength, minLength, value} = this.props;
         return ValidatorService.validateText(value, maxLength, minLength) ? 'success' : 'error';
     }
 
-    handleChange({target}, onChange) {
+    handleChange({target}) {
         if (this.props.value === target.value) {
             return;
         }
         this.setState(() => ({dirty: true}));
-        onChange({target});
+        this.props.onChange({target});
     }
 
     handleBlur(value) {
@@ -76,11 +76,11 @@ class TextField extends PureComponent {
             handleKeyPress,
             required,
             placeholder,
-            onChange,
+            validateInput,
             ...props
         } = this.props;
         return (
-            <FormGroup controlId={control} validationState={this.validateInput()}>
+            <FormGroup controlId={control} validationState={this.validateInput(validateInput)}>
                 {label && (
                     <ControlLabel>
                         {label}
@@ -90,11 +90,11 @@ class TextField extends PureComponent {
                     type="text"
                     onKeyPress={handleKeyPress}
                     onBlur={e => this.handleBlur(e.target.value)}
-                    onChange={e => this.handleChange(e, onChange)}
                     {...{
                         value, maxLength, minLength, disabled, placeholder, required
                     }}
                     {...props}
+                    onChange={e => this.handleChange(e)}
                 />
                 <FormControl.Feedback/>
             </FormGroup>

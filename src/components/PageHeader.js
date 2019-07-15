@@ -34,7 +34,7 @@ const PageHeader = ({
 
 PageHeader.propTypes = {
     title: PropTypes.string.isRequired,
-    backIcon: PropTypes.string,
+    backIcon: fontAwesomeIconPropTypes,
     icon: fontAwesomeIconPropTypes,
     path: PropTypes.string
 };

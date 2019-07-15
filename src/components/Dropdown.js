@@ -42,7 +42,7 @@ const Dropdown = ({
 Dropdown.propTypes = {
     onChange: PropTypes.func.isRequired,
     control: PropTypes.string.isRequired,
-    value: PropTypes.string,
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     getOptionValue: PropTypes.func,
     getOptionLabel: PropTypes.func,
     label: PropTypes.string,

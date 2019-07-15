@@ -20,7 +20,9 @@ class NumberField extends Component {
         onBlur: PropTypes.func,
         minLength: PropTypes.number,
         maxLength: PropTypes.number,
-        disabled: PropTypes.bool
+        disabled: PropTypes.bool,
+        validateInput: PropTypes.string,
+        validate: PropTypes.bool
     };
 
     static defaultProps = {
@@ -29,7 +31,9 @@ class NumberField extends Component {
         onBlur: null,
         label: '',
         disabled: false,
-        value: null
+        value: null,
+        validateInput: null,
+        validate: true
     };
 
     constructor(props) {
@@ -37,11 +41,17 @@ class NumberField extends Component {
         this.state = {dirty: false};
     }
 
-    validateInput() {
+    validateInput(validate, validateInput) {
         if (!this.state.dirty) {
             return null;
         }
+        if (validateInput) {
+            return validateInput;
+        }
         const {value, maxLength, minLength} = this.props;
+        if (!validate) {
+            return null;
+        }
         return ValidatorService.validateText(value, maxLength, minLength) ? 'success' : 'error';
     }
 
@@ -55,19 +65,15 @@ class NumberField extends Component {
 
     render() {
         const {
-            control, label, value, maxLength, minLength, disabled, onBlur
+            control, label, value, maxLength, minLength, disabled, onBlur, validate, validateInput, ...props
         } = this.props;
         return (
             <TextField
-                control={control}
-                label={label}
-                value={value}
-                maxLength={maxLength}
-                minLength={minLength}
-                disabled={disabled}
-                onBlur={onBlur}
-                handleKeyPress={handleKeyPress}
-                validateInput={this.validateInput()}
+                validateInput={this.validateInput(validate, validateInput)}
+                {...{
+                    control, label, value, disabled, onBlur, handleKeyPress, maxLength, minLength
+                }}
+                {...props}
                 onChange={e => this.handleChange(e)}
             />
         );
