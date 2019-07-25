@@ -18,7 +18,7 @@ const PageHeader = ({
                 <IconLinkButton to={path} icon={backIcon} {...props}/>
             </Col>
         )}
-        <Col sm={11}>
+        <Col sm={path ? 11 : 12}>
             <h2>
                 {icon && (
                     <Fragment>
