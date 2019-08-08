@@ -17,7 +17,8 @@ class TextField extends PureComponent {
         validateInput: PropTypes.string,
         handleKeyPress: PropTypes.func,
         placeholder: PropTypes.string,
-        required: PropTypes.bool
+        required: PropTypes.bool,
+        pattern: PropTypes.instanceOf(RegExp)
     };
 
     static defaultProps = {
@@ -31,7 +32,8 @@ class TextField extends PureComponent {
         handleKeyPress: null,
         placeholder: '',
         control: '',
-        required: false
+        required: false,
+        pattern: null
     };
 
     constructor(props) {
@@ -51,7 +53,11 @@ class TextField extends PureComponent {
     }
 
     handleChange({target}) {
-        if (this.props.value === target.value) {
+        const {pattern, value} = this.props;
+        if (value === target.value) {
+            return;
+        }
+        if (pattern && target.value && !pattern.test(target.value)) {
             return;
         }
         this.setState(() => ({dirty: true}));
