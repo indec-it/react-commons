@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
+import {isEmpty, toString} from 'lodash';
 
+import {ControlLabel, FormControl, FormGroup} from 'react-bootstrap';
 import ValidatorService from '../services/validator';
-
-import TextField from './TextField';
 
 const handleKeyPress = e => {
     if (!ValidatorService.validateNumber(e.key)) {
@@ -11,7 +11,7 @@ const handleKeyPress = e => {
     }
 };
 
-class NumberField extends Component {
+class NumberField extends PureComponent {
     static propTypes = {
         control: PropTypes.string.isRequired,
         label: PropTypes.string,
@@ -42,7 +42,7 @@ class NumberField extends Component {
     }
 
     validateInput(validate, validateInput) {
-        if (!this.state.dirty) {
+        if (!this.state.dirty && isEmpty(toString(this.props.value))) {
             return null;
         }
         if (validateInput) {
@@ -68,14 +68,24 @@ class NumberField extends Component {
             control, label, value, maxLength, minLength, disabled, onBlur, validate, validateInput, ...props
         } = this.props;
         return (
-            <TextField
-                validateInput={this.validateInput(validate, validateInput)}
-                {...{
-                    control, label, value, disabled, onBlur, handleKeyPress, maxLength, minLength
-                }}
-                {...props}
-                onChange={e => this.handleChange(e)}
-            />
+            <FormGroup controlId={control} validationState={this.validateInput(validate, validateInput)}>
+                {label && (
+                    <ControlLabel>
+                        {label}
+                    </ControlLabel>
+                )}
+                <FormControl
+                    type="number"
+                    onKeyPress={handleKeyPress}
+                    onBlur={e => this.handleBlur(e.target.value)}
+                    {...{
+                        value, maxLength, minLength, disabled, onBlur
+                    }}
+                    {...props}
+                    onChange={e => this.handleChange(e)}
+                />
+                <FormControl.Feedback/>
+            </FormGroup>
         );
     }
 }

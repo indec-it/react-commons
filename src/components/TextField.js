@@ -1,6 +1,7 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {ControlLabel, FormControl, FormGroup} from 'react-bootstrap';
+import {isEmpty} from 'lodash';
 
 import {ValidatorService} from '../services';
 
@@ -42,7 +43,7 @@ class TextField extends PureComponent {
     }
 
     validateInput(validateInput) {
-        if (!this.state.dirty) {
+        if (!this.state.dirty && isEmpty(this.props.value)) {
             return null;
         }
         if (validateInput) {
