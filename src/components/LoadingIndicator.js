@@ -4,7 +4,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faSpinner} from '@fortawesome/free-solid-svg-icons';
 
 const LoadingIndicator = ({iconSize, label}) => (
-    <div className="text-modal text-center">
+    <div className="text-center icon-container">
         <FontAwesomeIcon icon={faSpinner} pulse size={iconSize}/>
         <br/>
         {label}

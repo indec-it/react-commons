@@ -1,10 +1,31 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<ActionIndicator/> should render LoadingIndicator component if loading flag exists 1`] = `
-<LoadingIndicator
-  iconSize="2x"
-  label="Cargando..."
+exports[`<ActionIndicator/> should match snapshot 1`] = `
+<Modal
+  autoFocus={true}
+  backdrop={true}
+  backdropTransition={
+    Object {
+      "mountOnEnter": true,
+      "timeout": 150,
+    }
+  }
+  centered={false}
+  className="action-indicator"
+  fade={true}
+  isOpen={false}
+  keyboard={true}
+  modalTransition={
+    Object {
+      "timeout": 300,
+    }
+  }
+  onClosed={[Function]}
+  onOpened={[Function]}
+  returnFocusAfterClose={true}
+  role="dialog"
+  scrollable={false}
+  unmountOnClose={true}
+  zIndex={1050}
 />
 `;
-
-exports[`<ActionIndicator/> should render SaveIndicator component if saving flag exists 1`] = `<SaveIndicator />`;

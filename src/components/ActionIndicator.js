@@ -1,5 +1,6 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import {Modal} from 'reactstrap';
 
 import LoadingIndicator from './LoadingIndicator';
 import SaveIndicator from './SaveIndicator';
@@ -7,31 +8,10 @@ import SaveIndicator from './SaveIndicator';
 const ActionIndicator = ({
     saving, savingLabel, loading, loadingLabel
 }) => (
-    (saving || loading) && (
-        <Fragment>
-            <div
-                className="modal fade show"
-                style={{
-                    display: 'block',
-                    alignItems: 'center',
-                    justifyContent: 'center'
-                }}
-            >
-                <div
-                    className="align-middle text-center h-100"
-                    style={{
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        display: 'flex'
-                    }}
-                >
-                    {loading && loadingLabel}
-                    {saving && savingLabel}
-                </div>
-            </div>
-            <div className="fade show modal-bg"/>
-        </Fragment>
-    )
+    <Modal isOpen={saving || loading} className="action-indicator">
+        {loading && loadingLabel}
+        {saving && savingLabel}
+    </Modal>
 );
 
 ActionIndicator.propTypes = {
