@@ -2,7 +2,7 @@
 
 exports[`<LoadingIndicator/> renders correctly 1`] = `
 <div
-  className="text-modal text-center"
+  className="text-center icon-container"
 >
   <FontAwesomeIcon
     border={false}
