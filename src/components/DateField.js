@@ -3,14 +3,11 @@ import PropTypes from 'prop-types';
 import {Label, FormGroup} from 'reactstrap';
 import DatePicker from 'react-datepicker';
 
-import {DateUtilsService} from '../services';
-
 const handleChange = (date, onChange, currentValue, control) => {
-    const value = DateUtilsService.formatToISOString(date);
-    if (currentValue === value) {
+    if (currentValue === date) {
         return;
     }
-    onChange({target: {value, id: control}});
+    onChange({target: {value: date, id: control}});
 };
 
 const DateField = ({
