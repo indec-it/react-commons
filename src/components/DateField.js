@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Label, FormGroup} from 'reactstrap';
 import DatePicker from 'react-datepicker';
+import es from 'date-fns/locale/es';
 
 const handleChange = (date, onChange, currentValue, control) => {
     if (currentValue === date) {
@@ -23,7 +24,7 @@ const DateField = ({
             isClearable
             key="es"
             id={control}
-            locale="es"
+            locale={es}
             {...{
                 maxDate,
                 minDate,
