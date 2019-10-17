@@ -12,7 +12,7 @@ const handleChange = (date, onChange, currentValue, control) => {
 };
 
 const DateField = ({
-    control, label, value, dateFormat, maxDate, minDate, disabled, onChange
+    control, label, value, dateFormat, maxDate, minDate, disabled, onChange, ...props
 }) => (
     <FormGroup>
         <Label>
@@ -32,6 +32,7 @@ const DateField = ({
                 disabled
             }}
             selected={value}
+            {...props}
             onChange={date => handleChange(date, onChange, value, control)}
         />
     </FormGroup>
