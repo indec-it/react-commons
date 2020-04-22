@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<TextareaField/> should renders correctly 1`] = `
+<Fragment>
+  <TextField
+    control="textArea"
+    disabled={false}
+    feedBackLabel="Valor invalido"
+    handleKeyPress={null}
+    label={null}
+    maxLength={50}
+    minLength={2}
+    onBlur={null}
+    onChange={[MockFunction]}
+    placeholder=""
+    required={false}
+    row={false}
+    type="textarea"
+    validateInput=""
+    value=""
+  />
+  <small>
+    Quedan 246 caracter(es) disponibles.
+  </small>
+</Fragment>
+`;
