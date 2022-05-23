@@ -4,14 +4,13 @@ language: node_js
 git:
   depth: 3
 node_js:
-  - "10"
+  - "14"
 env:
   - COVERALLS_REPO_TOKEN="eo8MzomhzTFkWNV5paxwG4Aq7EnX6BtcW"
 script:
   - npm test
   - npm run eslint
   - commitlint-travis
-  - npm run coveralls
 cache:
   directories:
     - node_modules

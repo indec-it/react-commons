@@ -5,3 +5,11 @@
 ## Installation
 
     npm install @indec/react-commons
+
+## Scripts
+
+    npm start
+Lunch StoryBook at http://localhost:6006.
+
+    npm build
+Builds the app for production to the .storybook-static folder.

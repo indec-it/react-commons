@@ -1,78 +1,52 @@
 {
-  "parser": "babel-eslint",
-  "plugins": [
-    "react",
-    "jsx-a11y"
-  ],
-  "extends": "airbnb",
+  "parser": "@babel/eslint-parser",
+  "plugins": ["react", "jsx-a11y", "lodash"],
+  "extends": ["airbnb", "plugin:storybook/recommended"],
+  "settings": {
+    "import/resolver": {
+      "alias": {
+        "map": [["@", "./src"]]
+      }
+    }
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "jest": true
+  },
+  "globals": {
+    "render": true,
+    "tearDown": true
+  },
   "rules": {
-    "indent": [
-      "error",
-      4,
+    "react/function-component-definition": [
+      2,
       {
-        "SwitchCase": 1
+        "namedComponents": "arrow-function",
+        "unnamedComponents": "arrow-function"
       }
     ],
-    "arrow-parens": [
-      "error",
-      "as-needed"
-    ],
-    "no-underscore-dangle": [
-      "error",
-      {
-        "allow": [
-          "_id"
-        ]
-      }
-    ],
+    "no-alert": "off",
+    "import/prefer-default-export": "off",
+    "react/no-array-index-key": "off",
+    "react/no-unstable-nested-components": "off",
+    "indent": ["error", 4, {"SwitchCase": 1}],
+    "arrow-parens": ["error", "as-needed"],
+    "no-underscore-dangle": "off",
     "function-paren-newline": "off",
-    "object-curly-spacing": [
-      "error",
-      "never"
-    ],
-    "lines-between-class-members": [
-      "error",
-      "always",
-      {
-        "exceptAfterSingleLine": true
-      }
-    ],
-    "import/no-extraneous-dependencies": [
-      "off"
-    ],
-    "comma-dangle": [
-      "error",
-      "never"
-    ],
-    "max-len": [
-      "error",
-      120
-    ],
-    "react/jsx-filename-extension": [
-      "error",
-      {
-        "extensions": [
-          ".js"
-        ]
-      }
-    ],
-    "react/jsx-tag-spacing": [
-      "error",
-      {
-        "beforeSelfClosing": "never"
-      }
-    ],
-    "react/jsx-indent": [
-      "error",
-      4
-    ],
-    "react/jsx-indent-props": [
-      "error",
-      4
-    ],
+    "object-curly-spacing": ["error", "never"],
+    "lines-between-class-members": ["error", "always", {"exceptAfterSingleLine": true}],
+    "import/no-extraneous-dependencies": "off",
+    "comma-dangle": ["error", "never"],
+    "max-len": ["error", 120],
+    "react/jsx-filename-extension": ["error", {"extensions": [".js"]}],
+    "react/jsx-tag-spacing": ["error", {"beforeSelfClosing": "never"}],
+    "react/jsx-indent": ["error", 4],
+    "react/jsx-indent-props": ["error", 4],
     "react/destructuring-assignment": "off",
-    "jsx-a11y/anchor-is-valid": [
-      "off"
-    ]
+    "jsx-a11y/anchor-is-valid": "off",
+    "react/jsx-props-no-spreading": "off",
+    "import/no-cycle": "off",
+    "react/no-children-prop": "off"
   }
 }

@@ -1,5 +1,20 @@
 {
   "presets": [
-    "react-app"
+    "@babel/preset-env",
+    "@babel/preset-react"
+  ],
+  "plugins": [
+    "lodash",
+    "@babel/proposal-optional-chaining",
+    "@babel/plugin-transform-runtime",
+    ["transform-imports", {"lodash": {"transform": "lodash/${member}", "preventFullImport": true}}],
+      [
+        "module-resolver",
+        {
+          "alias": {
+            "@": "./src"
+          }
+        }
+      ]
   ]
 }
