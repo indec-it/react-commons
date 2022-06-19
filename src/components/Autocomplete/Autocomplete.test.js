@@ -1,4 +1,6 @@
-import {fireEvent, getByTestId, queryByText} from '@testing-library/react';
+import {
+    fireEvent, getByTestId, getByText, queryByText
+} from '@testing-library/react';
 
 import {Autocomplete} from '@/components';
 
@@ -23,13 +25,13 @@ describe('<Autocomplete>', () => {
     });
     afterEach(tearDown);
 
-    it('should display an input autocomplete', () => {
+    it('should display a autocomplete input', () => {
         const {container} = getComponent();
         const input = getByTestId(container, 'autocomplete-test');
         expect(input).toBeInTheDocument();
     });
 
-    it('the input should display an label', () => {
+    it('should display a label', () => {
         const {container} = getComponent();
         const label = getByTestId(container, 'label-test');
         expect(label).toHaveTextContent('Test');
@@ -46,7 +48,7 @@ describe('<Autocomplete>', () => {
             expect(props.onChange).toHaveBeenCalledTimes(1);
         });
 
-        it('when has value, should show list of suggestions', () => {
+        it('should show a list of suggestions', () => {
             const {container} = getComponent();
             const suggestionList = getByTestId(container, 'autocomplete-list-test');
             expect(suggestionList).toBeInTheDocument();
@@ -55,13 +57,13 @@ describe('<Autocomplete>', () => {
         it('should show `Rivarola` as option', () => {
             const {container} = getComponent();
             const suggestionList = getByTestId(container, 'autocomplete-list-test');
-            expect(queryByText(suggestionList, 'Rivarola')).toBeInTheDocument();
+            expect(getByText(suggestionList, 'Rivarola')).toBeInTheDocument();
         });
 
         it('should show `Av. Rivadavia` as option', () => {
             const {container} = getComponent();
             const suggestionList = getByTestId(container, 'autocomplete-list-test');
-            expect(queryByText(suggestionList, 'Rivarola')).toBeInTheDocument();
+            expect(getByText(suggestionList, 'Rivarola')).toBeInTheDocument();
         });
 
         it('should not show `Rivera indarte` as option', () => {

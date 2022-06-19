@@ -1,7 +1,5 @@
-import flatMap from 'lodash/flatMap';
+const flattenNestedOptions = option => (option?.options ? option.options.flatMap(flattenNestedOptions) : option);
 
-const flattenNestedOptions = option => (option?.options ? flatMap(option.options, flattenNestedOptions) : option);
-
-const flattenOptions = options => flatMap(options, flattenNestedOptions);
+const flattenOptions = options => options.flatMap(flattenNestedOptions);
 
 export default flattenOptions;

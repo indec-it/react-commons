@@ -1,5 +1,3 @@
-const webpack = require('./webpack.config.js');
-
 module.exports = {
   "stories": [
     "../src/**/*.stories.mdx",
@@ -11,7 +9,6 @@ module.exports = {
     "@storybook/addon-interactions",
     "@chakra-ui/storybook-addon"
   ],
-    webpackFinal: (config, mode) => webpack({config, mode}),
     features: {emotionAlias: false},
     framework: "@storybook/react",
     core: {

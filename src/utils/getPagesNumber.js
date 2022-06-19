@@ -1,6 +1,5 @@
-import compact from 'lodash/compact';
-import isNumber from 'lodash/isNumber';
+import compact from './compact';
 
-const getPagesNumber = pages => compact(pages.map(page => (isNumber(page) ? page : null)));
+const getPagesNumber = pages => compact(pages.map(page => (!Number.isNaN(page) ? page : null)));
 
 export default getPagesNumber;

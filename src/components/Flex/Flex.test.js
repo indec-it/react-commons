@@ -7,7 +7,7 @@ describe('<Flex>', () => {
     const getComponent = () => render(Flex, props);
     afterEach(tearDown);
 
-    it('should display a Flex component', () => {
+    it('should render Flex component', () => {
         const {container} = getComponent();
         expect(getByTestId(container, 'flex')).toBeInTheDocument();
     });

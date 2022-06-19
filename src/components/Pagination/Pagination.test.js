@@ -65,7 +65,7 @@ describe('<Pagination>', () => {
                 fireEvent.click(nextButton);
             });
 
-            it('should display more pages', () => {
+            it('should render more pages', () => {
                 const {container} = getComponent();
                 const pagination = getByTestId(container, 'pagination');
                 expect(getByTestId(pagination, 'page-5')).toBeInTheDocument();
@@ -153,7 +153,7 @@ describe('<Pagination>', () => {
             });
         });
 
-        it('should display the total pages', () => {
+        it('should render the total pages', () => {
             const {container} = getComponent();
             const totalPages = getByTestId(container, 'total-pages');
             expect(getByText(totalPages, '3')).toBeInTheDocument();

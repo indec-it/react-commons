@@ -18,13 +18,13 @@ describe('<SelectInput>', () => {
     });
     afterEach(tearDown);
 
-    it('should display a select', () => {
+    it('should render a select', () => {
         const {container} = getComponent();
         const select = getByTestId(container, 'form-control-test');
         expect(select).toBeInTheDocument();
     });
 
-    it('should display a select not disabled', () => {
+    it('should render a select not disabled', () => {
         const {container} = getComponent();
         expect(getByTestId(container, 'form-control-test')).not.toHaveAttribute('disabled');
     });

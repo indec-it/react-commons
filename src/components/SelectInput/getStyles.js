@@ -3,7 +3,6 @@ import {sizes, fontSizes, multiValueSizes} from '@/constants/styles';
 
 const KEYS = ['> option, > optgroup', '_hover', '_readOnly', '_disabled', '_invalid', '_focusVisible'];
 
-// eslint-disable-next-line default-param-last
 const getStyles = (colors, variant, styles, size = 'md', isDisabled, hasError, readyOnly) => {
     const fieldStyles = styles?.field || {};
     const borderColor = fieldStyles.borderColor !== 'inherit' && fieldStyles.borderColor;

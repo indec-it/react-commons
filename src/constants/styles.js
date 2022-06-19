@@ -9,6 +9,7 @@ export const fontSizes = {
     md: '1rem',
     lg: '1.125rem'
 };
+
 export const multiValueSizes = {
     sm: '20px',
     md: '20px',

@@ -12,7 +12,7 @@ describe('<FormLabel>', () => {
     });
     afterEach(tearDown);
 
-    it('should display a form label component', () => {
+    it('should render FormLabel component', () => {
         const {container} = getComponent();
         expect(getByTestId(container, 'form-label')).toBeInTheDocument();
     });

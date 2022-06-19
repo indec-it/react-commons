@@ -5,11 +5,8 @@ git:
   depth: 3
 node_js:
   - "14"
-env:
-  - COVERALLS_REPO_TOKEN="eo8MzomhzTFkWNV5paxwG4Aq7EnX6BtcW"
 script:
-  - npm test
-  - npm run eslint
+  - npm run validate
   - commitlint-travis
 cache:
   directories:

@@ -1,6 +1,6 @@
 {
   "parser": "@babel/eslint-parser",
-  "plugins": ["react", "jsx-a11y", "lodash"],
+  "plugins": ["react", "jsx-a11y"],
   "extends": ["airbnb", "plugin:storybook/recommended"],
   "settings": {
     "import/resolver": {
@@ -47,6 +47,7 @@
     "jsx-a11y/anchor-is-valid": "off",
     "react/jsx-props-no-spreading": "off",
     "import/no-cycle": "off",
-    "react/no-children-prop": "off"
+    "react/no-children-prop": "off",
+    "default-param-last": "off"
   }
 }

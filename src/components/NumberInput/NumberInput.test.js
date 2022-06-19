@@ -18,7 +18,7 @@ describe('<NumberInput>', () => {
         expect(input).toBeInTheDocument();
     });
 
-    it('should has form control', () => {
+    it('should have form control', () => {
         const {container} = getComponent();
         expect(getByTestId(container, 'form-control-test')).toBeInTheDocument();
     });
@@ -28,7 +28,7 @@ describe('<NumberInput>', () => {
             props.label = 'Test';
         });
 
-        it('should display an label', () => {
+        it('should display a label', () => {
             const {container} = getComponent();
             const label = getByTestId(container, 'label-test');
             expect(label).toHaveTextContent('Test');

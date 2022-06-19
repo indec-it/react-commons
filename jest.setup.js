@@ -8,14 +8,6 @@ import {themed} from '@/theme';
 
 // Globalize common imports to make them available in all test files
 global.React = React;
-global.ENDPOINT = 'endpoint';
-global.AUTH_ENDPOINT = 'authEndpoint';
-global.RECAPTCHA_KEY = 'key';
-global.ENABLE_RECAPTCHA = 'false';
-global.AUTH_ENDPOINT = 'authEndpoint';
-global.RECAPTCHA_KEY = 'key';
-global.ENABLE_RECAPTCHA = 'false';
-global.CENSUS_URL = '/';
 
 let mountedComponent;
 

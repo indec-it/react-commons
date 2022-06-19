@@ -12,7 +12,7 @@ describe('<Checkbox>', () => {
     });
     afterEach(tearDown);
 
-    it('should display a checkbox', () => {
+    it('should render a checkbox', () => {
         const {container} = getComponent();
         const input = getByTestId(container, 'checkbox-test');
         expect(input).toBeInTheDocument();

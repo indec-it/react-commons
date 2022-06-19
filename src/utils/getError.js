@@ -1,5 +1,4 @@
 import {getIn} from 'formik';
-import isEmpty from 'lodash/isEmpty';
 
 const getError = (form, field) => {
     if (!form || !field) {
@@ -8,10 +7,10 @@ const getError = (form, field) => {
     const fieldTouched = getIn(form.touched, field.name);
     const backendError = getIn(form.status, field.name);
     const clientError = getIn(form.errors, field.name);
-    if (!isEmpty(clientError) && fieldTouched) {
+    if (Object.entries(clientError).length > 0 && fieldTouched) {
         return clientError;
     }
-    if (isEmpty(backendError) && !fieldTouched) {
+    if (Object.entries(backendError).length === 0 && !fieldTouched) {
         return backendError;
     }
     return undefined;

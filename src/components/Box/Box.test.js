@@ -7,7 +7,7 @@ describe('<Box>', () => {
     const getComponent = () => render(Box, props);
     afterEach(tearDown);
 
-    it('should display a Box component', () => {
+    it('should render Box component', () => {
         const {container} = getComponent();
         expect(getByTestId(container, 'box')).toBeInTheDocument();
     });

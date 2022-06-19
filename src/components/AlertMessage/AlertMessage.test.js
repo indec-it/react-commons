@@ -12,12 +12,12 @@ describe('<AlertMessage>', () => {
     });
     afterEach(tearDown);
 
-    it('should display an message', () => {
+    it('should display a message', () => {
         const {container} = getComponent();
         expect(getByText(container, props.message)).toBeInTheDocument();
     });
 
-    it('should have a button to close', () => {
+    it('should have a button to close the alert', () => {
         const {container} = getComponent();
         expect(getByTestId(container, 'close-button')).toBeInTheDocument();
     });

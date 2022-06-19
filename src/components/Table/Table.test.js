@@ -107,7 +107,7 @@ describe('<Table>', () => {
             props.emptyMessage = 'Empty message';
         });
 
-        it('should render empty message', () => {
+        it('should display empty message', () => {
             const {container} = getComponent();
             expect(getByText(container, 'Empty message')).toBeInTheDocument();
         });

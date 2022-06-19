@@ -1,5 +1,4 @@
 import React from 'react';
-import find from 'lodash/find';
 import {useArgs} from '@storybook/client-api';
 
 import {headerOptions} from '@/constants';
@@ -17,7 +16,7 @@ export const Basic = args => {
     const [prevArgs, updateArgs] = useArgs();
     const flattenedOptions = flattenOptions(headerOptions);
     const handleRedirect = e => {
-        const selectedOption = find(flattenedOptions, option => option.path === e.target.value);
+        const selectedOption = flattenedOptions.find(option => option.path === e.target.value);
         updateArgs({...prevArgs, activePath: selectedOption?.path});
     };
     const handleLogout = () => window.alert('logout');

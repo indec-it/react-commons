@@ -12,7 +12,7 @@ describe('<Input>', () => {
     });
     afterEach(tearDown);
 
-    it('should display an input', () => {
+    it('should render an input', () => {
         const {container} = getComponent();
         const input = getByTestId(container, 'input-test');
         expect(input).toBeInTheDocument();
@@ -28,7 +28,7 @@ describe('<Input>', () => {
             props.label = 'Test';
         });
 
-        it('should display an label', () => {
+        it('should display a label', () => {
             const {container} = getComponent();
             const label = getByTestId(container, 'label-test');
             expect(label).toHaveTextContent('Test');
