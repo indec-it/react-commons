@@ -12,5 +12,4 @@ src/stories/
 svgTransform.js
 src/components/**/*.test.js
 src/components/**/*.stories.js
-src/assets
 src/utils/__tests__/

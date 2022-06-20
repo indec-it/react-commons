@@ -62,7 +62,7 @@ These are the core dependencies you'll need to get acquainted yourself with:
 - [React Testing Library](https://testing-library.com/docs/react-testing-library/intro) (DOM interface for testing)
 - [EsLint](https://eslint.org) (used to lint code)
 
-## Tests
+## Tests 
 
 To run the tests you must run the following command:
 

@@ -1,8 +1,10 @@
-const mapKeys = (object = {}) => {
+const mapKeys = (object, iteratee) => {
+    const parsedObject = Object(object);
     const result = {};
-    Object.keys(object).forEach(key => {
-        const value = object[key];
-        result[`${key}${value}`] = value;
+
+    Object.keys(parsedObject).forEach(key => {
+        const value = parsedObject[key];
+        result[iteratee(value, key, parsedObject)] = value;
     });
     return result;
 };

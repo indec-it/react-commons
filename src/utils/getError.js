@@ -7,10 +7,10 @@ const getError = (form, field) => {
     const fieldTouched = getIn(form.touched, field.name);
     const backendError = getIn(form.status, field.name);
     const clientError = getIn(form.errors, field.name);
-    if (Object.entries(clientError).length > 0 && fieldTouched) {
+    if (clientError && Object.entries(clientError).length > 0 && fieldTouched) {
         return clientError;
     }
-    if (Object.entries(backendError).length === 0 && !fieldTouched) {
+    if (backendError && Object.entries(backendError).length === 0 && !fieldTouched) {
         return backendError;
     }
     return undefined;
