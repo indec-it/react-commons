@@ -1,5 +1,7 @@
 # react-commons V5 🚀
 
+https://indec-it.github.io/react-commons/
+
 ## Glossary
 
 1. [Motivation](#motivation)
@@ -14,7 +16,7 @@
 
 We've created this package to share components and logic between our different projects.
 
-It uses [Storybook](https://storybook.js.org), it allows you to test and see how each component works without install the package in your project.
+We use [Storybook](https://storybook.js.org), it allows you to test and see how each component works without install the package in your project.
 
 Our components are built with [Chakra-ui](https://chakra-ui.com), in our previous versions of react-commons they were built with [Reactstrap](https://github.com/reactstrap/reactstrap) but we realized that we needed to add more custom styles so we decided to move to Chakra.
 
