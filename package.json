@@ -10,7 +10,8 @@
     "test": "jest --config=jest.config.json",
     "test:watch": "jest --config=jest.config.json --watch",
     "eslint": "eslint ./",
-    "validate": "npm run test && npm run lint"
+    "validate": "npm run test && npm run eslint",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@chakra-ui/react": "^2.2.1",
