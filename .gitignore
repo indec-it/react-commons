@@ -11,5 +11,3 @@ docs-build/
 .env-*
 .idea
 *.log
-package-lock.json
-

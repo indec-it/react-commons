@@ -5,11 +5,15 @@ jobs:
   tests-and-eslint:
     runs-on: ubuntu-latest
     steps:
+      - name: Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.9.1
+        with:
+          access_token: ${{ github.token }}
       - name: Checkout 🛎️
         uses: actions/checkout@v2.3.1
         with:
           persist-credentials: false
       - name: Install dependencies 🔧
-        run: npm install
+        run: npm ci
       - name: Run eslint and tests
         run: npm run validate
