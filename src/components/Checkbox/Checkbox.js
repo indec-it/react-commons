@@ -17,6 +17,7 @@ const _Checkbox = ({
     onChange,
     field,
     form,
+    containerStyle,
     ...props
 }) => {
     const [handleChange, error] = useError(hasError);
@@ -29,6 +30,7 @@ const _Checkbox = ({
                 error={error || getError(form, field)}
                 isRequired={isRequired}
                 isReadOnly={isDisabled}
+                style={containerStyle}
             >
                 <Checkbox
                     {...field}
@@ -58,6 +60,7 @@ _Checkbox.propTypes = {
     hasError: PropTypes.oneOfType([PropTypes.bool, PropTypes.string, PropTypes.array]),
     onChange: PropTypes.func,
     form: PropTypes.shape({}),
+    containerStyle: PropTypes.shape({}),
     field: PropTypes.shape({
         name: PropTypes.string,
         value: PropTypes.bool,
@@ -67,6 +70,7 @@ _Checkbox.propTypes = {
 };
 
 _Checkbox.defaultProps = {
+    containerStyle: {},
     name: undefined,
     label: undefined,
     variant: undefined,

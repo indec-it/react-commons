@@ -14,7 +14,21 @@ const HeaderItem = ({
     isOpen,
     isSubItem,
     isHidden
-}) => options.map((option, index) => (option.options.length === 0 ? (
+}) => options.map((option, index) => (option.options?.length > 0 ? (
+    <Dropdown
+        key={`select-${index}`}
+        id={index}
+        icon={option.icon}
+        label={option.label}
+        options={option.options}
+        isDisabled={option.isDisabled}
+        isHidden={option.isHidden || (isSmallScreen && !isOpen)}
+        {...{
+            isSubItem, isSmallScreen, activePath, onChange
+        }}
+    />
+
+) : (
     <Button
         key={id ? `option-${id}-${index}}` : `option-${index}`}
         id={id ? `option-${id}-${index}}` : `option-${index}`}
@@ -33,23 +47,10 @@ const HeaderItem = ({
         height="auto"
         minHeight="40px"
         padding="0 5px"
-        display="flex"
+        display="block"
     >
         {option.label}
     </Button>
-) : (
-    <Dropdown
-        key={`select-${index}`}
-        id={index}
-        icon={option.icon}
-        label={option.label}
-        options={option.options}
-        isDisabled={option.isDisabled}
-        isHidden={option.isHidden || (isSmallScreen && !isOpen)}
-        {...{
-            isSubItem, isSmallScreen, activePath, onChange
-        }}
-    />
 )));
 
 HeaderItem.propTypes = {

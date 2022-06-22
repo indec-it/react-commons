@@ -45,6 +45,7 @@ export const Variants = args => {
                     size="sm"
                     label="variant: normal checkbox sm"
                     onChange={handleChange}
+                    containerStyle={{pt: 2}}
                 />
                 <Checkbox
                     name="input_2"
@@ -52,6 +53,7 @@ export const Variants = args => {
                     size="md"
                     label="variant: normal checkbox md"
                     onChange={handleChange}
+                    containerStyle={{pt: 2}}
                 />
                 <Checkbox
                     name="input_3"
@@ -59,6 +61,7 @@ export const Variants = args => {
                     size="lg"
                     label="variant: normal checkbox lg"
                     onChange={handleChange}
+                    containerStyle={{pt: 2}}
                 />
                 <Checkbox
                     name="input_4"
@@ -68,6 +71,7 @@ export const Variants = args => {
                     label="variant: circular checkbox sm"
                     colorScheme="orange"
                     onChange={handleChange}
+                    containerStyle={{pt: 2}}
                 />
                 <Checkbox
                     name="input_5"
@@ -77,6 +81,7 @@ export const Variants = args => {
                     label="variant: circular checkbox md"
                     colorScheme="orange"
                     onChange={handleChange}
+                    containerStyle={{pt: 2}}
                 />
                 <Checkbox
                     name="input_6"
@@ -86,6 +91,7 @@ export const Variants = args => {
                     label="variant: circular checkbox lg"
                     colorScheme="orange"
                     onChange={handleChange}
+                    containerStyle={{pt: 2}}
                 />
                 <Checkbox
                     name="input_7"
@@ -94,6 +100,7 @@ export const Variants = args => {
                     variant="reg"
                     label="variant: reg checkbox sm"
                     onChange={handleChange}
+                    containerStyle={{pt: 2}}
                 />
                 <Checkbox
                     name="input_8"
@@ -102,6 +109,7 @@ export const Variants = args => {
                     variant="reg"
                     label="variant: reg checkbox md"
                     onChange={handleChange}
+                    containerStyle={{pt: 2}}
                 />
                 <Checkbox
                     name="input_9"
@@ -110,6 +118,7 @@ export const Variants = args => {
                     variant="reg"
                     label="variant: reg checkbox lg"
                     onChange={handleChange}
+                    containerStyle={{pt: 2}}
                 />
                 <Checkbox
                     name="input_10"
@@ -119,6 +128,7 @@ export const Variants = args => {
                     size="md"
                     isDisabled
                     onChange={handleChange}
+                    containerStyle={{pt: 2}}
                 />
                 <Checkbox
                     name="input_10"
@@ -128,6 +138,7 @@ export const Variants = args => {
                     size="md"
                     isDisabled
                     onChange={handleChange}
+                    containerStyle={{pt: 2}}
                 />
                 <Checkbox
                     name="input_11"
@@ -137,6 +148,7 @@ export const Variants = args => {
                     size="md"
                     isReadOnly
                     onChange={handleChange}
+                    containerStyle={{pt: 2}}
                 />
             </div>
         </div>

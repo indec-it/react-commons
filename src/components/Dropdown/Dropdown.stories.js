@@ -2,7 +2,7 @@ import React from 'react';
 
 import {Dropdown} from '@/components';
 
-export default {title: 'Dropdown'};
+export default {title: 'Components/Dropdown/Dropdown'};
 
 export const Basic = args => <Dropdown {...args}/>;
 
