@@ -19,7 +19,10 @@ const Dropdown = ({
     isSubItem,
     isSmallScreen,
     isHidden,
-    isDisabled
+    isDisabled,
+    styles,
+    containerStyles,
+    menuStyles
 }) => {
     const {isOpen, onClose, onToggle} = useDisclosure();
     const containerRef = useRef(null);
@@ -38,6 +41,7 @@ const Dropdown = ({
             mt="0 !important"
             hidden={isHidden}
             maxWidth="300px"
+            {...containerStyles}
         >
             <Button
                 data-testid={`option-${id}`}
@@ -55,6 +59,10 @@ const Dropdown = ({
                 variant="unstyled"
                 padding="0 5px"
                 display="flex"
+                whiteSpace="initial"
+                height="auto"
+                minHeight="40px"
+                {...styles}
             >
                 {label}
             </Button>
@@ -66,6 +74,7 @@ const Dropdown = ({
                 right={0}
                 borderRadius={5}
                 mt="0 !important"
+                {...menuStyles}
             >
                 <Collapse
                     in={isOpen}
@@ -88,7 +97,7 @@ const Dropdown = ({
 };
 
 Dropdown.propTypes = {
-    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     onChange: PropTypes.func.isRequired,
     icon: elementPropTypes,
     label: PropTypes.string.isRequired,
@@ -102,10 +111,17 @@ Dropdown.propTypes = {
             key: PropTypes.number,
             label: PropTypes.string
         })
-    )
+    ),
+    styles: PropTypes.shape({}),
+    containerStyles: PropTypes.shape({}),
+    menuStyles: PropTypes.shape({})
 };
 
 Dropdown.defaultProps = {
+    id: undefined,
+    styles: undefined,
+    containerStyles: undefined,
+    menuStyles: undefined,
     activePath: null,
     icon: null,
     options: [],

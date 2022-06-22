@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useRef} from 'react';
 import PropTypes from 'prop-types';
 import {FaSpellCheck} from 'react-icons/fa';
-import {Stack, VStack} from '@chakra-ui/react';
+import {Stack, useTheme, VStack} from '@chakra-ui/react';
 
 import {TextInput, Box} from '@/components';
 
@@ -14,6 +14,7 @@ const Autocomplete = ({
     startToShow,
     field,
     form,
+    size,
     ...props
 }) => {
     const [activeSuggestion, setActiveSuggestion] = useState(0);
@@ -21,6 +22,7 @@ const Autocomplete = ({
     const [showSuggestions, setShowSuggestions] = useState(false);
     const containerRef = useRef();
     const inputRef = useRef();
+    const theme = useTheme();
 
     const handleChange = e => {
         const {value} = e.target;
@@ -108,7 +110,12 @@ const Autocomplete = ({
     }, [suggestions]);
 
     return (
-        <VStack position="relative" data-testid={`autocomplete-container-${field?.value || name}`} ref={containerRef}>
+        <VStack
+            position="relative"
+            data-testid={`autocomplete-container-${field?.value || name}`}
+            ref={containerRef}
+            display="block"
+        >
             <TextInput
                 label={label}
                 data-testid={`autocomplete-${field?.value || name}`}
@@ -122,19 +129,19 @@ const Autocomplete = ({
                 form={form}
                 field={field}
                 innerRef={inputRef}
+                size={size}
                 {...props}
             />
             {!isDisabled && filteredSuggestions.length > 0 && showSuggestions && (
                 <Stack
                     data-testid={`autocomplete-list-${field?.value || name}`}
                     position="absolute"
-                    top="60px"
                     bg="brand.white"
-                    zIndex={1}
-                    pl={5}
-                    pr={5}
+                    zIndex={3}
+                    pl={10}
+                    pr={10}
                     borderRadius={5}
-
+                    boxShadow={theme.shadows?.base}
                 >
                     {filteredSuggestions.map((suggestion, index) => (
                         <Box
@@ -144,8 +151,7 @@ const Autocomplete = ({
                             onClick={handleClick}
                             onMouseOver={handleMouseOver}
                             cursor="pointer"
-                            ml={1}
-                            pb={1}
+                            fontSize={size}
                         >
                             {suggestion}
                         </Box>
@@ -171,11 +177,13 @@ Autocomplete.propTypes = {
         value: PropTypes.string,
         onChange: PropTypes.func,
         onBlur: PropTypes.func
-    })
+    }),
+    size: PropTypes.string
 };
 
 Autocomplete.defaultProps = {
     name: undefined,
+    size: undefined,
     onChange: undefined,
     suggestions: [],
     startToShow: 3,

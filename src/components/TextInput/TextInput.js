@@ -24,6 +24,8 @@ const TextInput = ({
     iconStyles,
     value,
     innerRef,
+    message,
+    messageColor,
     ...props
 }) => {
     const [handleChange, error] = useError(hasError);
@@ -33,6 +35,8 @@ const TextInput = ({
             data-testid={`form-control-${field?.name || name}`}
             name={field?.name || name}
             error={error || getError(form, field)}
+            message={message}
+            messageColor={messageColor}
             style={containerStyle}
             {...{
                 quote, isDisabled, isRequired, iconStyles, label, iconRight, iconLeft
@@ -76,12 +80,16 @@ TextInput.propTypes = {
         onChange: PropTypes.func,
         onBlur: PropTypes.func
     }),
-    innerRef: PropTypes.func,
-    value: PropTypes.string
+    innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.shape({})]),
+    value: PropTypes.string,
+    message: PropTypes.string,
+    messageColor: PropTypes.string
 };
 
 TextInput.defaultProps = {
     innerRef: undefined,
+    message: undefined,
+    messageColor: undefined,
     name: undefined,
     placeholder: 'Ingrese',
     containerStyle: {},

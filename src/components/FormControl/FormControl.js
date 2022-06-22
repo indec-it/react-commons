@@ -7,7 +7,7 @@ import {
     InputGroup
 } from '@chakra-ui/react';
 
-import {FormLabel, MessageError} from '@/components';
+import {FormLabel, FormMessage} from '@/components';
 
 const FormControl = ({
     name,
@@ -20,7 +20,9 @@ const FormControl = ({
     iconRight,
     iconStyles,
     quote,
-    children
+    children,
+    message,
+    messageColor
 }) => (
     <ChakraFormControl
         data-testid={`form-control-${name}`}
@@ -44,7 +46,7 @@ const FormControl = ({
             {children}
             {iconRight && <InputRightElement {...iconStyles} h="100%" children={iconRight}/>}
         </InputGroup>
-        <MessageError data-testid="form-error" messageError={error}/>
+        <FormMessage data-testid="form-error" messageError={error} message={message} color={messageColor}/>
     </ChakraFormControl>
 );
 
@@ -52,6 +54,8 @@ FormControl.propTypes = {
     name: PropTypes.string,
     children: PropTypes.element.isRequired,
     error: PropTypes.string,
+    message: PropTypes.string,
+    messageColor: PropTypes.string,
     isDisabled: PropTypes.bool,
     isRequired: PropTypes.bool,
     isInvalid: PropTypes.bool,
@@ -65,6 +69,8 @@ FormControl.propTypes = {
 
 FormControl.defaultProps = {
     name: undefined,
+    message: undefined,
+    messageColor: undefined,
     style: {},
     iconStyles: {},
     error: undefined,
