@@ -15,8 +15,6 @@
     "prepare": "husky install"
   },
   "files": [
-    "README.md",
-    "package.json",
     "lib",
     "!lib/**/*.test.js",
     "!lib/**/*.stories.js",
