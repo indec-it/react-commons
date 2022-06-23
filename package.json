@@ -1,12 +1,12 @@
 {
   "name": "@indec/react-commons",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "description": "Common reactjs components for apps",
   "private": false,
-  "main": "src/index.js",
+  "main": "lib/index.js",
   "scripts": {
     "start": "start-storybook -p 6006",
-    "build": "NODE_ENV=production babel src --out-dir dist",
+    "build": "NODE_ENV=production babel src --out-dir lib",
     "build-storybook": "build-storybook -o docs-build",
     "test": "jest --config=jest.config.json",
     "test:watch": "jest --config=jest.config.json --watch",
@@ -14,6 +14,14 @@
     "validate": "npm run test && npm run eslint",
     "prepare": "husky install"
   },
+  "files": [
+    "README.md",
+    "package.json",
+    "lib",
+    "!lib/**/*.test.js",
+    "!lib/**/*.stories.js",
+    "!lib/utils/__tests__"
+  ],
   "dependencies": {
     "@chakra-ui/react": "^2.2.1",
     "@emotion/react": "^11.9.3",
