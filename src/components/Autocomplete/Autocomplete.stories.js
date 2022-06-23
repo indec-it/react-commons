@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 import {Button, Text} from '@chakra-ui/react';
 import {useArgs} from '@storybook/client-api';
 
-import {Autocomplete, TextInput} from '@/components';
+import {Autocomplete} from '@/components';
 
 export default {
     title: 'Components/Autocomplete/Autocomplete',
