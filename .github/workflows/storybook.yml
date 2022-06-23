@@ -2,7 +2,7 @@ name: Build and Deploy Storybook
 on:
   push:
     branches:
-      - develop
+      - master
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -21,6 +21,6 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4.3.3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          branch: develop
+          branch: master
           folder: docs-build 
           target-folder: docs 
