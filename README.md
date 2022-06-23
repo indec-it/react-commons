@@ -18,7 +18,7 @@ We've created this package to share components and logic between our different p
 
 We use [Storybook](https://storybook.js.org), it allows you to test and see how each component works without install the package in your project.
 
-Our components are built with [Chakra-ui](https://chakra-ui.com), in our previous versions of react-commons they were built with [Reactstrap](https://github.com/reactstrap/reactstrap) but we realized that we needed to add more custom styles so we decided to move to Chakra.
+Our components are built with [Chakra-ui](https://chakra-ui.com). In our previous versions of react-commons, components were built with [Reactstrap](https://github.com/reactstrap/reactstrap) but we realized that we needed to add more custom styles so we decided to move to Chakra.
 
 ## Installation
 
@@ -48,6 +48,26 @@ src/
   theme/
   utils/
 ```
+
+`src/components`
+
+Here you must add your React`s components.
+
+`src/hooks`
+
+Here you must add your custom hooks.
+
+`src/constants`
+
+Constants to be shared for the whole application.
+
+`src/theme`
+
+Custom theme for components.
+
+`src/utils`
+
+Functions to be shared for the whole application.
 
 ## Dependencies
 
