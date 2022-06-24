@@ -24,6 +24,5 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4.3.3
         with:
           token: ${{ secrets.BUILD_TOKEN }}
-          branch: master
-          folder: docs-build 
-          target-folder: docs 
+          branch: gh-pages
+          folder: docs-build
