@@ -20,7 +20,7 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - name: Install dependencies and build 🔧
         run: |
-          npm set-scripts prepare ""
+          npm set-script prepare ""
           npm install
           npm run build
       - name: Publish package on NPM 📦
