@@ -5,6 +5,7 @@ coverage/
 build/
 docs-build/
 docs/
+lib/
 
 # misc
 .DS_Store
