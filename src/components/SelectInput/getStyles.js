@@ -14,7 +14,9 @@ const getStyles = (colors, variant, styles, size = 'md', isDisabled, hasError, r
     const focusBoxShadowColor = getThemeColor(
         colors, fieldStyles._focus?.boxShadow || fieldStyles._focusVisible?.boxShadow
     );
+    const invalidBoxShadowColor = getThemeColor(colors, fieldStyles._invalid?.boxShadow);
     const invalidBorderColor = getThemeColor(colors, fieldStyles._invalid?.borderColor || borderColor);
+
     const newStyles = removeKeys(fieldStyles, KEYS);
 
     return {
@@ -22,18 +24,16 @@ const getStyles = (colors, variant, styles, size = 'md', isDisabled, hasError, r
             const focusStyles = state.isFocused ? {
                 ...(fieldStyles._focus || {}),
                 backgroundColor: getThemeColor(colors, fieldStyles?._focus?.bg) || 'transparent',
-                borderColor: focusBorderColor
+                borderColor: hasError ? invalidBorderColor : focusBorderColor
             } : {};
             const hoverStyles = state.isFocused ? {
                 ...(fieldStyles._hover || {}),
-                borderColor: focusBorderColor || hoverBorderColor
-            } : {borderColor: hoverBorderColor};
+                borderColor: hasError ? invalidBorderColor : focusBorderColor || hoverBorderColor
+            } : {borderColor: hasError ? invalidBorderColor : hoverBorderColor};
             const hoverBackgroundStyles = {
                 backgroundColor: (!state.isFocused && getThemeColor(colors, fieldStyles._hover?.bg)) || 'inherit'
             };
-            const invalidStyles = hasError ? {
-                borderColor: invalidBorderColor
-            } : {};
+            const invalidStyles = hasError ? {borderColor: invalidBorderColor, boxShadow: invalidBoxShadowColor} : {};
             const readOnlyStyles = readyOnly ? fieldStyles._readOnly : {} || {};
             return {
                 ...newStyles,

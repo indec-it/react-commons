@@ -6,7 +6,7 @@ import {
     inputs,
     Text,
     Flex,
-    FormErrorMessage,
+    FormError,
     FormLabel,
     Box,
     colors,
@@ -20,6 +20,7 @@ export const theme = {
         brand: colors
     },
     styles: {global},
+    shadows: {light: `1px 1px 3px ${colors.neutral200}`, dark: `1px 1px 3px ${colors.neutral300}`},
     components: {
         Button,
         Checkbox,
@@ -27,7 +28,7 @@ export const theme = {
         NumberInput: inputs,
         Select: inputs,
         Flex,
-        FormErrorMessage,
+        FormError,
         FormLabel,
         Text,
         Box,

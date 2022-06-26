@@ -4,6 +4,7 @@ import es from 'date-fns/locale/es';
 import ReactDatePicker from 'react-datepicker';
 
 import DatePickerInput from './DatePickerInput';
+import './styles.css';
 
 const DatePicker = ({
     name,
@@ -43,6 +44,7 @@ const DatePicker = ({
             selectsStart={selectsStart}
             startDate={startDate}
             endDate={endDate}
+            style={{zIndex: 5}}
             customInput={(
                 <DatePickerInput
                     {...props}

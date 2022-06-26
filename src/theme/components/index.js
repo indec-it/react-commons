@@ -3,7 +3,7 @@ export {default as Button} from './button';
 export {default as Checkbox} from './checkbox';
 export {default as colors} from '../base/colors';
 export {default as Flex} from './flex';
-export {default as FormErrorMessage} from './formErrorMessage';
+export {default as FormError} from './formError';
 export {default as FormLabel} from './formLabel';
 export {default as global} from '../base/global';
 export {default as inputs} from './inputs';
