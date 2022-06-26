@@ -1,6 +1,7 @@
 export {default as AlertMessage} from './AlertMessage';
 export {default as Autocomplete} from './Autocomplete';
 export {default as Box} from './Box';
+export {default as Card} from './Card';
 export {default as Checkbox} from './Checkbox';
 export {default as DatePicker} from './DatePicker';
 export {default as DatePickerRange} from './DatePickerRange';

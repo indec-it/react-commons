@@ -127,6 +127,7 @@ export const Forms = () => (
                 <Field
                     name="example"
                     label="Autocomplete Input"
+                    variant="reg"
                     component={Autocomplete}
                     placeholder='Enter "sugg" to show suggestions'
                     suggestions={['Suggestion 1', 'Suggestion 2', 'Suggestion 3', 'Suggestion 4']}

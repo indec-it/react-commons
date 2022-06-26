@@ -52,10 +52,10 @@ const SelectInput = ({
         colors,
         variant,
         styles,
+        size,
         isDisabled,
         error || getError(form, field),
-        isReadyOnly,
-        size
+        isReadyOnly
     ) : undefined;
 
     const handleChangeInput = newValue => {
@@ -211,7 +211,7 @@ SelectInput.defaultProps = {
     onInputChange: undefined,
     onBlur: () => {},
     onChange: undefined,
-    variant: 'reg',
+    variant: 'outline',
     label: undefined,
     isDisabled: false,
     isReadyOnly: false,
