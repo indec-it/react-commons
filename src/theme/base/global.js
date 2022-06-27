@@ -8,6 +8,9 @@ const global = {
     '*, :after, :before': {
         boxSizing: 'border-box'
     },
+    '.react-datepicker-popper': {
+        zIndex: 3
+    },
     input: {
         '&:-webkit-autofill::first-line': {
             fontSize: '16px',
