@@ -25,10 +25,13 @@ export const Basic = args => {
 
 Basic.args = {
     activePath: '/example4',
-    hiddenTop: false,
-    hiddenOptions: false,
-    hiddenUserMenu: false,
-    smallScale: 650,
+    containerStyles: {bg: 'brand.neutral300'},
+    headerStyles: {bg: 'brand.neutral50'},
+    menuStyles: {
+        padding: '0 10px',
+        menu: {bg: 'brand.neutral200'},
+        icon: {color: 'white'}
+    },
     logos: [
         {source: logoLeft, alt: 'logo-left', onClick: () => window.alert('image')},
         {source: logoRight, alt: 'logo-right'}

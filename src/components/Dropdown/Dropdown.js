@@ -1,7 +1,10 @@
 import React, {useRef} from 'react';
 import PropTypes from 'prop-types';
 import {
-    Stack, Button, Collapse, useDisclosure
+    Stack,
+    Button,
+    Collapse,
+    useDisclosure
 } from '@chakra-ui/react';
 
 import {elementPropTypes} from '@/utils/propTypes';
@@ -20,9 +23,7 @@ const Dropdown = ({
     isSmallScreen,
     isHidden,
     isDisabled,
-    styles,
-    containerStyles,
-    menuStyles
+    styles
 }) => {
     const {isOpen, onClose, onToggle} = useDisclosure();
     const containerRef = useRef(null);
@@ -41,14 +42,14 @@ const Dropdown = ({
             mt="0 !important"
             hidden={isHidden}
             maxWidth="300px"
-            {...containerStyles}
+            {...styles.container}
         >
             <Button
                 data-testid={`option-${id}`}
                 onClick={onToggle}
                 disabled={isDisabled}
                 leftIcon={Icon && <Icon/>}
-                rightIcon={<IconToggleArrow isOpen={isOpen}/>}
+                rightIcon={<IconToggleArrow style={styles.icon} isOpen={isOpen}/>}
                 hidden={isHidden}
                 shadow="none !important"
                 mt="0 !important"
@@ -62,6 +63,7 @@ const Dropdown = ({
                 whiteSpace="initial"
                 height="auto"
                 minHeight="40px"
+                w="max-content"
                 {...styles}
             >
                 {label}
@@ -74,17 +76,19 @@ const Dropdown = ({
                 right={0}
                 borderRadius={5}
                 mt="0 !important"
-                {...menuStyles}
+                w="fit-content"
+                {...styles.menu}
             >
                 <Collapse
                     in={isOpen}
                     data-testid="display-mobile-"
                     direction="column"
                 >
-                    <Stack data-testid={`menu-${id}`} direction="column">
+                    <Stack data-testid={`menu-${id}`} direction="column" padding="0 10px" w="auto">
                         <HeaderItem
                             isSubItem
                             onChange={handleChange}
+                            menuStyles={styles}
                             {...{
                                 options, isSmallScreen, activePath, id, isHidden, isOpen
                             }}
@@ -112,16 +116,22 @@ Dropdown.propTypes = {
             label: PropTypes.string
         })
     ),
-    styles: PropTypes.shape({}),
-    containerStyles: PropTypes.shape({}),
-    menuStyles: PropTypes.shape({})
+    styles: PropTypes.shape({
+        container: PropTypes.shape({}),
+        icon: PropTypes.shape({}),
+        menu: PropTypes.shape({}),
+        button: PropTypes.shape({})
+    })
 };
 
 Dropdown.defaultProps = {
     id: undefined,
-    styles: undefined,
-    containerStyles: undefined,
-    menuStyles: undefined,
+    styles: {
+        container: {},
+        icon: {},
+        menu: {},
+        button: {}
+    },
     activePath: null,
     icon: null,
     options: [],

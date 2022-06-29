@@ -13,7 +13,8 @@ const HeaderItem = ({
     isSmallScreen,
     isOpen,
     isSubItem,
-    isHidden
+    isHidden,
+    menuStyles
 }) => options.map((option, index) => (option.options?.length > 0 ? (
     <Dropdown
         key={`select-${index}`}
@@ -23,6 +24,7 @@ const HeaderItem = ({
         options={option.options}
         isDisabled={option.isDisabled}
         isHidden={option.isHidden || (isSmallScreen && !isOpen)}
+        styles={menuStyles}
         {...{
             isSubItem, isSmallScreen, activePath, onChange
         }}
@@ -48,6 +50,7 @@ const HeaderItem = ({
         minHeight="40px"
         padding="0 5px"
         display="block"
+        {...menuStyles}
     >
         {option.label}
     </Button>
@@ -62,6 +65,7 @@ HeaderItem.propTypes = {
         isHidden: PropTypes.bool,
         options: PropTypes.arrayOf(PropTypes.shape({}))
     })),
+    menuStyles: PropTypes.shape({}).isRequired,
     onChange: PropTypes.func.isRequired,
     activePath: PropTypes.string,
     isSmallScreen: PropTypes.bool,
