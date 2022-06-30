@@ -29,6 +29,8 @@ const FormControl = ({
         isInvalid={!!error}
         isRequired={isRequired}
         isReadOnly={isDisabled}
+        mb={5}
+        pb={1}
         {...style}
     >
         {label && (
@@ -37,6 +39,7 @@ const FormControl = ({
                 htmlFor={name}
                 data-testid={`label-${name}`}
                 isInvalid={!!error}
+                m={0}
             >
                 {label}
             </FormLabel>

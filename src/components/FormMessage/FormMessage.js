@@ -17,7 +17,7 @@ const FormMessage = ({
             position="absolute"
             fontSize={13}
             hidden={hiddenText}
-            mt={1}
+            mt={0.5}
             {...props}
         >
             {message}
@@ -30,7 +30,7 @@ const FormMessage = ({
             position="absolute"
             fontSize={13}
             hidden={hiddenText}
-            mt={1}
+            mt={0.5}
             {...props}
         >
             {messageError}

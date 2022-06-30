@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Image, HStack} from '@chakra-ui/react';
 
-const HeaderInfo = ({logos}) => (
-    <HStack w="100%" p="10px 20px" bg="brand.neutral100" justifyContent="space-between">
+const HeaderInfo = ({logos, containerStyles}) => (
+    <HStack w="100%" p="10px 20px" bg="brand.neutral100" justifyContent="space-between" {...containerStyles}>
         {logos.map((logo, index) => (
             <Image
                 key={index}
@@ -23,7 +23,8 @@ HeaderInfo.propTypes = {
         source: PropTypes.string,
         onClick: PropTypes.func,
         alt: PropTypes.string
-    })).isRequired
+    })).isRequired,
+    containerStyles: PropTypes.shape({}).isRequired
 };
 
 export default HeaderInfo;

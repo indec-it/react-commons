@@ -27,7 +27,10 @@ const Header = ({
     hiddenUserMenu,
     hiddenOptions,
     logos,
-    smallScale
+    smallScale,
+    headerStyles,
+    containerStyles,
+    menuStyles
 }) => {
     const {isOpen, onClose, onToggle} = useDisclosure();
     const {isOpen: isOpenUser, onToggle: onToggleUser, onClose: onCloseUser} = useDisclosure();
@@ -56,8 +59,9 @@ const Header = ({
                 data-testid="container-header"
                 width="100%"
                 bg="brand.neutral200"
+                {...containerStyles}
             >
-                {!hiddenTop && <HeaderInfo logos={logos}/>}
+                {!hiddenTop && <HeaderInfo logos={logos} containerStyles={headerStyles}/>}
                 <HStack
                     w="100%"
                     alignItems="flex-start"
@@ -70,6 +74,7 @@ const Header = ({
                         <Stack alignItems="center" flexDirection={isOpen ? 'column' : 'row'} w="100%">
                             <HeaderItem
                                 onChange={handleRedirect}
+                                menuStyles={menuStyles}
                                 {...{
                                     options, isSmallScreen, activePath, isOpen
                                 }}
@@ -127,7 +132,10 @@ Header.propTypes = {
     hiddenTop: PropTypes.bool,
     hiddenOptions: PropTypes.bool,
     logos: PropTypes.arrayOf(PropTypes.shape({})),
-    smallScale: PropTypes.number
+    smallScale: PropTypes.number,
+    headerStyles: PropTypes.shape({}),
+    containerStyles: PropTypes.shape({}),
+    menuStyles: PropTypes.shape({})
 };
 
 Header.defaultProps = {
@@ -136,9 +144,12 @@ Header.defaultProps = {
     logos: [],
     activePath: undefined,
     hiddenUserMenu: false,
-    hiddenTop: true,
+    hiddenTop: false,
     hiddenOptions: false,
-    smallScale: 768
+    smallScale: 768,
+    headerStyles: {},
+    containerStyles: {},
+    menuStyles: {}
 };
 
 export default Header;
