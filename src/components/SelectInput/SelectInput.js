@@ -94,7 +94,7 @@ const SelectInput = ({
             loadOptions(0, true);
             return;
         }
-        if (action.action === selectActions.INPUT_CHANGE) {
+        if (action.action === selectActions.INPUT_CHANGE && onInputChange) {
             setSkip(0);
             onInputChange(term);
         }
