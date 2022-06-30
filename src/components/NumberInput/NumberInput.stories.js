@@ -116,22 +116,21 @@ export const Variants = args => {
 };
 
 export const Forms = () => (
-    <div style={{maxWidth: '330px'}}>
-        <Formik
-            initialValues={{example: ''}}
-            onSubmit={values => window.alert(JSON.stringify(values))}
-            validationSchema={validateSchema}
-        >
-            <Form noValidate>
-                <Field
-                    name="example"
-                    label="Number Input"
-                    component={NumberInput}
-                    variant="reg"
-                    hiddenStepper
-                />
-                <Button type="submit" variant="rounded" mt={8}>Submit</Button>
-            </Form>
-        </Formik>
-    </div>
+    <Formik
+        initialValues={{example: ''}}
+        onSubmit={values => window.alert(JSON.stringify(values))}
+        validationSchema={validateSchema}
+    >
+        <Form noValidate>
+            <Field
+                name="example"
+                label="Number Input"
+                component={NumberInput}
+                variant="reg"
+                hiddenStepper
+                width="lg"
+            />
+            <Button type="submit" variant="rounded" mt={8}>Submit</Button>
+        </Form>
+    </Formik>
 );

@@ -1,9 +1,6 @@
 import colors from '../base/colors';
 
 export default {
-    baseStyle: {
-        width: '100%'
-    },
     variants: {
         reg: {
             field: {
@@ -11,8 +8,6 @@ export default {
                 borderColor: 'brand.neutral300',
                 borderRadius: '5px',
                 paddingTop: '2px',
-                minWidth: '220px',
-                width: '100%',
                 bg: 'inherit',
                 _focus: {
                     border: '1px solid',
@@ -38,7 +33,6 @@ export default {
                     cursor: 'not-allowed'
                 }
             }
-
         }
     }
 };

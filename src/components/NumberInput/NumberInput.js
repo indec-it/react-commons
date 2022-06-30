@@ -30,6 +30,7 @@ const NumberInput = ({
     field,
     hiddenStepper,
     value,
+    width,
     ...props
 }) => {
     const [handleChange, error, setField] = useError(hasError);
@@ -42,7 +43,7 @@ const NumberInput = ({
             error={error || getError(form, field)}
             style={containerStyle}
             {...{
-                quote, label, iconRight, iconLeft
+                width, quote, isDisabled, isRequired, label, iconRight, iconLeft
             }}
         >
             <ChakraNumberInput
@@ -90,6 +91,7 @@ NumberInput.propTypes = {
     onChange: PropTypes.func,
     hasError: errorPropTypes,
     label: PropTypes.string,
+    width: PropTypes.string,
     form: PropTypes.shape({
         setFieldValue: PropTypes.func
     }),
@@ -104,6 +106,7 @@ NumberInput.propTypes = {
 
 NumberInput.defaultProps = {
     name: undefined,
+    width: undefined,
     containerStyle: {},
     placeholder: 'Ingrese',
     variant: 'outline',

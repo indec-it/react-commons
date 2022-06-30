@@ -6,6 +6,7 @@ import {
     InputRightElement,
     InputGroup
 } from '@chakra-ui/react';
+import {getThemeWidth} from '@/utils';
 
 import {FormLabel, FormMessage} from '@/components';
 
@@ -22,15 +23,16 @@ const FormControl = ({
     quote,
     children,
     message,
-    messageColor
+    messageColor,
+    width
 }) => (
     <ChakraFormControl
         data-testid={`form-control-${name}`}
         isInvalid={!!error}
         isRequired={isRequired}
         isReadOnly={isDisabled}
-        mb={5}
-        pb={1}
+        pb={4}
+        maxWidth={getThemeWidth(width)}
         {...style}
     >
         {label && (
@@ -67,12 +69,14 @@ FormControl.propTypes = {
     iconRight: PropTypes.shape({}),
     iconLeft: PropTypes.shape({}),
     iconStyles: PropTypes.shape({}),
-    quote: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+    quote: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    width: PropTypes.string
 };
 
 FormControl.defaultProps = {
     name: undefined,
     message: undefined,
+    width: undefined,
     messageColor: undefined,
     style: {},
     iconStyles: {},
