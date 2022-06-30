@@ -39,6 +39,7 @@ const SelectInput = ({
     form,
     containerStyle,
     size,
+    width,
     ...props
 }) => {
     const selectedValue = form ? field.value : getValue(value);
@@ -106,10 +107,11 @@ const SelectInput = ({
             data-testid={`form-control-${field?.name || name}`}
             disabled={isDisabled}
             error={error || getError(form, field)}
-            isRequired={isRequired}
             isReadOnly={isDisabled}
-            label={label}
             style={containerStyle}
+            {...{
+                width, quote, isDisabled, isRequired, label
+            }}
         >
             <Select
                 inputId={field?.name || name}
@@ -175,6 +177,7 @@ SelectInput.propTypes = {
     hasError: errorPropTypes,
     containerStyle: PropTypes.shape({}),
     variant: PropTypes.string,
+    width: PropTypes.string,
     form: PropTypes.shape({
         handleChange: PropTypes.func,
         setFieldValue: PropTypes.func,
@@ -202,6 +205,7 @@ SelectInput.defaultProps = {
     options: [],
     containerStyle: {},
     name: undefined,
+    width: undefined,
     size: undefined,
     placeholder: 'Seleccione',
     total: undefined,

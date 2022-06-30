@@ -9,6 +9,7 @@ export {default as getRangeNumbers} from './getRangeNumbers';
 export {default as getSelectedOptions} from './getSelectedOptions';
 export {default as getThemeColor} from './getThemeColor';
 export {default as getThemeSize} from './getThemeSize';
+export {default as getThemeWidth} from './getThemeWidth';
 export {default as getValue} from './getValue';
 export {default as isBoolean} from './isBoolean';
 export {default as isStringsArray} from './isStringsArray';

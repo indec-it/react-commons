@@ -126,43 +126,42 @@ export const Variants = args => {
 };
 
 export const Forms = () => (
-    <div style={{maxWidth: '330px'}}>
-        <Formik
-            initialValues={{example: ''}}
-            onSubmit={values => window.alert(JSON.stringify(values))}
-            validationSchema={validateSchema}
-        >
-            <Form>
-                <Field
-                    name="example"
-                    component={SelectInput}
-                    variant="reg"
-                    options={options}
-                    label="Select Input"
-                />
-                <Button type="submit" variant="rounded" mt={8}>Submit</Button>
-            </Form>
-        </Formik>
-    </div>
+    <Formik
+        initialValues={{example: ''}}
+        onSubmit={values => window.alert(JSON.stringify(values))}
+        validationSchema={validateSchema}
+    >
+        <Form>
+            <Field
+                name="example"
+                component={SelectInput}
+                variant="reg"
+                options={options}
+                label="Select Input"
+                width="xl"
+            />
+            <Button type="submit" variant="rounded" mt={8}>Submit</Button>
+        </Form>
+    </Formik>
 );
 
-export const MultiSelector = () => (
-    <div style={{maxWidth: '330px'}}>
-        <Formik
-            initialValues={{example: []}}
-            onSubmit={values => window.alert(JSON.stringify(values))}
-            validationSchema={validateSchemaArray}
-        >
-            <Form>
-                <Field
-                    name="example"
-                    label="Select Input"
-                    isMulti
-                    component={SelectInput}
-                    options={options}
-                />
-                <Button type="submit" variant="rounded" mt={8}>Submit</Button>
-            </Form>
-        </Formik>
-    </div>
+export const MultiSelectorForm = () => (
+    <Formik
+        initialValues={{example: []}}
+        onSubmit={values => window.alert(JSON.stringify(values))}
+        validationSchema={validateSchemaArray}
+    >
+        <Form>
+            <Field
+                name="example"
+                label="Select Input"
+                variant="reg"
+                isMulti
+                component={SelectInput}
+                options={options}
+                width="xl"
+            />
+            <Button type="submit" variant="rounded" mt={8}>Submit</Button>
+        </Form>
+    </Formik>
 );

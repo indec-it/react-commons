@@ -3,7 +3,7 @@ import {sizes, fontSizes, multiValueSizes} from '@/constants/styles';
 
 const KEYS = ['> option, > optgroup', '_hover', '_readOnly', '_disabled', '_invalid', '_focusVisible'];
 
-const getStyles = (colors, variant, styles, size = 'md', isDisabled, hasError, readyOnly) => {
+const getStyles = (colors, variant, styles, size = 'md', width, isDisabled, hasError, readyOnly) => {
     const fieldStyles = styles?.field || {};
     const borderColor = fieldStyles.borderColor !== 'inherit' && fieldStyles.borderColor;
     const hoverBorderColor = getThemeColor(colors, fieldStyles._hover?.borderColor || borderColor);
