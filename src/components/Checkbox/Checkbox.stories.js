@@ -131,8 +131,8 @@ export const Variants = args => {
                     containerStyle={{pt: 2}}
                 />
                 <Checkbox
-                    name="input_10"
-                    value={!args.input_10}
+                    name="input_11"
+                    value={!args.input_11}
                     label="value: true disabled"
                     variant="reg"
                     size="md"
@@ -141,8 +141,8 @@ export const Variants = args => {
                     containerStyle={{pt: 2}}
                 />
                 <Checkbox
-                    name="input_11"
-                    value={!args.input_11}
+                    name="input_12"
+                    value={args.input_12}
                     label="is read only"
                     variant="reg"
                     size="md"
@@ -150,12 +150,36 @@ export const Variants = args => {
                     onChange={handleChange}
                     containerStyle={{pt: 2}}
                 />
+                <Checkbox
+                    name="input_13"
+                    value={args.input_13}
+                    label="variant: reverse sm"
+                    variant="reverse"
+                    size="sm"
+                    onChange={handleChange}
+                />
+                <Checkbox
+                    name="input_14"
+                    value={args.input_14}
+                    label="variant: reverse md"
+                    variant="reverse"
+                    size="md"
+                    onChange={handleChange}
+                />
+                <Checkbox
+                    name="input_15"
+                    value={args.input_15}
+                    label="variant: reverse lg"
+                    variant="reverse"
+                    size="lg"
+                    onChange={handleChange}
+                />
             </div>
         </div>
     );
 };
 
-export const Forms = () => (
+export const Forms = args => (
     <div style={{maxWidth: '330px'}}>
         <Formik
             initialValues={{example: false}}
@@ -167,6 +191,7 @@ export const Forms = () => (
                     name="example"
                     label="Checkbox Input"
                     component={Checkbox}
+                    {...args}
                 />
                 <Button type="submit" variant="rounded" mt={8}>Submit</Button>
             </Form>

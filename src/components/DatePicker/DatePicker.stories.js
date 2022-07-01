@@ -104,7 +104,7 @@ export const Variants = args => {
     );
 };
 
-export const Forms = () => (
+export const Forms = args => (
     <div style={{maxWidth: '330px'}}>
         <Formik
             initialValues={{example: ''}}
@@ -117,6 +117,7 @@ export const Forms = () => (
                     component={DatePicker}
                     label="Datepicker Input"
                     placeholder="Enter a date"
+                    {...args}
                 />
                 <Button type="submit" variant="rounded" mt={8}>Submit</Button>
             </Form>

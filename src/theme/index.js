@@ -11,7 +11,8 @@ import {
     Box,
     colors,
     global,
-    Table
+    Table,
+    Textarea
 } from './components';
 
 export const theme = {
@@ -27,6 +28,7 @@ export const theme = {
         Input: inputs,
         NumberInput: inputs,
         Select: inputs,
+        Textarea,
         Flex,
         FormError,
         FormLabel,

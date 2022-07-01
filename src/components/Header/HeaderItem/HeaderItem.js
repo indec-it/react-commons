@@ -20,6 +20,7 @@ const HeaderItem = ({
         key={`select-${index}`}
         id={index}
         icon={option.icon}
+        rightIcon={option.rightIcon}
         label={option.label}
         options={option.options}
         isDisabled={option.isDisabled}
@@ -29,7 +30,6 @@ const HeaderItem = ({
             isSubItem, isSmallScreen, activePath, onChange
         }}
     />
-
 ) : (
     <Button
         key={id ? `option-${id}-${index}}` : `option-${index}`}
@@ -41,6 +41,7 @@ const HeaderItem = ({
         color={option.path === activePath ? 'brand.primary' : 'brand.white'}
         boxShadow="none !important"
         leftIcon={option.icon && <option.icon/>}
+        rightIcon={option.rightIcon && <option.rightIcon/>}
         hidden={isHidden || option.isHidden || (isSmallScreen && !isOpen)}
         variant="unstyled"
         _hover={{filter: 'brightness(90%)'}}
@@ -50,6 +51,7 @@ const HeaderItem = ({
         minHeight="40px"
         padding="0 5px"
         display="block"
+        textAlign={isSmallScreen ? 'center' : 'left'}
         {...menuStyles}
     >
         {option.label}
@@ -59,6 +61,7 @@ const HeaderItem = ({
 HeaderItem.propTypes = {
     id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     options: PropTypes.arrayOf(PropTypes.shape({
+        rightIcon: elementPropTypes,
         icon: elementPropTypes,
         label: PropTypes.string,
         isDisabled: PropTypes.bool,

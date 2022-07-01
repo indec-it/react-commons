@@ -18,7 +18,7 @@ export default {
                 shadow: '2px 3px 4px rgba(0, 0, 0, 0.3)'
             },
             _hover: {
-                filter: 'brightness(115%)'
+                filter: 'brightness(105%)'
             },
             _active: {
                 opacity: 0.9

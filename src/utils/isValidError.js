@@ -7,7 +7,7 @@ import {isStringsArray} from '@/utils';
  */
 const isValidError = error => !!(isStringsArray(error)
     || typeof error === 'boolean'
-    || typeof error === 'string'
+    || (typeof error === 'string' && error !== '')
     || typeof error === 'number');
 
 export default isValidError;

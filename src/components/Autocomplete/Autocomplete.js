@@ -137,11 +137,11 @@ const Autocomplete = ({
                     data-testid={`autocomplete-list-${field?.value || name}`}
                     position="absolute"
                     bg="brand.white"
-                    zIndex={3}
+                    zIndex={theme?.zIndices?.dropdown}
                     pl={10}
                     pr={10}
                     borderRadius={5}
-                    boxShadow={theme.shadows?.base}
+                    boxShadow={theme?.shadows?.base}
                 >
                     {filteredSuggestions.map((suggestion, index) => (
                         <Box
