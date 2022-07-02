@@ -6,13 +6,12 @@ import {
     ButtonGroup,
     NumberInput,
     NumberInputField,
-    Flex,
     VStack,
     Text,
     IconButton,
-    FormControl
+    FormControl,
+    HStack
 } from '@chakra-ui/react';
-
 import {getPagesRange, getPagesNumber} from '@/utils';
 
 const Pagination = ({
@@ -20,19 +19,15 @@ const Pagination = ({
     show,
     perPage,
     currentPage,
-    onChange
+    onChange,
+    styles
 }) => {
     const totalPages = (total && perPage) ? Math.ceil(total / perPage) : 1;
     const [pages, setPages] = useState([]);
     const [search, setSearch] = useState(currentPage);
     const hasArrowRight = Math.max(...pages) < totalPages;
     const hasArrowLeft = Math.min(...pages) > 1;
-
-    const handleChangeInput = value => {
-        if (value.length < 4) {
-            setSearch(parseInt(value, 10));
-        }
-    };
+    const handleChangeInput = value => setSearch(parseInt(value, 10));
 
     const handleMoveLeft = () => {
         const pagesNumbers = getPagesNumber(pages);
@@ -73,10 +68,16 @@ const Pagination = ({
 
     return (
         totalPages > 1 && (
-            <VStack data-testid="pagination" hidden={!show} mt="20px" pb={5}>
+            <VStack data-testid="pagination" hidden={!show} w="min-content">
                 <ButtonGroup>
                     {hasArrowLeft && (
-                        <Button data-testid="back-button" onClick={handleMoveLeft}>
+                        <Button
+                            data-testid="back-button"
+                            onClick={handleMoveLeft}
+                            bg="brand.neutral50"
+                            boxShadow="none !important"
+                            {...styles.leftButton}
+                        >
                             <span>&laquo;</span>
                         </Button>
                     )}
@@ -90,29 +91,34 @@ const Pagination = ({
                             boxShadow="none !important"
                             _hover={{opacity: 1}}
                             _active={{opacity: 0.85}}
+                            {...styles.pagesButtons}
                         >
                             {page}
                         </Button>
                     ))}
                     {hasArrowRight && (
-                        <Button data-testid="next-button" onClick={handleMoveRight}>
+                        <Button
+                            data-testid="next-button"
+                            onClick={handleMoveRight}
+                            bg="brand.neutral50"
+                            boxShadow="none !important"
+                            {...styles.rightButtons}
+                        >
                             <span>&raquo;</span>
                         </Button>
                     )}
                 </ButtonGroup>
                 {totalPages > 2 && (
-                    <Flex w="100%" justify="center" alignItems="baseline">
+                    <HStack alignItems="baseline">
                         <FormControl placeSelf="center">
                             <NumberInput
-                                mr="5px"
-                                w="60px"
                                 min={1}
                                 max={totalPages}
                                 onChange={handleChangeInput}
-                                value={search}
+                                value={!Number.isNaN(search) ? search : 1}
                                 onKeyDown={handleKeyDown}
                             >
-                                <NumberInputField padding="0 5px" data-testid="input"/>
+                                <NumberInputField p="0 10px" data-testid="input"/>
                             </NumberInput>
                         </FormControl>
                         <Text>&#10072;</Text>
@@ -126,7 +132,7 @@ const Pagination = ({
                             ml={2}
                             boxShadow="none"
                         />
-                    </Flex>
+                    </HStack>
                 )}
             </VStack>
         )
@@ -138,14 +144,24 @@ Pagination.propTypes = {
     total: PropTypes.number,
     show: PropTypes.bool,
     perPage: PropTypes.number,
-    currentPage: PropTypes.number
+    currentPage: PropTypes.number,
+    styles: PropTypes.shape({
+        leftButton: PropTypes.shape({}),
+        pagesButtons: PropTypes.shape({}),
+        rightButtons: PropTypes.shape({})
+    })
 };
 
 Pagination.defaultProps = {
     total: 1,
     perPage: 5,
     show: true,
-    currentPage: 1
+    currentPage: 1,
+    styles: {
+        leftButton: {},
+        pagesButtons: {},
+        rightButtons: {}
+    }
 };
 
 export default Pagination;

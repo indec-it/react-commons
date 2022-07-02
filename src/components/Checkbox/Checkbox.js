@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Checkbox, Tooltip} from '@chakra-ui/react';
+import {Checkbox} from '@chakra-ui/react';
 
 import {getError} from '@/utils';
 import {useError} from '@/hooks';
@@ -24,31 +24,29 @@ const _Checkbox = ({
     const [handleChange, error] = useError(hasError);
 
     return (
-        <Tooltip hasArrow label={error} bg="brand.danger">
-            <FormControl
-                name={field?.name || name}
-                data-testid={`form-control-${field?.name || name}`}
-                error={error || getError(form, field)}
-                isRequired={isRequired}
-                isReadOnly={isDisabled}
-                style={containerStyle}
-                width={width}
+        <FormControl
+            name={field?.name || name}
+            data-testid={`form-control-${field?.name || name}`}
+            error={error || getError(form, field)}
+            isRequired={isRequired}
+            isReadOnly={isDisabled}
+            style={containerStyle}
+            width={width}
+        >
+            <Checkbox
+                {...field}
+                id={name}
+                data-testid={`checkbox-${field?.name || name}`}
+                variant={variant}
+                isChecked={field?.value || value}
+                onChange={e => handleChange(e, onChange || field?.onChange)}
+                isDisabled={isDisabled}
+                h="100%"
+                {...props}
             >
-                <Checkbox
-                    {...field}
-                    id={name}
-                    data-testid={`checkbox-${field?.name || name}`}
-                    variant={variant}
-                    isChecked={field?.value || value}
-                    onChange={e => handleChange(e, field?.onChange || onChange)}
-                    isDisabled={isDisabled}
-                    h="100%"
-                    {...props}
-                >
-                    {label}
-                </Checkbox>
-            </FormControl>
-        </Tooltip>
+                {label}
+            </Checkbox>
+        </FormControl>
     );
 };
 

@@ -7,7 +7,8 @@ const getPagesRange = (newPage, currentPage, total) => {
     }
     const page = currentPage || newPage;
     const hasMorePages = page + 1 < total;
-    const start = getMaxNumber([hasMorePages ? page - 1 : page - 2, 1]);
+    // eslint-disable-next-line no-nested-ternary
+    const start = getMaxNumber([hasMorePages ? page - 1 : (total === page ? page - 3 : page - 2), 1]);
     const end = getMaxNumber([hasMorePages ? page + 1 : page, 4]);
     return getRangeNumbers(start, end + 1);
 };

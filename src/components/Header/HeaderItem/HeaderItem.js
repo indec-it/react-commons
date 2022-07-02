@@ -36,12 +36,13 @@ const HeaderItem = ({
         id={id ? `option-${id}-${index}}` : `option-${index}`}
         value={option.path}
         onClick={onChange}
+        pl={3}
         data-testid={id ? `option-${id}-${index}}` : `option-${index}`}
         disabled={option.isDisabled}
         color={option.path === activePath ? 'brand.primary' : 'brand.white'}
         boxShadow="none !important"
-        leftIcon={option.icon && <option.icon/>}
-        rightIcon={option.rightIcon && <option.rightIcon/>}
+        leftIcon={option.icon && <option.icon style={option.iconStyle}/>}
+        rightIcon={option.rightIcon && <option.rightIcon style={option.rightIconStyle}/>}
         hidden={isHidden || option.isHidden || (isSmallScreen && !isOpen)}
         variant="unstyled"
         _hover={{filter: 'brightness(90%)'}}

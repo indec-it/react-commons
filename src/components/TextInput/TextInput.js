@@ -75,12 +75,12 @@ TextInput.propTypes = {
     form: PropTypes.shape({}),
     field: PropTypes.shape({
         name: PropTypes.string,
-        value: PropTypes.string,
+        value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
         onChange: PropTypes.func,
         onBlur: PropTypes.func
     }),
     innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.shape({})]),
-    value: PropTypes.string,
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     message: PropTypes.string,
     messageColor: PropTypes.string
 };

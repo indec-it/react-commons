@@ -30,6 +30,7 @@ const Table = ({
     params,
     footer: Footer,
     showPagination,
+    paginationStyles,
     ...props
 }) => {
     const columnsData = Array.isArray(columns) ? columns : [];
@@ -40,7 +41,6 @@ const Table = ({
             <Flex w="100%" overflowX="auto" overflowY="hidden">
                 <ChakraTable
                     data-testid={`${name}-table`}
-                    m={3}
                     border="1px"
                     borderColor="brand.neutral100"
                     {...props}
@@ -99,6 +99,7 @@ const Table = ({
                     perPage={perPage}
                     onChange={onSearch}
                     currentPage={params?.skip ? params.skip + 1 : 1}
+                    styles={paginationStyles}
                 />
             )}
         </VStack>
@@ -120,7 +121,8 @@ Table.propTypes = {
     total: PropTypes.number,
     footer: PropTypes.element,
     perPage: PropTypes.number,
-    showPagination: PropTypes.bool
+    showPagination: PropTypes.bool,
+    paginationStyles: PropTypes.shape({})
 };
 
 Table.defaultProps = {
@@ -129,6 +131,7 @@ Table.defaultProps = {
     caption: null,
     isLoading: false,
     params: undefined,
+    paginationStyles: undefined,
     showDefaultFooter: true,
     showPagination: true,
     data: [],
