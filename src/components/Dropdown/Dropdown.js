@@ -4,7 +4,9 @@ import {
     Stack,
     Button,
     Collapse,
-    useDisclosure
+    useDisclosure,
+    useTheme,
+    HStack
 } from '@chakra-ui/react';
 
 import {elementPropTypes} from '@/utils/propTypes';
@@ -19,6 +21,7 @@ const Dropdown = ({
     options,
     activePath,
     icon: Icon,
+    rightIcon: RightIcon,
     isSubItem,
     isSmallScreen,
     isHidden,
@@ -27,6 +30,7 @@ const Dropdown = ({
 }) => {
     const {isOpen, onClose, onToggle} = useDisclosure();
     const containerRef = useRef(null);
+    const theme = useTheme();
     useClickOutside(containerRef, onClose);
 
     const handleChange = e => {
@@ -42,20 +46,30 @@ const Dropdown = ({
             mt="0 !important"
             hidden={isHidden}
             maxWidth="300px"
+            alignItems={isSmallScreen ? 'center' : 'left'}
             {...styles.container}
         >
             <Button
                 data-testid={`option-${id}`}
                 onClick={onToggle}
                 disabled={isDisabled}
-                leftIcon={Icon && <Icon/>}
-                rightIcon={<IconToggleArrow style={styles.icon} isOpen={isOpen}/>}
+                leftIcon={(
+                    <HStack>
+                        {isSubItem && <IconToggleArrow style={styles.icon} isOpen={isOpen}/>}
+                        {Icon && <Icon/>}
+                    </HStack>
+                )}
+                rightIcon={(
+                    <HStack>
+                        {!isSubItem && <IconToggleArrow style={styles.icon} isOpen={isOpen}/>}
+                        {RightIcon && <RightIcon/>}
+                    </HStack>
+                )}
                 hidden={isHidden}
                 shadow="none !important"
                 mt="0 !important"
                 _hover={{filter: 'brightness(90%)'}}
                 maxWidth="250px"
-                justifyContent={(!isSmallScreen && !isSubItem) ? 'flex-start' : 'center'}
                 overflowX="hidden"
                 variant="unstyled"
                 padding="0 5px"
@@ -63,20 +77,25 @@ const Dropdown = ({
                 whiteSpace="initial"
                 height="auto"
                 minHeight="40px"
-                w="max-content"
+                w="auto"
+                justifyContent="flex-start"
+                textAlign={isSmallScreen ? 'center' : 'left'}
                 {...styles}
             >
                 {label}
             </Button>
             <Stack
                 position={(isSubItem || isSmallScreen) ? 'initial' : 'absolute'}
-                bg="brand.neutral200"
+                backgroundColor={!isSmallScreen ? 'brand.neutral200' : 'transparent !important'}
                 top="45px"
                 left={0}
                 right={0}
                 borderRadius={5}
                 mt="0 !important"
-                w="fit-content"
+                w="auto"
+                zIndex={theme?.zIndices?.dropdown}
+                minWidth="200px"
+                maxWidth="300px"
                 {...styles.menu}
             >
                 <Collapse
@@ -84,7 +103,7 @@ const Dropdown = ({
                     data-testid="display-mobile-"
                     direction="column"
                 >
-                    <Stack data-testid={`menu-${id}`} direction="column" padding="0 10px" w="auto">
+                    <Stack data-testid={`menu-${id}`} direction="column" w="auto">
                         <HeaderItem
                             isSubItem
                             onChange={handleChange}
@@ -104,6 +123,7 @@ Dropdown.propTypes = {
     id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     onChange: PropTypes.func.isRequired,
     icon: elementPropTypes,
+    rightIcon: elementPropTypes,
     label: PropTypes.string.isRequired,
     activePath: PropTypes.string,
     isSubItem: PropTypes.bool,
@@ -132,8 +152,9 @@ Dropdown.defaultProps = {
         menu: {},
         button: {}
     },
-    activePath: null,
-    icon: null,
+    activePath: undefined,
+    icon: undefined,
+    rightIcon: undefined,
     options: [],
     isDisabled: false,
     isSubItem: false,

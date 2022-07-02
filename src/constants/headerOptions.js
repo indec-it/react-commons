@@ -36,7 +36,7 @@ export default [
         ]
     },
     {
-        label: 'Nested options',
+        label: 'Nested',
         icon: FaExpand,
         options: [
             {
@@ -82,7 +82,7 @@ export default [
             },
             {
                 label: 'Example 15',
-                icon: FaExpand,
+                rightIcon: FaExpand,
                 isDisabled: true,
                 options: [
                     {

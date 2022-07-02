@@ -1,6 +1,6 @@
 {
   "name": "@indec/react-commons",
-  "version": "5.2.0",
+  "version": "5.3.0",
   "description": "Common reactjs components for apps",
   "private": false,
   "main": "index.js",

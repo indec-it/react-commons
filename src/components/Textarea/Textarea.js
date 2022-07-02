@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Input} from '@chakra-ui/react';
+import {Textarea as ChakraTextarea} from '@chakra-ui/react';
 
 import {errorPropTypes} from '@/utils/propTypes';
 import {getError} from '@/utils';
 import {useError} from '@/hooks';
 import {FormControl} from '@/components';
 
-const TextInput = ({
+const Textarea = ({
     name,
     isDisabled,
     isRequired,
@@ -23,7 +23,7 @@ const TextInput = ({
     field,
     iconStyles,
     value,
-    innerRef,
+    rows,
     message,
     messageColor,
     width,
@@ -41,12 +41,13 @@ const TextInput = ({
                 message, messageColor, width, quote, isDisabled, isRequired, iconStyles, label, iconRight, iconLeft
             }}
         >
-            <Input
-                ref={innerRef}
+            <ChakraTextarea
                 {...field}
+                data-testid={`textarea-${name}`}
+                rows={rows}
+                height="auto"
                 id={field?.name || name}
                 value={field?.value || value}
-                data-testid={`input-${field?.name || name}`}
                 onChange={e => handleChange(e, onChange || field?.onChange)}
                 disabled={isDisabled}
                 variant={variant}
@@ -57,7 +58,7 @@ const TextInput = ({
     );
 };
 
-TextInput.propTypes = {
+Textarea.propTypes = {
     name: PropTypes.string,
     placeholder: PropTypes.string,
     variant: PropTypes.string,
@@ -79,14 +80,14 @@ TextInput.propTypes = {
         onChange: PropTypes.func,
         onBlur: PropTypes.func
     }),
-    innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.shape({})]),
+    rows: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     value: PropTypes.string,
     message: PropTypes.string,
     messageColor: PropTypes.string
 };
 
-TextInput.defaultProps = {
-    innerRef: undefined,
+Textarea.defaultProps = {
+    rows: 3,
     width: undefined,
     message: undefined,
     messageColor: undefined,
@@ -108,4 +109,4 @@ TextInput.defaultProps = {
     value: ''
 };
 
-export default TextInput;
+export default Textarea;

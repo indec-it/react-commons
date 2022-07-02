@@ -5,12 +5,36 @@ const checkbox = {
     variants: {
         reg: {
             control: {
-                borderRadius: '5px',
+                borderRadius: '3px',
                 bg: 'brand.white',
                 border: '2px solid',
                 borderColor: 'brand.neutral200',
                 fontSize: '12px',
                 boxShadow: 'none !important',
+                _disabled: {
+                    border: '2px solid',
+                    borderColor: 'brand.neutral300',
+                    color: 'brand.neutral200',
+                    _checked: {
+                        bg: 'brand.neutral200',
+                        borderColor: 'brand.neutral200',
+                        color: 'brand.white'
+                    }
+                },
+                _checked: {
+                    bg: 'brand.success',
+                    borderColor: 'brand.success'
+                }
+            }
+        },
+        reverse: {
+            container: {
+                flexDirection: 'row-reverse'
+            },
+            control: {
+                borderColor: 'brand.neutral200',
+                borderRadius: '5px',
+                ml: 2,
                 _disabled: {
                     border: '2px solid',
                     borderColor: 'brand.neutral300',

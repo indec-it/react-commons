@@ -15,6 +15,14 @@ const validateSchema = Yup.object().shape({
     example: Yup.string().required('Required')
 });
 
+const parameters = {controls: {exclude: ['iconLeft', 'iconRight', 'form', 'field', 'innerRef', 'name', 'onChange']}};
+const argTypes = {
+    quote: {control: {type: 'text'}},
+    hasError: {control: {type: 'text'}},
+    width: {control: {type: 'select'}, options: [null, 'xs', 'sm', 'md', 'lg', 'xl']},
+    messageColor: {control: {type: 'color'}}
+};
+
 export const Basic = args => {
     const [prevArgs, updateArgs] = useArgs();
     const handleChange = e => updateArgs({...prevArgs, value: e.target.value});
@@ -25,11 +33,9 @@ export const Basic = args => {
     );
 };
 
-Basic.args = {
-    name: 'example',
-    label: 'Text Input',
-    placeholder: 'Placeholder'
-};
+Basic.parameters = parameters;
+Basic.argTypes = argTypes;
+Basic.args = {name: 'example'};
 
 export const Variants = args => {
     const [prevArgs, updateArgs] = useArgs();
@@ -103,7 +109,7 @@ export const Variants = args => {
     );
 };
 
-export const Forms = () => (
+export const Forms = args => (
     <Formik
         initialValues={{example: ''}}
         onSubmit={values => window.alert(JSON.stringify(values))}
@@ -116,8 +122,12 @@ export const Forms = () => (
                 variant="reg"
                 label="Text Input"
                 width="md"
+                {...args}
             />
             <Button type="submit" variant="rounded" mt={8}>Submit</Button>
         </Form>
     </Formik>
 );
+
+Forms.parameters = parameters;
+Forms.argTypes = argTypes;

@@ -37,7 +37,7 @@ const Table = ({
 
     return (
         <VStack w="100%">
-            <Flex w="100%" overflowX="auto" overflowY="hidden" p={5}>
+            <Flex w="100%" overflowX="auto" overflowY="hidden">
                 <ChakraTable
                     data-testid={`${name}-table`}
                     m={3}

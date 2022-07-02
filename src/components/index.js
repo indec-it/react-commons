@@ -18,4 +18,5 @@ export {default as NumberInput} from './NumberInput';
 export {default as Pagination} from './Pagination';
 export {default as SelectInput} from './SelectInput';
 export {default as Table} from './Table';
+export {default as Textarea} from './Textarea';
 export {default as TextInput} from './TextInput';

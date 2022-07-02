@@ -8,6 +8,8 @@ const useError = hasError => {
     useEffect(() => {
         if (isValidError(hasError)) {
             setError(hasError);
+        } else {
+            setError(undefined);
         }
     }, [hasError]);
 

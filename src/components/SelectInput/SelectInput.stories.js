@@ -125,7 +125,7 @@ export const Variants = args => {
     );
 };
 
-export const Forms = () => (
+export const Forms = args => (
     <Formik
         initialValues={{example: ''}}
         onSubmit={values => window.alert(JSON.stringify(values))}
@@ -139,13 +139,14 @@ export const Forms = () => (
                 options={options}
                 label="Select Input"
                 width="xl"
+                {...args}
             />
             <Button type="submit" variant="rounded" mt={8}>Submit</Button>
         </Form>
     </Formik>
 );
 
-export const MultiSelectorForm = () => (
+export const MultiSelectorForm = args => (
     <Formik
         initialValues={{example: []}}
         onSubmit={values => window.alert(JSON.stringify(values))}
@@ -160,6 +161,7 @@ export const MultiSelectorForm = () => (
                 component={SelectInput}
                 options={options}
                 width="xl"
+                {...args}
             />
             <Button type="submit" variant="rounded" mt={8}>Submit</Button>
         </Form>

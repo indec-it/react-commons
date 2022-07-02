@@ -26,7 +26,6 @@ const FormMessage = ({
         <FormErrorMessage
             fontWeight="bold"
             data-testid="message-error"
-            color="blue"
             position="absolute"
             fontSize={13}
             hidden={hiddenText}
