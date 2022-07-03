@@ -2,14 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {FaPowerOff} from 'react-icons/fa';
 import {
-    MenuDivider,
-    MenuItem,
-    MenuList,
-    Text
+    MenuDivider, MenuItem, MenuList, Text
 } from '@chakra-ui/react';
 
 const UserMenu = ({user, attributes, onLogout}) => (
-    <MenuList alignItems="center" mr={1} data-testid="user-menu">
+    <MenuList alignItems="center" mr={1} data-testid="user-menu" isOpen>
         {(user.name && user.surname) && (
             <MenuItem data-testid="attribute-name">
                 <Text
