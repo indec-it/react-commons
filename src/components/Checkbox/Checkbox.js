@@ -35,7 +35,7 @@ const _Checkbox = ({
         >
             <Checkbox
                 {...field}
-                id={name}
+                id={field?.name || name}
                 data-testid={`checkbox-${field?.name || name}`}
                 variant={variant}
                 isChecked={field?.value || value}
