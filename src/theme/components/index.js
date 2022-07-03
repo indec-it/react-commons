@@ -11,3 +11,4 @@ export {default as Quote} from './quote';
 export {default as Table} from './table';
 export {default as Text} from './text';
 export {default as Textarea} from './textarea';
+export {default as Wrap} from './wrap';

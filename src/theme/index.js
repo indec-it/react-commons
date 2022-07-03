@@ -12,7 +12,8 @@ import {
     colors,
     global,
     Table,
-    Textarea
+    Textarea,
+    Wrap
 } from './components';
 
 export const theme = {
@@ -34,7 +35,8 @@ export const theme = {
         FormLabel,
         Text,
         Box,
-        Table
+        Table,
+        Wrap
     }
 };
 
