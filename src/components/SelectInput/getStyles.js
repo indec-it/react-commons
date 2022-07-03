@@ -18,6 +18,7 @@ const getStyles = (colors, variant, styles, size = 'md', isDisabled, hasError, r
     const invalidBorderColor = getThemeColor(colors, fieldStyles._invalid?.borderColor || borderColor);
 
     const newStyles = removeKeys(fieldStyles, KEYS);
+    const disabledStyles = isDisabled ? {...(fieldStyles._disabled || {}), borderColor: disabledBorderColor} : {};
 
     return {
         container: (provider, state) => {
@@ -42,10 +43,6 @@ const getStyles = (colors, variant, styles, size = 'md', isDisabled, hasError, r
                     ...hoverStyles,
                     ...hoverBackgroundStyles
                 },
-                '&:disabled': {
-                    ...(fieldStyles._disabled || {}),
-                    borderColor: disabledBorderColor
-                },
                 boxShadow: state.isFocused ? focusBoxShadowColor : fieldStyles.boxShadow,
                 backgroundColor: getThemeColor(colors, fieldStyles.bg),
                 paddingInlineEnd: 0,
@@ -53,6 +50,7 @@ const getStyles = (colors, variant, styles, size = 'md', isDisabled, hasError, r
                 ...focusStyles,
                 ...invalidStyles,
                 ...readOnlyStyles,
+                ...disabledStyles,
                 width: '100%',
                 transitionProperty: 'background-color,border-color,color,fill,stroke,opacity,box-shadow,transform',
                 transitionDuration: '200ms',

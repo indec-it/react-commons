@@ -21,6 +21,7 @@ const Header = ({
     redirectTo,
     onLogout,
     user,
+    attributes,
     options,
     hiddenTop,
     activePath,
@@ -117,7 +118,7 @@ const Header = ({
                                 variant="unstyled"
                                 {...userStyles}
                             />
-                            <UserMenu user={user} onLogout={handleLogout}/>
+                            <UserMenu user={user} attributes={attributes} onLogout={handleLogout}/>
                         </Menu>
                     )}
                 </HStack>
@@ -130,6 +131,10 @@ Header.propTypes = {
     redirectTo: PropTypes.func.isRequired,
     onLogout: PropTypes.func.isRequired,
     user: PropTypes.shape({}),
+    attributes: PropTypes.arrayOf(PropTypes.shape({
+        key: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+        label: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+    })),
     options: PropTypes.arrayOf(PropTypes.shape({})),
     activePath: PropTypes.string,
     hiddenUserMenu: PropTypes.bool,
@@ -147,6 +152,7 @@ Header.propTypes = {
 Header.defaultProps = {
     user: {},
     options: [],
+    attributes: [],
     logos: [],
     activePath: undefined,
     hiddenUserMenu: false,

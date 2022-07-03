@@ -20,3 +20,4 @@ export {default as SelectInput} from './SelectInput';
 export {default as Table} from './Table';
 export {default as Textarea} from './Textarea';
 export {default as TextInput} from './TextInput';
+export {default as Wrap} from './Wrap';

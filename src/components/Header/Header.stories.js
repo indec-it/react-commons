@@ -42,5 +42,10 @@ Basic.args = {
         roleName: 'Admin',
         stateName: 'Buenos Aires',
         documentId: 21554378
-    }
+    },
+    attributes: [
+        {key: 'documentId', label: 'Documento'},
+        {key: 'stateName', label: 'Provincia'},
+        {key: 'roleName', label: 'Rol'}
+    ]
 };

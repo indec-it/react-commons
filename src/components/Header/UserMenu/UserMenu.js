@@ -2,16 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {FaPowerOff} from 'react-icons/fa';
 import {
-    MenuDivider,
-    MenuItem,
-    MenuList,
-    Text
+    MenuDivider, MenuItem, MenuList, Text
 } from '@chakra-ui/react';
 
-const UserMenu = ({user, onLogout}) => (
-    <MenuList alignItems="center" mr={1}>
+const UserMenu = ({user, attributes, onLogout}) => (
+    <MenuList alignItems="center" mr={1} data-testid="user-menu" isOpen>
         {(user.name && user.surname) && (
-            <MenuItem>
+            <MenuItem data-testid="attribute-name">
                 <Text
                     id="logout"
                     display="flex"
@@ -28,30 +25,14 @@ const UserMenu = ({user, onLogout}) => (
                 </Text>
             </MenuItem>
         )}
-        {user.roleName && (
-            <MenuItem>
+        {attributes.map(attribute => (
+            <MenuItem key={attribute.key} data-testid={`attribute-${attribute.key}`}>
                 <Text fontSize="14px" color="brand.neutral300">
-                    <span>Role:</span>
-                    {user.roleName}
+                    <span>{`${attribute.label}:`}</span>
+                    {user[attribute.key]}
                 </Text>
             </MenuItem>
-        )}
-        {user.stateName && (
-            <MenuItem>
-                <Text fontSize="14px" color="brand.neutral300">
-                    <span>Provincia:</span>
-                    {user.stateName}
-                </Text>
-            </MenuItem>
-        )}
-        {user.documentId && (
-            <MenuItem>
-                <Text fontSize="14px" color="brand.neutral300">
-                    <span>DNI:</span>
-                    {user.documentId}
-                </Text>
-            </MenuItem>
-        )}
+        ))}
         <MenuDivider/>
         {onLogout && (
             <MenuItem onClick={onLogout} data-testid="sign-out">
@@ -76,15 +57,17 @@ const UserMenu = ({user, onLogout}) => (
 UserMenu.propTypes = {
     user: PropTypes.shape({
         name: PropTypes.string,
-        surname: PropTypes.string,
-        roleName: PropTypes.string,
-        stateName: PropTypes.string,
-        documentId: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+        surname: PropTypes.string
     }),
+    attributes: PropTypes.arrayOf(PropTypes.shape({
+        key: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+        label: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+    })),
     onLogout: PropTypes.func
 };
 
 UserMenu.defaultProps = {
+    attributes: [],
     user: {},
     onLogout: undefined
 };
