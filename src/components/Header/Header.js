@@ -30,7 +30,9 @@ const Header = ({
     smallScale,
     headerStyles,
     containerStyles,
-    menuStyles
+    userStyles,
+    menuStyles,
+    hamburgerStyles
 }) => {
     const {isOpen, onClose, onToggle} = useDisclosure();
     const {isOpen: isOpenUser, onToggle: onToggleUser, onClose: onCloseUser} = useDisclosure();
@@ -95,6 +97,7 @@ const Header = ({
                                 boxShadow="none"
                                 _focus={{boxShadow: 'none'}}
                                 variant="unstyled"
+                                {...hamburgerStyles}
                             />
                         </Menu>
                     )}
@@ -112,6 +115,7 @@ const Header = ({
                                 boxShadow="none"
                                 _focus={{boxShadow: 'none'}}
                                 variant="unstyled"
+                                {...userStyles}
                             />
                             <UserMenu user={user} onLogout={handleLogout}/>
                         </Menu>
@@ -135,7 +139,9 @@ Header.propTypes = {
     smallScale: PropTypes.number,
     headerStyles: PropTypes.shape({}),
     containerStyles: PropTypes.shape({}),
-    menuStyles: PropTypes.shape({})
+    menuStyles: PropTypes.shape({}),
+    userStyles: PropTypes.shape({}),
+    hamburgerStyles: PropTypes.shape({})
 };
 
 Header.defaultProps = {
@@ -149,7 +155,9 @@ Header.defaultProps = {
     smallScale: 768,
     headerStyles: {},
     containerStyles: {},
-    menuStyles: {}
+    menuStyles: {},
+    userStyles: {},
+    hamburgerStyles: {}
 };
 
 export default Header;

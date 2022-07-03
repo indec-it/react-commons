@@ -21,7 +21,7 @@ export default {
                 filter: 'brightness(105%)'
             },
             _active: {
-                opacity: 0.9
+                opacity: 0.8
             }
         }
     }

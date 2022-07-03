@@ -53,16 +53,17 @@ const Dropdown = ({
                 data-testid={`option-${id}`}
                 onClick={onToggle}
                 disabled={isDisabled}
+                pl={3}
                 leftIcon={(
                     <HStack>
                         {isSubItem && <IconToggleArrow style={styles.icon} isOpen={isOpen}/>}
-                        {Icon && <Icon/>}
+                        {Icon && <Icon style={styles.icon}/>}
                     </HStack>
                 )}
                 rightIcon={(
                     <HStack>
                         {!isSubItem && <IconToggleArrow style={styles.icon} isOpen={isOpen}/>}
-                        {RightIcon && <RightIcon/>}
+                        {RightIcon && <RightIcon style={styles.icon}/>}
                     </HStack>
                 )}
                 hidden={isHidden}
@@ -103,7 +104,7 @@ const Dropdown = ({
                     data-testid="display-mobile-"
                     direction="column"
                 >
-                    <Stack data-testid={`menu-${id}`} direction="column" w="auto">
+                    <Stack data-testid={`menu-${id}`} direction="column" w="auto" p={1}>
                         <HeaderItem
                             isSubItem
                             onChange={handleChange}

@@ -14,7 +14,8 @@ const DatePickerRange = ({
     fromDatePlaceholder,
     toDatePlaceholder,
     isDisabled,
-    isFormik
+    isFormik,
+    ...props
 }) => {
     const form = isFormik ? useFormikContext() : undefined;
     const containerStyle = {margin: '0 10px 10px 10px', maxWidth: '250px', minWidth: '250px'};
@@ -26,7 +27,7 @@ const DatePickerRange = ({
             <Stack {...containerStyle}>
                 <DatePicker
                     name={startDateName}
-                    onChange={form?.handleChange || onChange}
+                    onChange={onChange || form?.handleChange}
                     value={isFormik ? startDateNameField.value : startDate}
                     startDate={isFormik ? startDateNameField.value : startDate}
                     endDate={isFormik ? endDateNameField.value : endDate}
@@ -36,12 +37,13 @@ const DatePickerRange = ({
                     isDisabled={isDisabled}
                     form={form}
                     field={startDateNameField}
+                    {...props}
                 />
             </Stack>
             <Stack {...containerStyle}>
                 <DatePicker
                     name={endDateName}
-                    onChange={form?.handleChange || onChange}
+                    onChange={onChange || form?.handleChange}
                     value={isFormik ? endDateNameField.value : endDate}
                     startDate={isFormik ? startDateNameField.value : startDate}
                     endDate={isFormik ? endDateNameField.value : endDate}
@@ -51,6 +53,7 @@ const DatePickerRange = ({
                     isDisabled={isDisabled}
                     form={form}
                     field={endDateNameField}
+                    {...props}
                 />
             </Stack>
         </>
@@ -60,7 +63,6 @@ const DatePickerRange = ({
 DatePickerRange.propTypes = {
     isFormik: PropTypes.bool,
     onChange: PropTypes.func,
-    handleChange: PropTypes.func,
     startDateName: PropTypes.string,
     endDateName: PropTypes.string,
     fromDatePlaceholder: PropTypes.string,
@@ -76,7 +78,6 @@ DatePickerRange.propTypes = {
 
 DatePickerRange.defaultProps = {
     isFormik: true,
-    handleChange: undefined,
     onChange: undefined,
     startDate: undefined,
     values: undefined,

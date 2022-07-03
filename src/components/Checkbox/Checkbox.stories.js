@@ -180,21 +180,19 @@ export const Variants = args => {
 };
 
 export const Forms = args => (
-    <div style={{maxWidth: '330px'}}>
-        <Formik
-            initialValues={{example: false}}
-            onSubmit={values => window.alert(JSON.stringify(values))}
-            validationSchema={validateSchema}
-        >
-            <Form>
-                <Field
-                    name="example"
-                    label="Checkbox Input"
-                    component={Checkbox}
-                    {...args}
-                />
-                <Button type="submit" variant="rounded" mt={8}>Submit</Button>
-            </Form>
-        </Formik>
-    </div>
+    <Formik
+        initialValues={{example: false}}
+        onSubmit={values => window.alert(JSON.stringify(values))}
+        validationSchema={validateSchema}
+    >
+        <Form>
+            <Field
+                name="example"
+                label="Checkbox Input"
+                component={Checkbox}
+                {...args}
+            />
+            <Button type="submit" variant="rounded" mt={8}>Submit</Button>
+        </Form>
+    </Formik>
 );

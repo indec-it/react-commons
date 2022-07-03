@@ -9,7 +9,7 @@ import {
 } from '@chakra-ui/react';
 
 const UserMenu = ({user, onLogout}) => (
-    <MenuList alignItems="center" mr={1} >
+    <MenuList alignItems="center" mr={1}>
         {(user.name && user.surname) && (
             <MenuItem>
                 <Text
@@ -53,21 +53,23 @@ const UserMenu = ({user, onLogout}) => (
             </MenuItem>
         )}
         <MenuDivider/>
-        <MenuItem onClick={onLogout} data-testid="sign-out">
-            <Text
-                id="logout"
-                display="flex"
-                alignItems="center"
-                color="brand.neutral300"
-                fontSize="14px"
-                boxShadow="none !important"
-                padding="0 !important"
-            >
-                <FaPowerOff/>
-                &nbsp;
-                Cerrar sesión
-            </Text>
-        </MenuItem>
+        {onLogout && (
+            <MenuItem onClick={onLogout} data-testid="sign-out">
+                <Text
+                    id="logout"
+                    display="flex"
+                    alignItems="center"
+                    color="brand.neutral300"
+                    fontSize="14px"
+                    boxShadow="none !important"
+                    padding="0 !important"
+                >
+                    <FaPowerOff/>
+                    &nbsp;
+                    Cerrar sesión
+                </Text>
+            </MenuItem>
+        )}
     </MenuList>
 );
 
@@ -77,13 +79,14 @@ UserMenu.propTypes = {
         surname: PropTypes.string,
         roleName: PropTypes.string,
         stateName: PropTypes.string,
-        documentId: PropTypes.number
+        documentId: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
     }),
-    onLogout: PropTypes.func.isRequired
+    onLogout: PropTypes.func
 };
 
 UserMenu.defaultProps = {
-    user: {}
+    user: {},
+    onLogout: undefined
 };
 
 export default UserMenu;
