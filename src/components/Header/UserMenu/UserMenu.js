@@ -6,7 +6,7 @@ import {
 } from '@chakra-ui/react';
 
 const UserMenu = ({user, attributes, onLogout}) => (
-    <MenuList alignItems="center" mr={1} data-testid="user-menu" isOpen>
+    <MenuList alignItems="center" mr={1} data-testid="user-menu">
         {(user.name && user.surname) && (
             <MenuItem data-testid="attribute-name">
                 <Text
