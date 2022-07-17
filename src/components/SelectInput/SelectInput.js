@@ -74,14 +74,14 @@ const SelectInput = ({
         if (loadOptions && newValue === null && options.length === 1) {
             loadOptions(0, true);
         }
-        return form
-            ? form.setFieldValue(field.name, valueOptions)
-            : onChange({target: {id: name, value: valueOptions}});
+        return onChange
+            ? onChange({target: {id: field?.name || name, value: valueOptions}})
+            : form?.setFieldValue(field.name, valueOptions);
     };
 
     const handleClick = () => {
         setSkip(skip + 1);
-        loadOptions(skip + 1);
+        loadOptions?.(skip + 1);
     };
 
     const handleInputChange = (term, action) => {
