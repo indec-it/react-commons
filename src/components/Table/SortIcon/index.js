@@ -1,3 +1,3 @@
-import SortIcon from "./SortIcon";
+import SortIcon from './SortIcon';
 
 export default SortIcon;
