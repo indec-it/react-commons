@@ -1,4 +1,4 @@
-import React, {isValidElement} from 'react';
+import React, {useState, isValidElement} from 'react';
 import PropTypes from 'prop-types';
 import {
     Flex,
@@ -9,32 +9,55 @@ import {
     Thead,
     Tr,
     VStack,
-    Table as ChakraTable
+    Table as ChakraTable,
+    HStack,
+    Text
 } from '@chakra-ui/react';
 
+import {sortDirections} from '@/constants';
 import {LoadingPage, Pagination} from '@/components';
 import {buildRows} from '@/utils';
 import TableFooter from '@/components/Table/TableFooter';
+import SortIcon from '@/components/Table/SortIcon';
 
 const Table = ({
-    name,
+    caption,
     columns,
     data,
-    caption,
-    isLoading,
     emptyMessage,
-    total,
-    showDefaultFooter,
-    perPage,
-    onSearch,
-    params,
     footer: Footer,
-    showPagination,
+    isLoading,
+    name,
+    onSearch,
+    onSort,
     paginationStyles,
+    params,
+    perPage,
+    showDefaultFooter,
+    showPagination,
+    total,
     ...props
 }) => {
     const columnsData = Array.isArray(columns) ? columns : [];
     const sizeHeader = columnsData.length;
+    const initialClassified = {sort: null, sortBy: null};
+    const [classified, setClassified] = useState(initialClassified);
+
+    const handleSort = ({target: {id}}) => {
+        if (!id) {
+            return;
+        }
+        let sort;
+        if (id === 'action') {
+            sort = initialClassified;
+        } else if (classified?.sort === id && classified?.sortBy === sortDirections.ASC) {
+            sort = {sort: id, sortBy: sortDirections.DESC};
+        } else {
+            sort = {sort: id, sortBy: sortDirections.ASC};
+        }
+        setClassified(sort);
+        onSort(sort);
+    };
 
     return (
         <VStack w="100%">
@@ -56,10 +79,20 @@ const Table = ({
                                 <Th
                                     data-testid={`column-${column.key}`}
                                     key={column.key}
-                                    id={column.key}
+                                    onClick={onSort ? handleSort : undefined}
+                                    cursor={onSort ? 'pointer' : 'initial'}
                                     {...column.style}
                                 >
-                                    {column.label}
+                                    <HStack>
+                                        {data.length > 0 && <SortIcon classified={classified} columnKey={column.key}/>}
+                                        <Text
+                                            ml="0 !important"
+                                            id={column.key}
+                                            data-testid={`column-text-${column.key}`}
+                                        >
+                                            {column.label || ''}
+                                        </Text>
+                                    </HStack>
                                 </Th>
                             ))}
                         </Tr>
@@ -107,38 +140,38 @@ const Table = ({
 };
 
 Table.propTypes = {
-    onSearch: PropTypes.func,
-    columns: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-    params: PropTypes.shape({
-        skip: PropTypes.number
-    }),
-    name: PropTypes.string,
-    data: PropTypes.arrayOf(PropTypes.shape({})),
     caption: PropTypes.string,
-    isLoading: PropTypes.bool,
-    showDefaultFooter: PropTypes.bool,
+    columns: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+    data: PropTypes.arrayOf(PropTypes.shape({})),
     emptyMessage: PropTypes.string,
-    total: PropTypes.number,
     footer: PropTypes.element,
+    isLoading: PropTypes.bool,
+    name: PropTypes.string,
+    onSearch: PropTypes.func,
+    onSort: PropTypes.func,
+    paginationStyles: PropTypes.shape({}),
+    params: PropTypes.shape({skip: PropTypes.number}),
     perPage: PropTypes.number,
+    showDefaultFooter: PropTypes.bool,
     showPagination: PropTypes.bool,
-    paginationStyles: PropTypes.shape({})
+    total: PropTypes.number
 };
 
 Table.defaultProps = {
+    caption: null,
+    data: [],
+    footer: undefined,
+    emptyMessage: 'No hay resultados',
+    isLoading: false,
     name: 'table',
     onSearch: () => {},
-    caption: null,
-    isLoading: false,
-    params: undefined,
+    onSort: undefined,
     paginationStyles: undefined,
+    params: undefined,
+    perPage: 0,
     showDefaultFooter: true,
     showPagination: true,
-    data: [],
-    total: 0,
-    perPage: 0,
-    footer: undefined,
-    emptyMessage: 'No hay resultados'
+    total: 0
 };
 
 export default Table;

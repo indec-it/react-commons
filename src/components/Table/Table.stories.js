@@ -31,28 +31,42 @@ const getRows = () => users.map(user => {
         user.documentId,
         user.role,
         user.state,
-        user.deleted
+        user.status
     ];
     return ({key: user.id, values: rows});
 });
 
 export const Basic = args => {
-    const spliceRows = getRows().slice(0, 5);
+    const rows = getRows();
     const [prevArgs, updateArgs] = useArgs();
     const handleSearch = ({target: {id, value}}) => updateArgs(
         {...prevArgs, params: {...prevArgs.params, [id]: value}}
     );
+    const handleSort = ({sort, sortBy}) => {
+        const orderedData = rows.sort((firstRow, secondRow) => {
+            const selectedColumn = columns.findIndex(column => column.key === sort);
+            if (firstRow.values[selectedColumn] < secondRow.values[selectedColumn]) {
+                return sortBy === 'asc' ? -1 : 1;
+            }
+            if (firstRow.values[selectedColumn] > secondRow.values[selectedColumn]) {
+                return sortBy === 'asc' ? 1 : -1;
+            }
+            return 0;
+        });
+        updateArgs({...prevArgs, data: orderedData});
+    };
     return (
         <VStack w="100%">
             <Table
                 name="users"
                 columns={columns}
-                data={spliceRows}
+                data={rows}
                 isLoading={false}
                 caption="Users"
                 perPage={5}
                 total={users.length}
                 onSearch={handleSearch}
+                onSort={handleSort}
                 params={args.params}
                 variant="reg"
                 size="sm"

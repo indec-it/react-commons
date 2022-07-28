@@ -2,7 +2,8 @@ import {
     getByTestId,
     getByText,
     queryByText,
-    queryByTestId
+    queryByTestId,
+    fireEvent
 } from '@testing-library/react';
 
 import {Table} from '@/components';
@@ -61,6 +62,46 @@ describe('<Table>', () => {
         it('should not display `No hay resultados`', () => {
             const {container} = getComponent();
             expect(queryByText(container, 'No hay resultados')).toBeNull();
+        });
+
+        describe('when one column is clicked and is not an action', () => {
+            beforeEach(() => {
+                props.onSort = jest.fn();
+                const {container} = getComponent();
+                const firstColumn = getByTestId(container, 'column-text-name');
+                fireEvent.click(firstColumn);
+            });
+
+            it('should fire `props.onSort` in asc order', () => {
+                expect(props.onSort).toHaveBeenCalledTimes(1);
+                expect(props.onSort).toHaveBeenCalledWith({sort: 'name', sortBy: 'asc'});
+            });
+
+            describe('when the same column is clicked again', () => {
+                beforeEach(() => {
+                    const {container} = getComponent();
+                    const firstColumn = getByTestId(container, 'column-text-name');
+                    fireEvent.click(firstColumn);
+                });
+
+                it('should fire `props.onSort` in desc order', () => {
+                    expect(props.onSort).toHaveBeenCalledWith({sort: 'name', sortBy: 'desc'});
+                });
+            });
+        });
+
+        describe('when one column is clicked and is an action', () => {
+            beforeEach(() => {
+                props.onSort = jest.fn();
+                const {container} = getComponent();
+                const secondColumn = getByTestId(container, 'column-text-action');
+                fireEvent.click(secondColumn);
+            });
+
+            it('should fire `props.onSort` with sort and sortBy in null', () => {
+                expect(props.onSort).toHaveBeenCalledTimes(1);
+                expect(props.onSort).toHaveBeenCalledWith({sort: null, sortBy: null});
+            });
         });
     });
 
