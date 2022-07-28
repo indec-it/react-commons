@@ -13,3 +13,4 @@ lib/
 .env-*
 .idea
 *.log
+.history/
