@@ -52,6 +52,9 @@ const TextInput = ({
                 variant={variant}
                 style={error && {borderColor: 'brand.danger'}}
                 {...props}
+                onKeyPress={e => {
+                    if (e.key === 'Enter') { e.preventDefault(); }
+                }}
             />
         </FormControl>
     );
