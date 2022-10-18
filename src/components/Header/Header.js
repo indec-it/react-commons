@@ -51,7 +51,7 @@ const Header = ({
     };
 
     return (
-        <VStack w="100%" mt="0 !important">
+        <VStack id="main-header" className="header" w="100%" mt="0 !important">
             <Stack
                 as="nav"
                 align="center"
@@ -66,6 +66,7 @@ const Header = ({
             >
                 {!hiddenTop && <HeaderInfo logos={logos} containerStyles={headerStyles}/>}
                 <HStack
+                    id="header-menu"
                     w="100%"
                     alignItems="flex-start"
                     p={1}
