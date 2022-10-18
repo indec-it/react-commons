@@ -3,7 +3,14 @@ import PropTypes from 'prop-types';
 import {Image, HStack} from '@chakra-ui/react';
 
 const HeaderInfo = ({logos, containerStyles}) => (
-    <HStack w="100%" p="10px 20px" bg="brand.neutral100" justifyContent="space-between" {...containerStyles}>
+    <HStack
+        id="header-info"
+        w="100%"
+        p="10px 20px"
+        bg="brand.neutral100"
+        justifyContent="space-between"
+        {...containerStyles}
+    >
         {logos.map((logo, index) => (
             <Image
                 key={index}
