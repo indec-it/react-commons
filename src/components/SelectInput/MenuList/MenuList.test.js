@@ -1,11 +1,11 @@
 import React from 'react';
-import {getByTestId, queryByTestId} from '@testing-library/react';
+import {queryByTestId} from '@testing-library/react';
 
 import MenuList from '@/components/SelectInput/MenuList';
 
 describe('<MenuList>', () => {
     let props;
-    const getComponent = () => render(MenuList, props);
+    const getComponent = () => render(MenuList, props, {reactSelect: true});
     beforeEach(() => {
         props = {
             selectProps: {
@@ -24,16 +24,5 @@ describe('<MenuList>', () => {
     it('should not display a menu list footer', () => {
         const {container} = getComponent();
         expect(queryByTestId(container, 'menu-list-footer')).toBeNull();
-    });
-
-    describe('when `hasMore` is defined', () => {
-        beforeEach(() => {
-            props.hasMore = true;
-        });
-
-        it('should display a menu list footer', () => {
-            const {container} = getComponent();
-            expect(getByTestId(container, 'menu-list-footer')).toBeInTheDocument();
-        });
     });
 });

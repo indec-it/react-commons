@@ -119,8 +119,8 @@ const SelectInput = ({
                 placeholder={placeholder}
                 variant={variant}
                 components={{
-                    MenuList: propsSelect => <MenuList {...propsSelect} hasMore={hasMore}/>,
-                    MenuListFooter: <MenuListFooter onClick={handleClick} isLoading={isLoading}/>
+                    MenuListFooter: <MenuListFooter onClick={handleClick} isLoading={isLoading}/>,
+                    MenuList: propsSelect => <MenuList {...propsSelect} hasMore={hasMore}/>
                 }}
                 isLoading={isLoading}
                 onChange={e => handleChange(e, handleChangeInput)}

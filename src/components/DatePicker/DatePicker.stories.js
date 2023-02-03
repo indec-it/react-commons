@@ -28,7 +28,12 @@ export const Basic = args => {
 Basic.args = {
     label: 'DatePicker Input',
     name: 'example',
-    placeholder: 'Enter a date'
+    placeholder: 'Enter a date',
+    maxDate: new Date('11/11/2020'),
+    minDate: new Date('11/11/2010'),
+    isCustomHeader: true,
+    yearStart: 2020,
+    yearRange: 11
 };
 
 export const Variants = args => {
@@ -124,3 +129,7 @@ export const Forms = args => (
         </Formik>
     </div>
 );
+
+Forms.args = {
+    isCustomHeader: true
+};

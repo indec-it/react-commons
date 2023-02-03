@@ -11,6 +11,7 @@ const MenuListFooter = ({onClick, isLoading}) => (
             bg="brand.primary"
             onClick={onClick}
             w="fit-content"
+            color="white"
             isLoading={isLoading}
         >
             Cargar mas...
