@@ -3,6 +3,7 @@ import React from 'react';
 import {Formik} from 'formik';
 import {MemoryRouter} from 'react-router-dom';
 import {ChakraProvider} from '@chakra-ui/react';
+import ReactSelect from 'react-select';
 
 import {themed} from '@/theme';
 
@@ -25,6 +26,9 @@ global.render = (Component, props = {}, options = {}) => {
         }
         if (options.wrapper) {
             component = <options.wrapper>{component}</options.wrapper>;
+        }
+        if (options.reactSelect) {
+            component = <ReactSelect components={component}/>;
         }
         mountedComponent = render(component);
     }
