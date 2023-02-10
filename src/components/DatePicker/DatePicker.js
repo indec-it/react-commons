@@ -27,8 +27,12 @@ const DatePicker = ({
     yearRange,
     ...props
 }) => {
-    const handleChange = newValue => form?.setFieldValue(field.name, newValue)
-        || onChange({target: {id: name, value: newValue}});
+    const handleChange = newValue => {
+        const dateToISOString = newValue.toISOString();
+        return onChange
+            ? onChange({target: {id: name, value: dateToISOString}})
+            : form.setFieldValue(field.name, dateToISOString);
+    };
     const customHeader = isCustomHeader
         ? {
             renderCustomHeader: datePickerProps => (
@@ -110,7 +114,7 @@ DatePicker.defaultProps = {
     variant: undefined,
     isDisabled: false,
     isCustomHeader: false,
-    onChange: () => {},
+    onChange: undefined,
     form: undefined,
     field: undefined,
     selectsStart: false,
