@@ -27,8 +27,12 @@ const DatePicker = ({
     yearRange,
     ...props
 }) => {
-    const handleChange = newValue => (onChange ? onChange({target: {id: name, value: newValue.toISOString()}})
-        : form?.setFieldValue(field.name, newValue.toISOString()));
+    const handleChange = newValue => {
+        const dateToISOString = newValue.toISOString();
+        return onChange
+            ? onChange({target: {id: name, value: dateToISOString}})
+            : form.setFieldValue(field.name, dateToISOString);
+    };
     const customHeader = isCustomHeader
         ? {
             renderCustomHeader: datePickerProps => (
