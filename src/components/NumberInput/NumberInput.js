@@ -36,17 +36,17 @@ const NumberInput = ({
     const [handleChange, error, setField] = useError(hasError);
     const isEmptyStringFieldValue = field?.value === '';
 
-    const onHandleChange = (newValue) => {
-        const value = newValue === '' ? '' : newValue
+    const onHandleChange = newValue => {
+        const isNewValue = newValue === '' ? '' : newValue;
         if (field) {
-            setField(field.name, value, form.setFieldValue);
+            setField(field.name, isNewValue, form.setFieldValue);
         } else {
             handleChange(
-                {target: {id: name, value}},
+                {target: {id: name, value: isNewValue}},
                 onChange
             );
         }
-    }
+    };
 
     return (
         <FormControl
