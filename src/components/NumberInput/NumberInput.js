@@ -53,7 +53,6 @@ const NumberInput = ({
                 variant={variant}
                 value={field?.value === 0 ? field.value : field?.value || value}
                 onKeyDown={e => e.key === 'e' && e.preventDefault()}
-                step={0.01}
                 onChange={newValue => {
                     if (field) {
                         setField(field.name, newValue === '' ? '' : newValue, form.setFieldValue);
