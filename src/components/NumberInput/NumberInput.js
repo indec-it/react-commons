@@ -36,6 +36,18 @@ const NumberInput = ({
     const [handleChange, error, setField] = useError(hasError);
     const isEmptyStringFieldValue = field?.value === '';
 
+    const onHandleChange = (newValue) => {
+        const value = newValue === '' ? '' : newValue
+        if (field) {
+            setField(field.name, value, form.setFieldValue);
+        } else {
+            handleChange(
+                {target: {id: name, value}},
+                onChange
+            );
+        }
+    }
+
     return (
         <FormControl
             name={field?.name || name}
@@ -53,16 +65,7 @@ const NumberInput = ({
                 variant={variant}
                 value={field?.value === 0 ? field.value : field?.value || value}
                 onKeyDown={e => e.key === 'e' && e.preventDefault()}
-                onChange={newValue => {
-                    if (field) {
-                        setField(field.name, newValue === '' ? '' : newValue, form.setFieldValue);
-                    } else {
-                        handleChange(
-                            {target: {id: name, value: newValue === '' ? '' : newValue}},
-                            onChange
-                        );
-                    }
-                }}
+                onChange={onHandleChange}
                 {...props}
             >
                 <NumberInputField data-testid={`input-${field?.name || name}`} placeholder={placeholder}/>
