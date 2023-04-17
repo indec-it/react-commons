@@ -1,5 +1,9 @@
-import {fireEvent, getByTestId, getByPlaceholderText, waitFor} from '@testing-library/react';
-
+import {
+    fireEvent,
+    getByTestId,
+    getByPlaceholderText,
+    waitFor
+} from '@testing-library/react';
 import {NumberInput} from '@/components';
 
 describe('<NumberInput>', () => {
@@ -43,10 +47,10 @@ describe('<NumberInput>', () => {
         it('should be with decimals', () => {
             const {container} = getComponent();
             const input = getByPlaceholderText(container, 'Ingrese');
-            fireEvent.change(input, { target: { value: 11.22 }});
+            fireEvent.change(input, {target: {value: 11.22}});
             waitFor(() => {
                 expect(input).toHaveValue(11.22);
-              });
-          });
+            });
+        });
     });
 });
