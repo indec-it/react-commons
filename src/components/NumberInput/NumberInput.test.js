@@ -1,4 +1,4 @@
-import {getByTestId} from '@testing-library/react';
+import {fireEvent, getByTestId, getByPlaceholderText, waitFor} from '@testing-library/react';
 
 import {NumberInput} from '@/components';
 
@@ -33,5 +33,20 @@ describe('<NumberInput>', () => {
             const label = getByTestId(container, 'label-test');
             expect(label).toHaveTextContent('Test');
         });
+    });
+
+    describe('when `props.hasDecimal` is true', () => {
+        beforeEach(() => {
+            props.hasDecimal = true;
+        });
+
+        it('should be with decimals', () => {
+            const {container} = getComponent();
+            const input = getByPlaceholderText(container, 'Ingrese');
+            fireEvent.change(input, { target: { value: 11.22 }});
+            waitFor(() => {
+                expect(input).toHaveValue(11.22);
+              });
+          });
     });
 });

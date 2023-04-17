@@ -23,6 +23,7 @@ const NumberInput = ({
     quote,
     containerStyle,
     onChange,
+    hasDecimal,
     iconLeft,
     iconRight,
     hasError,
@@ -36,16 +37,16 @@ const NumberInput = ({
     const [handleChange, error, setField] = useError(hasError);
     const isEmptyStringFieldValue = field?.value === '';
 
-    const onHandleChange = newValue => {
-        const isNewValue = newValue === '' ? '' : newValue;
+    const handleChangeValue = newValue => {
+        const hasDecimals = hasDecimal ? newValue: Number(newValue)
+        const changedValue = newValue === '' ? '' : hasDecimals;
         if (field) {
-            setField(field.name, isNewValue, form.setFieldValue);
+            setField(field.name, changedValue, form.setFieldValue);
         } else {
             handleChange(
-                {target: {id: name, value: isNewValue}},
+                { target:{ id: name, value: changedValue } },
                 onChange
-            );
-        }
+            )}
     };
 
     return (
@@ -65,7 +66,7 @@ const NumberInput = ({
                 variant={variant}
                 value={field?.value === 0 ? field.value : field?.value || value}
                 onKeyDown={e => e.key === 'e' && e.preventDefault()}
-                onChange={onHandleChange}
+                onChange={handleChangeValue}
                 {...props}
             >
                 <NumberInputField data-testid={`input-${field?.name || name}`} placeholder={placeholder}/>
@@ -82,6 +83,7 @@ const NumberInput = ({
 
 NumberInput.propTypes = {
     name: PropTypes.string,
+    hasDecimal: PropTypes.bool,
     placeholder: PropTypes.string,
     variant: PropTypes.string,
     isDisabled: PropTypes.bool,
@@ -108,6 +110,7 @@ NumberInput.propTypes = {
 };
 
 NumberInput.defaultProps = {
+    hasDecimal: false,
     name: undefined,
     width: undefined,
     containerStyle: {},
