@@ -23,6 +23,7 @@ const NumberInput = ({
     quote,
     containerStyle,
     onChange,
+    hasDecimal,
     iconLeft,
     iconRight,
     hasError,
@@ -35,6 +36,19 @@ const NumberInput = ({
 }) => {
     const [handleChange, error, setField] = useError(hasError);
     const isEmptyStringFieldValue = field?.value === '';
+
+    const handleChangeValue = newValue => {
+        const formatedValue = hasDecimal ? newValue : Number(newValue);
+        const changedValue = newValue === '' ? '' : formatedValue;
+        if (field) {
+            setField(field.name, changedValue, form.setFieldValue);
+        } else {
+            handleChange(
+                {target: {id: name, value: changedValue}},
+                onChange
+            );
+        }
+    };
 
     return (
         <FormControl
@@ -53,16 +67,7 @@ const NumberInput = ({
                 variant={variant}
                 value={field?.value === 0 ? field.value : field?.value || value}
                 onKeyDown={e => e.key === 'e' && e.preventDefault()}
-                onChange={newValue => {
-                    if (field) {
-                        setField(field.name, newValue === '' ? '' : Number(newValue), form.setFieldValue);
-                    } else {
-                        handleChange(
-                            {target: {id: name, value: newValue === '' ? '' : Number(newValue)}},
-                            onChange
-                        );
-                    }
-                }}
+                onChange={handleChangeValue}
                 {...props}
             >
                 <NumberInputField data-testid={`input-${field?.name || name}`} placeholder={placeholder}/>
@@ -79,6 +84,7 @@ const NumberInput = ({
 
 NumberInput.propTypes = {
     name: PropTypes.string,
+    hasDecimal: PropTypes.bool,
     placeholder: PropTypes.string,
     variant: PropTypes.string,
     isDisabled: PropTypes.bool,
@@ -105,6 +111,7 @@ NumberInput.propTypes = {
 };
 
 NumberInput.defaultProps = {
+    hasDecimal: false,
     name: undefined,
     width: undefined,
     containerStyle: {},
