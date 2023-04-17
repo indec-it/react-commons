@@ -1,9 +1,4 @@
-import {
-    fireEvent,
-    getByTestId,
-    getByPlaceholderText,
-    waitFor
-} from '@testing-library/react';
+import {fireEvent, getByTestId} from '@testing-library/react';
 import {NumberInput} from '@/components';
 
 describe('<NumberInput>', () => {
@@ -11,7 +6,8 @@ describe('<NumberInput>', () => {
     const getComponent = () => render(NumberInput, props, {formik: {}});
     beforeEach(() => {
         props = {
-            name: 'test'
+            name: 'test',
+            onChange: jest.fn()
         };
     });
     afterEach(tearDown);
@@ -39,18 +35,31 @@ describe('<NumberInput>', () => {
         });
     });
 
-    describe('when `props.hasDecimal` is true', () => {
+    describe('when `props.hasDecimal` is `true`', () => {
         beforeEach(() => {
             props.hasDecimal = true;
+            const {container} = getComponent();
+            const input = getByTestId(container, 'input-test');
+            fireEvent.change(input, {target: {value: 11.22}});
         });
 
-        it('should be with decimals', () => {
+        it('should fire `props.onChange` with value as string', () => {
+            expect(props.onChange).toHaveBeenCalled();
+            expect(props.onChange).toHaveBeenCalledWith({target: {id: 'test', value: '11.22'}});
+        });
+    });
+
+    describe('when `props.hasDecimal` is `false`', () => {
+        beforeEach(() => {
+            props.hasDecimal = false;
             const {container} = getComponent();
-            const input = getByPlaceholderText(container, 'Ingrese');
+            const input = getByTestId(container, 'input-test');
             fireEvent.change(input, {target: {value: 11.22}});
-            waitFor(() => {
-                expect(input).toHaveValue(11.22);
-            });
+        });
+
+        it('should fire `props.onChange` with value as number', () => {
+            expect(props.onChange).toHaveBeenCalled();
+            expect(props.onChange).toHaveBeenCalledWith({target: {id: 'test', value: 11.22}});
         });
     });
 });
