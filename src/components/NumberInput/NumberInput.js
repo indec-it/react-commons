@@ -38,8 +38,8 @@ const NumberInput = ({
     const isEmptyStringFieldValue = field?.value === '';
 
     const handleChangeValue = newValue => {
-        const hasDecimals = hasDecimal ? newValue : Number(newValue);
-        const changedValue = newValue === '' ? '' : hasDecimals;
+        const formatedValue = hasDecimal ? newValue : Number(newValue);
+        const changedValue = newValue === '' ? '' : formatedValue;
         if (field) {
             setField(field.name, changedValue, form.setFieldValue);
         } else {
