@@ -58,6 +58,12 @@ const Pagination = ({
         }
     };
 
+    const handleBlur = () => {
+        if (Number.isNaN(search)) {
+            setSearch(1);
+        }
+    };
+
     useEffect(() => {
         setPages(getPagesRange(null, currentPage, totalPages) || []);
     }, [totalPages]);
@@ -115,8 +121,10 @@ const Pagination = ({
                                 min={1}
                                 max={totalPages}
                                 onChange={handleChangeInput}
-                                value={!Number.isNaN(search) ? search : 1}
+                                defaultValue={1}
+                                value={!Number.isNaN(search) ? search : undefined}
                                 onKeyDown={handleKeyDown}
+                                onBlur={handleBlur}
                             >
                                 <NumberInputField p="0 10px" data-testid="input"/>
                             </NumberInput>
