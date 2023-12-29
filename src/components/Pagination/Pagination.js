@@ -27,7 +27,8 @@ const Pagination = ({
     const [search, setSearch] = useState(currentPage);
     const hasArrowRight = Math.max(...pages) < totalPages;
     const hasArrowLeft = Math.min(...pages) > 1;
-    const handleChangeInput = value => setSearch(parseInt(value, 10));
+
+    const handleChangeInput = value => { setSearch(Number(value) || "")};
 
     const handleMoveLeft = () => {
         const pagesNumbers = getPagesNumber(pages);
@@ -58,10 +59,8 @@ const Pagination = ({
         }
     };
 
-    const handleBlur = () => {
-        if (Number.isNaN(search)) {
-            setSearch(1);
-        }
+    const handleBlur = () => {   
+        !Number.isNaN(search) && setSearch(1)     
     };
 
     useEffect(() => {
