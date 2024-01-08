@@ -28,7 +28,7 @@ const Pagination = ({
     const hasArrowRight = Math.max(...pages) < totalPages;
     const hasArrowLeft = Math.min(...pages) > 1;
 
-    const handleChangeInput = value => setSearch(Number(value) || "");
+    const handleChangeInput = value => setSearch(Number(value) || '');
 
     const handleMoveLeft = () => {
         const pagesNumbers = getPagesNumber(pages);
