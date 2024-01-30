@@ -27,7 +27,8 @@ const Pagination = ({
     const [search, setSearch] = useState(currentPage);
     const hasArrowRight = Math.max(...pages) < totalPages;
     const hasArrowLeft = Math.min(...pages) > 1;
-    const handleChangeInput = value => setSearch(parseInt(value, 10));
+
+    const handleChangeInput = value => setSearch(Number(value) || '');
 
     const handleMoveLeft = () => {
         const pagesNumbers = getPagesNumber(pages);
@@ -57,6 +58,8 @@ const Pagination = ({
             handleSearch();
         }
     };
+
+    const handleBlur = () => !Number.isNaN(search) && setSearch(1);
 
     useEffect(() => {
         setPages(getPagesRange(null, currentPage, totalPages) || []);
@@ -115,8 +118,10 @@ const Pagination = ({
                                 min={1}
                                 max={totalPages}
                                 onChange={handleChangeInput}
-                                value={!Number.isNaN(search) ? search : 1}
+                                defaultValue={1}
+                                value={!Number.isNaN(search) ? search : undefined}
                                 onKeyDown={handleKeyDown}
+                                onBlur={handleBlur}
                             >
                                 <NumberInputField p="0 10px" data-testid="input"/>
                             </NumberInput>
