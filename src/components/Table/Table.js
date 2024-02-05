@@ -36,6 +36,7 @@ const Table = ({
     showDefaultFooter,
     showPagination,
     total,
+    paintFreeRowsColor,
     ...props
 }) => {
     const columnsData = Array.isArray(columns) ? columns : [];
@@ -114,11 +115,16 @@ const Table = ({
                         )}
                         {!isLoading && data.length > 0 && buildRows(data, columnsData).map(row => (
                             <Tr key={row?.key} {...row?.containerStyle} data-testid={`row-${row?.key}`}>
-                                {columnsData.map(header => (
-                                    <Td key={`${row.key}-${header.key}`} {...row.style} {...header.tdStyle} >
-                                        {row[header.key]}
-                                    </Td>
-                                ))}
+                                {columnsData.map(header => {
+                                    const isEmpty = row[header.key] == null || row[header.key] === '';
+                                    const rowsStyle = isEmpty && paintFreeRowsColor !== undefined
+                                        ? {backgroundColor: `${paintFreeRowsColor}`} : (row.style || '');
+                                    return (
+                                        <Td key={`${row.key}-${header.key}`} {...rowsStyle} {...header.tdStyle}>
+                                            {row[header.key]}
+                                        </Td>
+                                    );
+                                })}
                             </Tr>
                         ))}
                     </Tbody>
@@ -140,6 +146,7 @@ const Table = ({
 };
 
 Table.propTypes = {
+    paintFreeRowsColor: PropTypes.string,
     caption: PropTypes.string,
     columns: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
     data: PropTypes.arrayOf(PropTypes.shape({})),
@@ -164,14 +171,15 @@ Table.defaultProps = {
     emptyMessage: 'No hay resultados',
     isLoading: false,
     name: 'table',
-    onSearch: () => {},
+    onSearch: () => { },
     onSort: undefined,
     paginationStyles: undefined,
     params: undefined,
     perPage: 0,
     showDefaultFooter: true,
     showPagination: true,
-    total: 0
+    total: 0,
+    paintFreeRowsColor: undefined
 };
 
 export default Table;

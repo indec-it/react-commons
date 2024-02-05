@@ -29,6 +29,34 @@ const table = {
                 textAlign: 'left',
                 padding: '10px 20px'
             }
+        },
+        fixedFirstColumn: {
+            fontSize: '16px',
+            height: '35px',
+            table: {
+                background: 'white',
+                borderRadius: '0 0 10px 10px'
+            },
+            tr: {
+                '& th:first-of-type': {
+                    position: 'sticky',
+                    left: '0',
+                    backgroundColor: 'white'
+                },
+                '&:nth-of-type(even) td:first-of-type ': {
+                    backgroundColor: 'brand.neutral50'
+                },
+                '&:nth-of-type(odd) td:first-of-type ': {
+                    backgroundColor: 'white'
+                }
+            },
+
+            td: {
+                '&:first-of-type': {
+                    position: 'sticky',
+                    left: '0'
+                }
+            }
         }
     }
 };
