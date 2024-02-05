@@ -117,10 +117,9 @@ const Table = ({
                             <Tr key={row?.key} {...row?.containerStyle} data-testid={`row-${row?.key}`}>
                                 {columnsData.map(header => {
                                     const isEmpty = row[header.key] == null || row[header.key] === '';
-                                    const rowsStyle = isEmpty && paintFreeRowsColor !== undefined
-                                        ? {backgroundColor: `${paintFreeRowsColor}`} : (row.style || '');
+                                    const updatRowsStyle = isEmpty ? header.emptyRow : header.tdStyle;
                                     return (
-                                        <Td key={`${row.key}-${header.key}`} {...rowsStyle} {...header.tdStyle}>
+                                        <Td key={`${row.key}-${header.key}`} {...row.style} {...updatRowsStyle}>
                                             {row[header.key]}
                                         </Td>
                                     );
