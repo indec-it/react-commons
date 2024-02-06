@@ -7,9 +7,10 @@ const baseStyles = {
     }
 };
 
-const stickyTable = {
+const fixedFirstColumn = {
     position: 'sticky',
-    left: '0'
+    left: '0',
+    backgroundColor: 'brand.white'
 };
 
 const table = {
@@ -44,8 +45,7 @@ const table = {
             ...baseStyles,
             tr: {
                 '& th:first-of-type': {
-                    ...stickyTable,
-                    backgroundColor: 'brand.white'
+                    ...fixedFirstColumn
                 },
                 '&:nth-of-type(even) td:first-of-type ': {
                     backgroundColor: 'brand.neutral50'
@@ -57,7 +57,7 @@ const table = {
 
             td: {
                 '&:first-of-type': {
-                    ...stickyTable
+                    ...fixedFirstColumn
                 }
             }
         }
