@@ -36,7 +36,6 @@ const Table = ({
     showDefaultFooter,
     showPagination,
     total,
-    paintFreeRowsColor,
     ...props
 }) => {
     const columnsData = Array.isArray(columns) ? columns : [];
@@ -117,9 +116,9 @@ const Table = ({
                             <Tr key={row?.key} {...row?.containerStyle} data-testid={`row-${row?.key}`}>
                                 {columnsData.map(header => {
                                     const isEmpty = row[header.key] == null || row[header.key] === '';
-                                    const updatRowsStyle = isEmpty ? header.emptyRow : header.tdStyle;
+                                    const rowStyle = isEmpty ? header.emptyRow : header.tdStyle;
                                     return (
-                                        <Td key={`${row.key}-${header.key}`} {...row.style} {...updatRowsStyle}>
+                                        <Td key={`${row.key}-${header.key}`} {...row.style} {...rowStyle}>
                                             {row[header.key]}
                                         </Td>
                                     );
@@ -145,7 +144,6 @@ const Table = ({
 };
 
 Table.propTypes = {
-    paintFreeRowsColor: PropTypes.string,
     caption: PropTypes.string,
     columns: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
     data: PropTypes.arrayOf(PropTypes.shape({})),
@@ -170,15 +168,14 @@ Table.defaultProps = {
     emptyMessage: 'No hay resultados',
     isLoading: false,
     name: 'table',
-    onSearch: () => { },
+    onSearch: () => {},
     onSort: undefined,
     paginationStyles: undefined,
     params: undefined,
     perPage: 0,
     showDefaultFooter: true,
     showPagination: true,
-    total: 0,
-    paintFreeRowsColor: undefined
+    total: 0
 };
 
 export default Table;
