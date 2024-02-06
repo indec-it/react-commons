@@ -114,11 +114,15 @@ const Table = ({
                         )}
                         {!isLoading && data.length > 0 && buildRows(data, columnsData).map(row => (
                             <Tr key={row?.key} {...row?.containerStyle} data-testid={`row-${row?.key}`}>
-                                {columnsData.map(header => (
-                                    <Td key={`${row.key}-${header.key}`} {...row.style} {...header.tdStyle} >
-                                        {row[header.key]}
-                                    </Td>
-                                ))}
+                                {columnsData.map(header => {
+                                    const isEmpty = row[header.key] == null || row[header.key] === '';
+                                    const rowStyle = isEmpty ? header.emptyRow : header.tdStyle;
+                                    return (
+                                        <Td key={`${row.key}-${header.key}`} {...row.style} {...rowStyle}>
+                                            {row[header.key]}
+                                        </Td>
+                                    );
+                                })}
                             </Tr>
                         ))}
                     </Tbody>
