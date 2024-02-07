@@ -44,21 +44,17 @@ const table = {
         fixedFirstColumn: {
             ...baseStyles,
             tr: {
-                '& th:first-of-type': {
-                    ...fixedFirstColumnStyles
-                },
-                '&:nth-of-type(even) td:first-of-type ': {
+                'th:first-of-type': fixedFirstColumnStyles,
+                '&:nth-of-type(even) td:first-of-type': {
                     backgroundColor: 'brand.neutral50'
                 },
-                '&:nth-of-type(odd) td:first-of-type ': {
+                '&:nth-of-type(odd) td:first-of-type': {
                     backgroundColor: 'brand.white'
                 }
             },
 
             td: {
-                '&:first-of-type': {
-                    ...fixedFirstColumnStyles
-                }
+                '&:first-of-type': fixedFirstColumnStyles
             }
         }
     }
