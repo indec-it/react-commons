@@ -40,7 +40,6 @@ const table = {
                 padding: '10px 20px'
             }
         },
-
         fixedFirstColumn: {
             ...baseStyles,
             tr: {
@@ -52,7 +51,6 @@ const table = {
                     backgroundColor: 'brand.white'
                 }
             },
-
             td: {
                 '&:first-of-type': fixedFirstColumnStyles
             }
