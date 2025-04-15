@@ -1,19 +1,19 @@
-module.exports = {
-  "stories": ["../src/**/*.stories.mdx", "../src/**/*.stories.@(js|jsx)"],
-  addons: ["@storybook/addon-links", "@storybook/addon-essentials", "@storybook/addon-interactions", "@chakra-ui/storybook-addon"],
-  features: {
-    emotionAlias: false
-  },
-  framework: "@storybook/react",
-  core: {
-    builder: "webpack5"
-  },
-  refs: {
-    '@chakra-ui/react': {
-      disable: true
-    }
-  },
-  docs: {
-    autodocs: true
+
+
+/** @type { import('@storybook/react-vite').StorybookConfig } */
+const config = {
+  "stories": [
+    "../src/stories/*.stories.@(js)"
+  ],
+  "addons": [
+    "@storybook/addon-essentials",
+    "@storybook/addon-onboarding",
+    "@chromatic-com/storybook",
+    "@storybook/experimental-addon-test"
+  ],
+  "framework": {
+    "name": "@storybook/react-vite",
+    "options": {}
   }
 };
+export default config;

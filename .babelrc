@@ -1,19 +1,19 @@
 {
   "presets": [
-    "@babel/preset-env",
-    "@babel/preset-react"
+      [
+        "@babel/preset-react",
+        {
+          "runtime": "automatic"
+        }
+      ],
+      ["@babel/preset-env"]
   ],
   "plugins": [
-    "@babel/proposal-optional-chaining",
-    "@babel/plugin-transform-runtime",
-    ["transform-imports"],
-      [
-        "module-resolver",
-        {
-          "alias": {
-            "@": "./src"
-          }
-        }
-      ]
+    ["module-resolver", {
+      "root": ["./"],
+      "alias": {
+        "@": "./src"
+      }
+    }]
   ]
 }

@@ -10,7 +10,7 @@
         "node_modules",
         "src"
     ],
-    "testPathIgnorePatterns": ["/node_modules/"],
+    "testPathIgnorePatterns": ["/node_modules/", ".history/"],
     "transformIgnorePatterns": [
         "node_modules/(?!(@indec)/)"
     ],
@@ -18,7 +18,7 @@
         "^@root(.*)$": "<rootDir>$1"
     },
     "transform": {
-        "^.+\\.js$": "babel-jest",
+        "^.+\\.[jt]sx?$": "babel-jest",
         "^.+\\.svg$": "<rootDir>/svgTransform.js",
         ".+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$": "jest-transform-stub"
     },

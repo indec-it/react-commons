@@ -1,134 +1,352 @@
-# react-commons V5 🚀
+# react-commons 🚀
+
+A comprehensive React component library built with Tailwind CSS for INDEC (Instituto Nacional de Estadística y Censos) applications.
 
 https://indec-it.github.io/react-commons/
 
-## Glossary
+## Table of Contents
 
-1. [Motivation](#motivation)
 1. [Installation](#installation)
-1. [Start](#start)
-1. [Structure](#structure)
-1. [Dependencies](#dependencies)
-1. [Tests](#tests)
-1. [Contributing](#contributing)
-
-## Motivation
-
-We've created this package to share components and logic between our different projects.
-
-We use [Storybook](https://storybook.js.org), it allows you to test and see how each component works without install the package in your project.
-
-Our components are built with [Chakra-ui](https://chakra-ui.com). In our previous versions of react-commons, components were built with [Reactstrap](https://github.com/reactstrap/reactstrap) but we realized that we needed to add more custom styles so we decided to move to Chakra.
+2. [Getting Started](#getting-started)
+3. [Components](#components)
+4. [Icons](#icons)
+5. [Hooks](#hooks)
+6. [Utilities](#utilities)
+7. [Development](#development)
+8. [Contributing](#contributing)
 
 ## Installation
 
-```sh
-$ npm install @indec/react-commons
+```bash
+npm install @indec/react-commons
 ```
 
-## Start
+## Getting Started
 
-To start storybook you must run the following command:
+Import the components you need from the library:
 
-```sh
-$ npm start
+```javascript
+import { Button, Field, Modal, Header } from '@indec/react-commons';
 ```
 
-Storybook will be open in your default browser at [http://localhost:6006](http://localhost:6006).
+## Components
 
-## Structure
+### Button
+A customizable button component with various styles and states.
 
-The project is split into the following directories. When writing code, use the following guidelines to determine where it should be placed. You can also take a look at the code yourself for in-depth examples.
+```javascript
+import { Button } from '@indec/react-commons';
+
+<Button onClick={handleClick} disabled={false}>
+  Click me
+</Button>
+```
+
+### Field
+An input field component with label, error handling, and tooltip support.
+
+```javascript
+import { Field } from '@indec/react-commons';
+
+<Field
+  name="email"
+  label="Email Address"
+  type="email"
+  placeholder="john@example.com"
+  error="Invalid email"
+  tooltip="Enter your work email"
+  onChange={handleChange}
+  onBlur={handleBlur}
+/>
+```
+
+Props:
+- `name` - Field name attribute
+- `label` - Field label
+- `type` - Input type (text, email, password, number, etc.)
+- `error` - Error message to display
+- `tooltip` - Tooltip text (shows info icon)
+- `disabled` - Disable the field
+- `onChange` - Change handler
+- `onBlur` - Blur handler
+
+### Header
+A responsive header component with navigation menu and user menu.
+
+```javascript
+import { Header } from '@indec/react-commons';
+
+<Header
+  token={userToken}
+  user={{name: 'John', lastName: 'Doe'}}
+  items={[
+    {name: 'Dashboard', path: 'dashboard'},
+    {name: 'Reports', path: 'reports'}
+  ]}
+  onRedirect={handleNavigation}
+  onLogout={handleLogout}
+/>
+```
+
+### Footer
+A fixed footer component that stays at the bottom of the page.
+
+```javascript
+import { Footer } from '@indec/react-commons';
+
+<Footer>
+  <p>© 2024 INDEC. All rights reserved.</p>
+</Footer>
+```
+
+### Modal
+A flexible modal component with compound components for title, content, and buttons.
+
+```javascript
+import { Modal } from '@indec/react-commons';
+
+<Modal show={isOpen} onClose={handleClose}>
+  <Modal.Title title="Confirm Action" />
+  <Modal.Content>
+    <p>Are you sure you want to proceed?</p>
+  </Modal.Content>
+  <Modal.Buttons onClose={handleClose} />
+</Modal>
+```
+
+### Table
+A data table component with sorting, pagination, and loading states.
+
+```javascript
+import { Table } from '@indec/react-commons';
+
+<Table
+  columns={[
+    {key: 'id', label: 'ID'},
+    {key: 'name', label: 'Name'},
+    {key: 'email', label: 'Email'}
+  ]}
+  rows={data}
+  page={1}
+  totalResults={100}
+  resultsPerPage={10}
+  onChangePage={handlePageChange}
+  onSort={handleSort}
+  isLoading={false}
+  showPagination={true}
+/>
+```
+
+### Pagination
+A pagination component for navigating through pages of data.
+
+```javascript
+import { Pagination } from '@indec/react-commons';
+
+<Pagination
+  page={currentPage}
+  totalPages={10}
+  onPageChange={handlePageChange}
+/>
+```
+
+### Snackbar
+A notification component that displays temporary messages.
+
+```javascript
+import { Snackbar } from '@indec/react-commons';
+
+<Snackbar
+  open={showMessage}
+  message="Operation completed successfully"
+  type="success"
+  onClose={handleClose}
+/>
+```
+
+### Loading
+A loading spinner component.
+
+```javascript
+import { Loading } from '@indec/react-commons';
+
+<Loading />
+```
+
+### ErrorMessage
+A component to display error messages consistently.
+
+```javascript
+import { ErrorMessage } from '@indec/react-commons';
+
+<ErrorMessage error="Something went wrong" />
+```
+
+## Icons
+
+The library includes 40+ icon components that can be imported individually:
+
+```javascript
+import { 
+  AddIcon,
+  DeleteIcon,
+  EditIcon,
+  SearchIcon,
+  UserIcon,
+  MenuIcon,
+  CloseIcon,
+  CheckCircleIcon,
+  ErrorIcon,
+  InfoIcon,
+  // ... and many more
+} from '@indec/react-commons';
+
+// Usage
+<SearchIcon size={24} className="text-blue-600" />
+```
+
+All icons support the following props:
+- `size` - Icon size (default: 24)
+- `className` - CSS classes for styling
+- All standard SVG props
+
+### Available Icons:
+- Navigation: `ArrowBackIcon`, `ArrowForwardIcon`, `ChevronLeftIcon`, `ChevronRightIcon`, `MenuIcon`
+- Actions: `AddIcon`, `DeleteIcon`, `EditIcon`, `SaveIcon`, `CloseIcon`, `SearchIcon`
+- Status: `CheckCircleIcon`, `ErrorIcon`, `InfoIcon`, `HelpIcon`
+- User: `UserIcon`, `AccountCircleIcon`, `GroupIcon`
+- Files: `AttachFileIcon`, `UploadFileIcon`
+- And many more...
+
+## Hooks
+
+### useScreenSize
+A hook that provides responsive screen size information.
+
+```javascript
+import { useScreenSize } from '@indec/react-commons';
+
+function MyComponent() {
+  const { isMobile, isTablet, isDesktop } = useScreenSize();
+  
+  return (
+    <div>
+      {isMobile && <MobileView />}
+      {isDesktop && <DesktopView />}
+    </div>
+  );
+}
+```
+
+## Utilities
+
+### getPaginationFields
+A utility function to calculate pagination parameters.
+
+```javascript
+import { getPaginationFields } from '@indec/react-commons';
+
+const { startIndex, endIndex } = getPaginationFields(currentPage, itemsPerPage, totalItems);
+```
+
+## Development
+
+### Prerequisites
+- Node.js >= 14
+- npm >= 6
+
+### Setup
+
+1. Clone the repository
+```bash
+git clone https://github.com/indec-it/react-commons.git
+cd react-commons
+```
+
+2. Install dependencies
+```bash
+npm install
+```
+
+3. Start Storybook
+```bash
+npm start
+```
+
+Storybook will open at [http://localhost:6006](http://localhost:6006)
+
+### Building
+
+Build the library:
+```bash
+npm run build
+```
+
+### Testing
+
+Run tests:
+```bash
+npm test
+```
+
+Run tests with coverage:
+```bash
+npm run test:coverage
+```
+
+## Project Structure
 
 ```
 src/
-  components/
-  hooks/
-  constants/
-  theme/
-  utils/
+  components/       # React components
+    Button.jsx
+    Field.jsx
+    Header/
+    Icons/
+    Modal/
+    Table/
+    ...
+  hooks/           # Custom React hooks
+    useScreenSize.js
+  utils/           # Utility functions
+    getPaginationFields.js
+  stories/         # Storybook stories
+  __tests__/       # Test files
+  styles.css       # Global styles
+  index.js         # Main export file
 ```
 
-`src/components`
+## Technologies
 
-Here you must add your React`s components.
-
-`src/hooks`
-
-Here you must add your custom hooks.
-
-`src/constants`
-
-Constants to be shared for the whole application.
-
-`src/theme`
-
-Custom theme for components.
-
-`src/utils`
-
-Functions to be shared for the whole application.
-
-## Dependencies
-
-These are the core dependencies you'll need to get acquainted yourself with:
-
-- [React](https://reactjs.org) 
-- [Chakra](https://chakra-ui.com) (component library our UI is built upon)
-- [Formik](https://jaredpalmer.com/formik/docs/api/formik#validationschema-schema-gt-schema) (to make it easier to write forms with React)
-- [Yup](https://github.com/jquense/yup) (handles form validation)
-- [Storybook](https://storybook.js.org) (component library)
-- [Jest](https://jestjs.io) (testing framework)
-- [React Testing Library](https://testing-library.com/docs/react-testing-library/intro) (DOM interface for testing)
-- [EsLint](https://eslint.org) (used to lint code)
-
-## Tests 
-
-To run the tests you must run the following command:
-
-```sh
-$ npm run test
-```
-
-When writing tests, make sure to use the following format to keep the tests clean and consistent:
-
-```jsx
-import {getByText} from "@testing-library/react";
-
-import Button from "./Button";
-
-describe("<Button>", () => {
-  let props;
-  const getComponent = () => render(Button, props);
-
-  beforeEach(() => {
-    props = {
-      children: "Label"
-    };
-  });
-  afterEach(tearDown);
-
-  it("should render `props.children`", () => {
-    const {container} = getComponent();
-    expect(getByText(container, props.children)).toBeInTheDocument();
-  });
-
-  describe("when `props.plus` is `true`", () => {
-    beforeEach(() => {
-      props.plus = true;
-    });
-
-    it("should render a plus character", () => {
-      const {container} = getComponent();
-      expect(getByText(container, `+ ${props.children}`)).toBeInTheDocument();
-    });
-  });
-});
-```
+- **React** - Component library
+- **Tailwind CSS** - Styling
+- **Storybook** - Component development and documentation
+- **Vitest** - Testing framework
+- **React Testing Library** - Component testing
+- **ESLint** - Code linting
+- **Prettier** - Code formatting
 
 ## Contributing
 
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+We welcome contributions! Please follow these steps:
 
-Please make sure to update tests as appropriate.
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
+### Guidelines
+
+- Write tests for new components
+- Update Storybook stories
+- Follow the existing code style
+- Update documentation as needed
+
+## License
+
+MIT License - see [LICENSE.md](LICENSE.md) for details
+
+## Support
+
+For issues and feature requests, please use the [GitHub issues page](https://github.com/indec-it/react-commons/issues).

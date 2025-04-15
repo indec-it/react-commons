@@ -14,3 +14,4 @@ lib/
 .idea
 *.log
 .history/
+*storybook.log

@@ -1,91 +1,40 @@
-import React from 'react';
+import {fn} from '@storybook/test';
 
-import {Button} from '@chakra-ui/react';
+import Button from '../components/Button.jsx';
+import * as Icons from '../components/Icons';
+import '../components/output.css';
 
 export default {
-    title: 'Chakra/Button/Button',
-    component: Button
+  title: 'Button',
+  component: Button,
+  tags: ['autodocs'],
+  argTypes: {
+    backgroundColor: {control: 'color'}
+  },
+  args: {onClick: fn(), label: 'Click'}
 };
 
-// eslint-disable-next-line react/prop-types
-export const Basic = ({text, ...args}) => {
-    const handleClick = () => window.alert('click');
+export const Default = {};
 
-    return (
-        <div style={{maxWidth: '330px'}}>
-            <Button onClick={handleClick} {...args}>
-                {text}
-            </Button>
-        </div>
-    );
+export const Disabled = {
+  args: {
+    disabled: true
+  }
 };
 
-Basic.args = {
-    text: 'Text'
+export const WithCustomStyle = {
+  args: {
+    style: 'bg-red-500'
+  }
 };
 
-// eslint-disable-next-line react/prop-types
-export const Variants = () => {
-    const handleClick = () => window.alert('click');
-
-    return (
-        <div style={{maxWidth: '230px', display: 'flex', flexDirection: 'column'}}>
-            <Button
-                variant="rounded"
-                onClick={handleClick}
-                mt={3}
-            >
-                Variant rounded
-            </Button>
-            <Button
-                colorScheme="blue"
-                onClick={handleClick}
-                mt={3}
-            >
-                Default with colorScheme
-            </Button>
-            <Button
-                size="sm"
-                mt={3}
-            >
-                Size sm
-            </Button>
-            <Button
-                variant="solid"
-                onClick={handleClick}
-                mt={3}
-            >
-                Variant solid
-            </Button>
-            <Button
-                variant="outline"
-                onClick={handleClick}
-                mt={3}
-            >
-                Variant outline
-            </Button>
-            <Button
-                variant="ghost"
-                onClick={handleClick}
-                mt={3}
-            >
-                Variant ghost
-            </Button>
-            <Button
-                variant="link"
-                onClick={handleClick}
-                mt={3}
-            >
-                Variant link
-            </Button>
-            <Button
-                variant="link"
-                onClick={() => window.open('https://chakra-ui.com/docs/components/form/button', '_blank')}
-                mt={10}
-                colorScheme="yellow"
-            >
-                More Chakra Docs
-            </Button>
-        </div>
-    );
+export const WithIcon = {
+  render: args => {
+    return Button({
+      ...args,
+      style:
+        'mb-2 cursor-pointer font-semibold bg-blue-700 transition text-white uppercase m-auto h-10 w-full rounded-lg disabled:bg-gray-300 disabled:cursor-default flex items-center justify-center gap-2',
+      label: [Icons.SearchIcon({size: 16}), 'Search']
+    });
+  }
 };
