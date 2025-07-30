@@ -1,6 +1,6 @@
 {
   "name": "@indec/react-commons",
-  "version": "7.0.1",
+  "version": "7.0.2",
   "description": "Common reactjs components for apps",
   "private": false,
   "main": "index.js",
@@ -12,7 +12,7 @@
   },
   "scripts": {
     "start": "start-storybook -p 6006",
-    "build": "npm run build:css && NODE_ENV=production babel src --out-dir lib && cp package.json README.md LICENSE.md lib/ && cp src/components/output.css lib/components/ && find lib -name '*.js' -exec sed -i \"s/\\.jsx'/\\.js'/g\" {} + && find lib -name '*.js' -exec sed -i 's/\\.jsx\"/\\.js\"/g' {} +",
+    "build": "npm run build:css && NODE_ENV=production babel src --out-dir lib && cp package.json README.md LICENSE.md lib/ && cp src/components/output.css lib/components/ && cp -r src/assets lib/ && find lib -name '*.js' -exec sed -i \"s/\\.jsx'/\\.js'/g\" {} + && find lib -name '*.js' -exec sed -i 's/\\.jsx\"/\\.js\"/g' {} +",
     "build-storybook": "storybook build",
     "test": "jest --config=jest.config.json",
     "test:watch": "jest --config=jest.config.json --watch",
@@ -28,6 +28,7 @@
     "components",
     "hooks",
     "utils",
+    "assets",
     "index.js",
     "LICENSE.md",
     "README.md",
