@@ -4,6 +4,7 @@ export {default as Field} from './Field.jsx';
 export {default as Footer} from './Footer.jsx';
 export {default as Header} from './Header/index.jsx';
 export {default as Loading} from './Loading.jsx';
+export {default as Login} from './Login/index.jsx';
 export {default as Modal} from './Modal/index.jsx';
 export {default as Pagination} from './Pagination.jsx';
 export {default as Select} from './Select.jsx';

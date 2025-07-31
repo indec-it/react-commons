@@ -14,6 +14,7 @@ export default function Field({name, label, error, type = 'text', onChange, onBl
       onBlur(event);
     }
   };
+
   return (
     <div className="w-full">
       <label htmlFor={name} className="block text-[17px] text-black text-xl font-medium">
@@ -24,13 +25,13 @@ export default function Field({name, label, error, type = 'text', onChange, onBl
           id={name}
           name={name}
           aria-label={label}
+          {...rest}
           className={`w-full px-4 py-2 border-2 border-gray-400 rounded-lg bg-white focus:outline-none focus:ring-blue-500 focus:border-blue-500 disabled:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200 ${
             error ? 'border-error focus:ring-error' : 'border-gray-300 focus:ring-primary'
           } ${disabled ? 'bg-gray-100 cursor-not-allowed' : ''} ${tooltip ? 'pr-10' : ''}`}
           type={type}
           onChange={onChange}
           disabled={disabled}
-          {...rest}
           onBlur={handleBlur}
         />
         {tooltip && (
