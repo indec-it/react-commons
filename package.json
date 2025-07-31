@@ -1,6 +1,6 @@
 {
   "name": "@indec/react-commons",
-  "version": "7.0.2",
+  "version": "7.0.3",
   "description": "Common reactjs components for apps",
   "private": false,
   "main": "index.js",
@@ -8,7 +8,8 @@
     "./components": "./components/index.js",
     "./Icons": "./components/Icons/index.js",
     "./hooks": "./hooks/index.js",
-    "./utils": "./utils/index.js"
+    "./utils": "./utils/index.js",
+    "./assets": "./assets/index.js"
   },
   "scripts": {
     "start": "start-storybook -p 6006",
