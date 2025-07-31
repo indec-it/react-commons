@@ -34,7 +34,7 @@ export default function Table({
     <>
       <Cards columns={columns} rows={rows} />
       <div className="hidden md:block">
-        <div className="bg-white mt-8 rounded-lg shadow-sm overflow-hidden">
+        <div className="bg-white mt-8 rounded-lg shadow-sm overflow-x-auto">
           <table className="min-w-full">
             <TableHeader columns={columns} onSort={onSort} />
             <tbody>

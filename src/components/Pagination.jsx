@@ -20,7 +20,7 @@ export default function Pagination({total = 0, perPage = 10, onChange = () => {}
 
   const renderPageNumbers = () => {
     const pages = [];
-    const maxVisible = 5;
+    const maxVisible = window.innerWidth < 640 ? 3 : 5;
     let startPage = Math.max(1, safePage - Math.floor(maxVisible / 2));
     let endPage = Math.min(pagesCount, startPage + maxVisible - 1);
 
@@ -34,7 +34,7 @@ export default function Pagination({total = 0, perPage = 10, onChange = () => {}
           type="button"
           key={1}
           onClick={() => onChange(1)}
-          className="px-3 py-2 mx-1 text-sm rounded-md bg-white border border-gray-300 hover:bg-gray-50"
+          className="px-2 sm:px-3 py-2 mx-0.5 sm:mx-1 text-xs sm:text-sm rounded-md bg-white border border-gray-300 hover:bg-gray-50 whitespace-nowrap"
         >
           1
         </button>
@@ -54,7 +54,7 @@ export default function Pagination({total = 0, perPage = 10, onChange = () => {}
           type="button"
           key={i}
           onClick={() => onChange(i)}
-          className={`px-3 py-2 mx-1 text-sm rounded-md ${
+          className={`px-2 sm:px-3 py-2 mx-0.5 sm:mx-1 text-xs sm:text-sm rounded-md whitespace-nowrap ${
             i === safePage
               ? 'bg-blue-600 text-white border border-blue-600'
               : 'bg-white border border-gray-300 hover:bg-gray-50'
@@ -78,7 +78,7 @@ export default function Pagination({total = 0, perPage = 10, onChange = () => {}
           type="button"
           key={pagesCount}
           onClick={() => onChange(pagesCount)}
-          className="px-3 py-2 mx-1 text-sm rounded-md bg-white border border-gray-300 hover:bg-gray-50"
+          className="px-2 sm:px-3 py-2 mx-0.5 sm:mx-1 text-xs sm:text-sm rounded-md bg-white border border-gray-300 hover:bg-gray-50 whitespace-nowrap"
         >
           {pagesCount}
         </button>
@@ -90,13 +90,13 @@ export default function Pagination({total = 0, perPage = 10, onChange = () => {}
 
   return (
     <>
-      <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6 mt-6 flex-wrap">
-        <div className="flex items-center space-x-2">
+      <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6 mt-6 flex-wrap px-4">
+        <div className="flex items-center space-x-1 sm:space-x-2 overflow-x-auto max-w-full">
           <button
             type="button"
             onClick={() => onChange(1)}
             disabled={safePage === 1}
-            className="p-2 rounded-md bg-white border border-gray-300 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="p-1.5 sm:p-2 rounded-md bg-white border border-gray-300 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <ChevronLeftIcon className="w-4 h-4" />
           </button>
@@ -105,7 +105,7 @@ export default function Pagination({total = 0, perPage = 10, onChange = () => {}
             type="button"
             onClick={() => onChange(safePage - 1)}
             disabled={safePage === 1}
-            className="p-2 rounded-md bg-white border border-gray-300 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="p-1.5 sm:p-2 rounded-md bg-white border border-gray-300 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <ChevronLeftIcon className="w-4 h-4" />
           </button>
@@ -116,7 +116,7 @@ export default function Pagination({total = 0, perPage = 10, onChange = () => {}
             type="button"
             onClick={() => onChange(safePage + 1)}
             disabled={safePage === pagesCount}
-            className="p-2 rounded-md bg-white border border-gray-300 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="p-1.5 sm:p-2 rounded-md bg-white border border-gray-300 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <ChevronRightIcon className="w-4 h-4" />
           </button>
@@ -125,7 +125,7 @@ export default function Pagination({total = 0, perPage = 10, onChange = () => {}
             type="button"
             onClick={() => onChange(pagesCount)}
             disabled={safePage === pagesCount}
-            className="p-2 rounded-md bg-white border border-gray-300 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="p-1.5 sm:p-2 rounded-md bg-white border border-gray-300 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <ChevronRightIcon className="w-4 h-4" />
           </button>
@@ -144,7 +144,7 @@ export default function Pagination({total = 0, perPage = 10, onChange = () => {}
             type="button"
             onClick={() => onChange(newPage)}
             disabled={newPage === 0}
-            className="p-2 rounded-md bg-white border border-gray-300 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="p-1.5 sm:p-2 rounded-md bg-white border border-gray-300 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <ChevronRightIcon className="w-4 h-4" />
           </button>
