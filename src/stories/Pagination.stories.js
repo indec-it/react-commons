@@ -1,6 +1,6 @@
 import {fn} from '@storybook/test';
 
-import {Pagination} from '../components/Pagination.jsx';
+import Pagination from '../components/Pagination.jsx';
 import '../components/output.css';
 
 export default {
