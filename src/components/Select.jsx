@@ -17,7 +17,7 @@ export default function Select({
   const handleChange = selectedValue => {
     onSelect(name, selectedValue ? selectedValue[keyValue] : undefined);
     if (onClean) {
-      onClean(form);
+      onClean();
     }
   };
 
@@ -44,7 +44,6 @@ export default function Select({
             setIsOpen(true);
           }}
           disabled={disabled}
-          readOnly={!isOpen}
         />
         <div className="absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none">
           <ChevronDownIcon className="w-5 h-5 text-gray-400" />
@@ -56,19 +55,22 @@ export default function Select({
           {loading ? (
             <div className="px-3 py-2 text-gray-500">Cargando...</div>
           ) : filteredOptions.length > 0 ? (
-            filteredOptions.map((option, index) => (
-              <div
-                key={index}
-                className="px-3 py-2 hover:bg-blue-50 cursor-pointer"
-                onClick={() => {
-                  handleChange(option);
-                  setIsOpen(false);
-                  setSearchTerm('');
-                }}
-              >
-                {option.label}
-              </div>
-            ))
+            <div className="flex flex-col">
+              {filteredOptions.map((option, index) => (
+                <button
+                  key={index}
+                  type="button"
+                  className="w-full px-3 py-2 text-left hover:bg-blue-50 cursor-pointer"
+                  onClick={() => {
+                    handleChange(option);
+                    setIsOpen(false);
+                    setSearchTerm('');
+                  }}
+                >
+                  {option.label}
+                </button>
+              ))}
+            </div>
           ) : (
             <div className="px-3 py-2 text-gray-500">No hay opciones</div>
           )}
