@@ -1,5 +1,6 @@
 import React from 'react';
 import {ChevronDownIcon} from './Icons';
+import ErrorMessage from './ErrorMessage';
 
 export default function Select({
   options = [],
@@ -10,7 +11,9 @@ export default function Select({
   keyValue = 'value',
   name,
   value,
-  onSelect
+  onSelect,
+  label,
+  error
 }) {
   const [isOpen, setIsOpen] = React.useState(false);
   const [searchTerm, setSearchTerm] = React.useState('');
@@ -24,30 +27,43 @@ export default function Select({
   const selectedValue = React.useMemo(() => options.find(option => option[keyValue] === value) || {}, [value]);
 
   const filteredOptions = React.useMemo(() => {
-    if (!searchTerm) return options;
+    if (!searchTerm) {
+      return options;
+    }
     return options.filter(option => option.label?.toLowerCase().includes(searchTerm.toLowerCase()));
   }, [options, searchTerm]);
 
   return (
     <div className="w-full relative">
-      <div className="relative">
-        <input
-          type="text"
-          className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-            disabled ? 'bg-gray-100 cursor-not-allowed' : 'bg-white cursor-pointer'
-          }`}
-          placeholder={placeholder}
-          value={selectedValue.label || ''}
-          onClick={() => !disabled && setIsOpen(!isOpen)}
-          onChange={e => {
-            setSearchTerm(e.target.value);
-            setIsOpen(true);
-          }}
-          disabled={disabled}
-        />
-        <div className="absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none">
-          <ChevronDownIcon className="w-5 h-5 text-gray-400" />
+      <div className="w-full">
+        {label && (
+          <label htmlFor={name} className="block text-[17px] text-black text-xl font-medium">
+            {label}
+          </label>
+        )}
+        <div className="relative">
+          <input
+            id={name}
+            name={name}
+            type="text"
+            aria-label={label}
+            className={`w-full px-4 py-2 pr-10 border-2 border-gray-400 rounded-lg bg-white focus:outline-none focus:ring-blue-500 focus:border-blue-500 disabled:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200 ${
+              error ? 'border-error focus:ring-error' : 'border-gray-300 focus:ring-primary'
+            } ${disabled ? 'bg-gray-100 cursor-not-allowed' : ''}`}
+            placeholder={placeholder}
+            value={selectedValue.label || ''}
+            onClick={() => !disabled && setIsOpen(!isOpen)}
+            onChange={e => {
+              setSearchTerm(e.target.value);
+              setIsOpen(true);
+            }}
+            disabled={disabled}
+          />
+          <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
+            <ChevronDownIcon className="w-5 h-5 text-gray-400" />
+          </div>
         </div>
+        {error && !isOpen && <ErrorMessage error={error} />}
       </div>
 
       {isOpen && (

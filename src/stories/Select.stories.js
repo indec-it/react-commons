@@ -127,3 +127,19 @@ export const Searchable = {
     placeholder: 'Type to search fruits...'
   }
 };
+
+export const WithError = {
+  args: {
+    label: 'Country',
+    error: 'Please select a valid country',
+    placeholder: 'Select a country...'
+  }
+};
+
+export const WithLabelAndError = {
+  args: {
+    label: 'Product Category',
+    value: 2,
+    error: 'This category is not available in your region'
+  }
+};
