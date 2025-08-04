@@ -112,4 +112,77 @@ describe('<Select>', () => {
       expect(getByText(container, 'No hay opciones')).toBeInTheDocument();
     });
   });
+
+  describe('when label is provided', () => {
+    beforeEach(() => {
+      props.label = 'Test Label';
+    });
+
+    it('should display the label', () => {
+      const {container} = getComponent();
+      expect(getByText(container, 'Test Label')).toBeInTheDocument();
+    });
+
+    it('should associate label with input', () => {
+      const {container} = getComponent();
+      const label = getByText(container, 'Test Label');
+      const input = container.querySelector('input');
+      expect(label).toHaveAttribute('for', props.name);
+      expect(input).toHaveAttribute('id', props.name);
+    });
+  });
+
+  describe('when error is provided', () => {
+    beforeEach(() => {
+      props.error = 'This field is required';
+    });
+
+    it('should display error message when dropdown is closed', () => {
+      const {container} = getComponent();
+      expect(getByText(container, 'This field is required')).toBeInTheDocument();
+    });
+
+    it('should hide error message when dropdown is open', () => {
+      const {container} = getComponent();
+      const input = container.querySelector('input');
+      
+      expect(getByText(container, 'This field is required')).toBeInTheDocument();
+      
+      fireEvent.click(input);
+      
+      expect(queryByText(container, 'This field is required')).toBeNull();
+    });
+
+    it('should show error message again when dropdown is closed', () => {
+      const {container} = getComponent();
+      const input = container.querySelector('input');
+      
+      fireEvent.click(input);
+      expect(queryByText(container, 'This field is required')).toBeNull();
+      
+      const backdrop = container.querySelector('.fixed');
+      fireEvent.click(backdrop);
+      
+      expect(getByText(container, 'This field is required')).toBeInTheDocument();
+    });
+
+    it('should apply error styling to input', () => {
+      const {container} = getComponent();
+      const input = container.querySelector('input');
+      expect(input).toHaveClass('border-error');
+    });
+  });
+
+  describe('when both label and error are provided', () => {
+    beforeEach(() => {
+      props.label = 'Country';
+      props.error = 'Please select a country';
+    });
+
+    it('should display both label and error', () => {
+      const {container} = getComponent();
+      expect(getByText(container, 'Country')).toBeInTheDocument();
+      expect(getByText(container, 'Please select a country')).toBeInTheDocument();
+    });
+  });
 });
