@@ -5,7 +5,7 @@ import ErrorMessage from '../../components/ErrorMessage.jsx';
 describe('<ErrorMessage>', () => {
   let props;
   const getComponent = () => render(ErrorMessage, props);
-  
+
   beforeEach(() => {
     props = {
       error: 'This is an error message'

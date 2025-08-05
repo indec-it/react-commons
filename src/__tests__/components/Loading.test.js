@@ -5,7 +5,7 @@ import Loading from '../../components/Loading.jsx';
 describe('<Loading>', () => {
   let props;
   const getComponent = () => render(Loading, props);
-  
+
   beforeEach(() => {
     props = {};
   });

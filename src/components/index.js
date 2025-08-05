@@ -1,4 +1,5 @@
 export {default as Button} from './Button.jsx';
+export {default as ButtonWithOptions} from './ButtonWithOptions.jsx';
 export {default as ErrorMessage} from './ErrorMessage.jsx';
 export {default as Field} from './Field.jsx';
 export {default as Footer} from './Footer.jsx';

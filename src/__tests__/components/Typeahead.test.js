@@ -5,7 +5,7 @@ import Typeahead from '../../components/Typeahead.jsx';
 describe('<Typeahead>', () => {
   let props;
   const getComponent = () => render(Typeahead, props);
-  
+
   beforeEach(() => {
     props = {
       options: [
@@ -43,7 +43,7 @@ describe('<Typeahead>', () => {
     const {container} = getComponent();
     const input = container.querySelector('input');
     fireEvent.change(input, {target: {value: 'App'}});
-    
+
     expect(props.onInputChange).toHaveBeenCalledWith('App');
   });
 
@@ -51,7 +51,7 @@ describe('<Typeahead>', () => {
     const {container} = getComponent();
     const input = container.querySelector('input');
     fireEvent.focus(input);
-    
+
     expect(getByText(container, 'Apple')).toBeInTheDocument();
     expect(getByText(container, 'Banana')).toBeInTheDocument();
   });
@@ -60,10 +60,10 @@ describe('<Typeahead>', () => {
     const {container} = getComponent();
     const input = container.querySelector('input');
     fireEvent.focus(input);
-    
+
     const option = getByText(container, 'Apple');
     fireEvent.click(option);
-    
+
     expect(props.onSelect).toHaveBeenCalledWith(props.options[0]);
   });
 
@@ -87,7 +87,7 @@ describe('<Typeahead>', () => {
       const {container} = getComponent();
       const clearButton = container.querySelector('button[type="button"]');
       fireEvent.click(clearButton);
-      
+
       expect(props.onInputChange).toHaveBeenCalledWith('');
       expect(props.onSelect).toHaveBeenCalledWith({_id: ''});
     });
@@ -145,7 +145,7 @@ describe('<Typeahead>', () => {
       const {container} = getComponent();
       const input = container.querySelector('input');
       fireEvent.focus(input);
-      
+
       fireEvent.keyDown(input, {key: 'ArrowDown'});
       const firstOption = getByText(container, 'Apple');
       expect(firstOption).toHaveClass('bg-blue-50', 'text-blue-700');
@@ -157,7 +157,7 @@ describe('<Typeahead>', () => {
       fireEvent.focus(input);
       fireEvent.keyDown(input, {key: 'ArrowDown'});
       fireEvent.keyDown(input, {key: 'Enter'});
-      
+
       expect(props.onSelect).toHaveBeenCalledWith(props.options[0]);
     });
 
@@ -166,7 +166,7 @@ describe('<Typeahead>', () => {
       const input = container.querySelector('input');
       fireEvent.focus(input);
       fireEvent.keyDown(input, {key: 'Escape'});
-      
+
       expect(queryByText(container, 'Apple')).toBeNull();
     });
   });

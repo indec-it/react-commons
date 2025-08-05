@@ -5,7 +5,7 @@ import Pagination from '../../components/Pagination.jsx';
 describe('<Pagination>', () => {
   let props;
   const getComponent = () => render(Pagination, props);
-  
+
   beforeEach(() => {
     props = {
       page: 2,
@@ -36,7 +36,7 @@ describe('<Pagination>', () => {
     const {container} = getComponent();
     const pageButton = getByText(container, '1');
     fireEvent.click(pageButton);
-    
+
     expect(props.onChange).toHaveBeenCalledWith(1);
   });
 

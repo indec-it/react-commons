@@ -17,7 +17,7 @@ export default function Login({title, onLogin, isLoging, error}) {
         </div>
         <div className="flex flex-col gap-3 justify-center p-3">
           <h2 className="font-bold text-2xl">Login</h2>
-          <LoginForm isLoging={isLoging} onLogin={onLogin} error={error}/>
+          <LoginForm isLoging={isLoging} onLogin={onLogin} error={error} />
         </div>
       </div>
     </>

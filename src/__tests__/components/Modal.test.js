@@ -5,7 +5,7 @@ import Modal from '../../components/Modal/index.jsx';
 describe('<Modal>', () => {
   let props;
   const getComponent = () => render(Modal, props);
-  
+
   beforeEach(() => {
     props = {
       show: true,
