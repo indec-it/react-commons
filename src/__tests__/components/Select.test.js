@@ -5,7 +5,7 @@ import Select from '../../components/Select.jsx';
 describe('<Select>', () => {
   let props;
   const getComponent = () => render(Select, props);
-  
+
   beforeEach(() => {
     props = {
       options: [
@@ -37,7 +37,7 @@ describe('<Select>', () => {
     const {container} = getComponent();
     const input = container.querySelector('input');
     fireEvent.click(input);
-    
+
     expect(getByText(container, 'Option 1')).toBeInTheDocument();
     expect(getByText(container, 'Option 2')).toBeInTheDocument();
     expect(getByText(container, 'Option 3')).toBeInTheDocument();
@@ -47,10 +47,10 @@ describe('<Select>', () => {
     const {container} = getComponent();
     const input = container.querySelector('input');
     fireEvent.click(input);
-    
+
     const option = getByText(container, 'Option 1');
     fireEvent.click(option);
-    
+
     expect(props.onSelect).toHaveBeenCalledWith(props.name, 1);
   });
 
@@ -80,7 +80,7 @@ describe('<Select>', () => {
       const {container} = getComponent();
       const input = container.querySelector('input');
       fireEvent.click(input);
-      
+
       expect(queryByText(container, 'Option 1')).toBeNull();
     });
   });
@@ -94,7 +94,7 @@ describe('<Select>', () => {
       const {container} = getComponent();
       const input = container.querySelector('input');
       fireEvent.click(input);
-      
+
       expect(getByText(container, 'Cargando...')).toBeInTheDocument();
     });
   });
@@ -108,7 +108,7 @@ describe('<Select>', () => {
       const {container} = getComponent();
       const input = container.querySelector('input');
       fireEvent.click(input);
-      
+
       expect(getByText(container, 'No hay opciones')).toBeInTheDocument();
     });
   });
@@ -145,24 +145,24 @@ describe('<Select>', () => {
     it('should hide error message when dropdown is open', () => {
       const {container} = getComponent();
       const input = container.querySelector('input');
-      
+
       expect(getByText(container, 'This field is required')).toBeInTheDocument();
-      
+
       fireEvent.click(input);
-      
+
       expect(queryByText(container, 'This field is required')).toBeNull();
     });
 
     it('should show error message again when dropdown is closed', () => {
       const {container} = getComponent();
       const input = container.querySelector('input');
-      
+
       fireEvent.click(input);
       expect(queryByText(container, 'This field is required')).toBeNull();
-      
+
       const backdrop = container.querySelector('.fixed');
       fireEvent.click(backdrop);
-      
+
       expect(getByText(container, 'This field is required')).toBeInTheDocument();
     });
 

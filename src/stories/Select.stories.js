@@ -108,10 +108,11 @@ export const CustomKeyValue = {
     keyValue: 'id',
     placeholder: 'Select option...'
   },
-  render: args => Select({
-    ...args,
-    options: args.options.map(opt => ({...opt, label: opt.name}))
-  })
+  render: args =>
+    Select({
+      ...args,
+      options: args.options.map(opt => ({...opt, label: opt.name}))
+    })
 };
 
 export const Searchable = {

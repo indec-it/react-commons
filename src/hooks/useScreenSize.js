@@ -14,10 +14,10 @@ export function useScreenSize() {
         isDesktop: width >= 768
       });
     };
-    
+
     checkScreenSize();
     window.addEventListener('resize', checkScreenSize);
-    
+
     return () => window.removeEventListener('resize', checkScreenSize);
   }, []);
 

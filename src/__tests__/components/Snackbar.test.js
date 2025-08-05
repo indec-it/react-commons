@@ -5,7 +5,7 @@ import Snackbar from '../../components/Snackbar.jsx';
 describe('<Snackbar>', () => {
   let props;
   const getComponent = () => render(Snackbar, props);
-  
+
   beforeEach(() => {
     props = {
       open: true,
@@ -31,7 +31,7 @@ describe('<Snackbar>', () => {
     const {container} = getComponent();
     const closeButton = container.querySelector('button');
     fireEvent.click(closeButton);
-    
+
     expect(props.onClose).toHaveBeenCalled();
   });
 
@@ -105,9 +105,9 @@ describe('<Snackbar>', () => {
 
     it('should auto close after 6 seconds', () => {
       getComponent();
-      
+
       jest.advanceTimersByTime(6000);
-      
+
       expect(props.onClose).toHaveBeenCalled();
     });
   });

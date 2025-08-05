@@ -1,6 +1,8 @@
+import React from 'react';
 import {fn} from '@storybook/test';
 
 import Table from '../components/Table/index.jsx';
+import ButtonWithOptions from '../components/ButtonWithOptions.jsx';
 import '../components/output.css';
 
 const sampleColumns = [
@@ -80,4 +82,41 @@ export const LargeDataset = {
     resultsPerPage: 25,
     page: 3
   }
+};
+
+const TableWithActions = props => {
+  const columnsWithActions = [...sampleColumns, {key: 'actions', label: 'Actions'}];
+
+  const rowsWithActions = sampleRows.map(row => ({
+    ...row,
+    actions: React.createElement(ButtonWithOptions, {
+      options: [
+        {
+          id: 'edit',
+          label: 'Edit',
+          onClick: () => console.log('Edit clicked for', row.name)
+        },
+        {
+          id: 'delete',
+          label: 'Delete',
+          onClick: () => console.log('Delete clicked for', row.name)
+        },
+        {
+          id: 'view',
+          label: 'View Details',
+          onClick: () => console.log('View clicked for', row.name)
+        }
+      ]
+    })
+  }));
+
+  return React.createElement(Table, {
+    ...props,
+    columns: columnsWithActions,
+    rows: rowsWithActions
+  });
+};
+
+export const WithActions = {
+  render: args => React.createElement(TableWithActions, args)
 };

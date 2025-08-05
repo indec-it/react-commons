@@ -167,7 +167,8 @@ export const KeyboardNavigation = {
   parameters: {
     docs: {
       description: {
-        story: 'This typeahead supports keyboard navigation. Use arrow keys to navigate options, Enter to select, and Escape to close.'
+        story:
+          'This typeahead supports keyboard navigation. Use arrow keys to navigate options, Enter to select, and Escape to close.'
       }
     }
   }

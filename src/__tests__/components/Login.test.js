@@ -8,8 +8,8 @@ describe('<Login>', () => {
   beforeEach(() => {
     props = {
       title: 'My Application'
-    }
-  })
+    };
+  });
 
   it('should display `My Application`', () => {
     const {container} = getComponent();

@@ -5,7 +5,7 @@ import Table from '../../components/Table/index.jsx';
 describe('<Table>', () => {
   let props;
   const getComponent = () => render(Table, props);
-  
+
   beforeEach(() => {
     props = {
       columns: [

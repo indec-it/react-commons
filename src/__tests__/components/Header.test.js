@@ -25,7 +25,7 @@ import Header from '../../components/Header/index.jsx';
 describe('<Header>', () => {
   let props;
   const getComponent = () => render(Header, props);
-  
+
   beforeEach(() => {
     props = {
       onRedirect: jest.fn(),

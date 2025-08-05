@@ -46,8 +46,8 @@ export default function UserMenu({user, onLogout}) {
       </button>
 
       {isOpen && (
-        <div 
-          ref={menuRef} 
+        <div
+          ref={menuRef}
           className="fixed bg-white shadow-lg rounded py-2 min-w-[200px] z-50"
           style={{
             top: `${dropdownPosition.top}px`,

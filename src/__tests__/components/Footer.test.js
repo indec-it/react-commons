@@ -5,7 +5,7 @@ import Footer from '../../components/Footer.jsx';
 describe('<Footer>', () => {
   let props;
   const getComponent = () => render(Footer, props);
-  
+
   beforeEach(() => {
     props = {
       children: '© 2024 INDEC. All rights reserved.'
